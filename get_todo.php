@@ -10,6 +10,7 @@
 // Lumberjacks Incorperated (2018)
 //--------------------------------------------------------------------------------------------------------------
 
+// Header needed by REACT
 header("Access-control-allow-origin: *");
 
 //---------------------------------------- 
@@ -26,26 +27,25 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		echo 'Bad session';
 	}
 
-	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-	$time = timeTextFieldContentsFromCurrentClientRequest();
-	$place = placeTextFieldContentsFromCurrentClientRequest();
-	$people = peopleTextFieldContentsFromCurrentClientRequest();
-	$topic = topicTextFieldContentsFromCurrentClientRequest();
-	$todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
-	if ($todoListEntries) {
-		$todoListEntriesInAWonkyFormatSeperatedByHashes = "";
-		foreach ($todoListEntries as $todoListEntrie) {
-			$todoListEntrieInWonkyFormat = "".$todoListEntrie['todo_text'];#.$todoListEntrie['time']."~".$todoListEntrie['place']."~".$todoListEntrie['people']."~".$todoListEntrie['topic'];
-			$todoOne = "".$todoListEntrie['todo_text'];#.$todoListEntrie['time']."~".$todoListEntrie['place']."~".$todoListEntrie['people']."~".$todoListEntrie['topic'];
-			$todoListEntriesInAWonkyFormatSeperatedByHashes = $todoListEntriesInAWonkyFormatSeperatedByHashes.$todoListEntrieInWonkyFormat;
-            #break;
-		}
-		#echo $todoListEntriesInAWonkyFormatSeperatedByHashes;
-        echo $todoOne;
-
-	} else {
-		echo 'Bad data';
-	}
-
+    // Leave this bit out for now
+	//$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+	//$time = timeTextFieldContentsFromCurrentClientRequest();
+	//$place = placeTextFieldContentsFromCurrentClientRequest();
+	//$people = peopleTextFieldContentsFromCurrentClientRequest();
+	//$topic = topicTextFieldContentsFromCurrentClientRequest();
+	//$todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
+	
+    $outerArray = array();
+    if ($todoListEntries) {
+        foreach ($todoListEntries as $todoListEntrie) {
+            $todoEntry = "".$todoListEntrie['todo_text'];
+            $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
+            array_push($outerArray, $innerArray);
+        }
+        $reversedOuterArray = array_reverse($outerArray);
+        echo (json_encode($reversedOuterArray));
+    } else {
+        echo  "[]";
+    }
 
 ?>
