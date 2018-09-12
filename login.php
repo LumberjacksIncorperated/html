@@ -3,7 +3,7 @@
 //
 // PURPOSE
 // -------
-// To login
+// To login:
 //
 // AUTHOR
 // -------
