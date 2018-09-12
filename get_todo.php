@@ -10,6 +10,8 @@
 // Lumberjacks Incorperated (2018)
 //--------------------------------------------------------------------------------------------------------------
 
+header("Access-control-allow-origin: *");
+
 //---------------------------------------- 
 // INCLUDES
 //---------------------------------------- 
@@ -33,10 +35,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	if ($todoListEntries) {
 		$todoListEntriesInAWonkyFormatSeperatedByHashes = "";
 		foreach ($todoListEntries as $todoListEntrie) {
-			$todoListEntrieInWonkyFormat = "~1~".$todoListEntrie['todo_text'];#.$todoListEntrie['time']."~".$todoListEntrie['place']."~".$todoListEntrie['people']."~".$todoListEntrie['topic'];
+			$todoListEntrieInWonkyFormat = "".$todoListEntrie['todo_text'];#.$todoListEntrie['time']."~".$todoListEntrie['place']."~".$todoListEntrie['people']."~".$todoListEntrie['topic'];
+			$todoOne = "".$todoListEntrie['todo_text'];#.$todoListEntrie['time']."~".$todoListEntrie['place']."~".$todoListEntrie['people']."~".$todoListEntrie['topic'];
 			$todoListEntriesInAWonkyFormatSeperatedByHashes = $todoListEntriesInAWonkyFormatSeperatedByHashes.$todoListEntrieInWonkyFormat;
+            #break;
 		}
-		echo $todoListEntriesInAWonkyFormatSeperatedByHashes;
+		#echo $todoListEntriesInAWonkyFormatSeperatedByHashes;
+        echo $todoOne;
 
 	} else {
 		echo 'Bad data';
