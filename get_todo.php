@@ -55,7 +55,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
         // $reversedOuterArray = array_reverse($outerArray);
         // echo (json_encode($reversedOuterArray));
 
-        $msg . = " well there are entries";
+        $msg .= " well there are entries";
         $outerArray = array();
         $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
         array_push($outerArray, $innerArray);
