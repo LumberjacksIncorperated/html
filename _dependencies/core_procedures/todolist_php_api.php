@@ -28,6 +28,11 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 		}
 	}
 
+	function getTodoListEntries() {
+		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM items");
+		return $r;
+	}
+
 
 	// function getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic) {
 	// 	$accountIDOfUser = getAccountIDOfCurrentUser();

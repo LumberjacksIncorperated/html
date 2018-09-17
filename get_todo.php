@@ -28,12 +28,15 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	}
 
     // Leave this bit out for now
-	//$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+	// $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 	//$time = timeTextFieldContentsFromCurrentClientRequest();
 	//$place = placeTextFieldContentsFromCurrentClientRequest();
 	//$people = peopleTextFieldContentsFromCurrentClientRequest();
 	//$topic = topicTextFieldContentsFromCurrentClientRequest();
-	//$todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
+	
+    // $todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
+
+    $todoListEntries = getTodoListEntries();
 	
     $outerArray = array();
     if ($todoListEntries) {
