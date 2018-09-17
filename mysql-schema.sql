@@ -55,6 +55,7 @@ CREATE TABLE `items` (
 
 LOCK TABLES `items` WRITE;
 INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
+INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Dan');
 UNLOCK TABLES;
 
 
