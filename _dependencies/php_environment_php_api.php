@@ -27,13 +27,14 @@
     }
     function _getEnvironmentForTesting() {
         $testConfiguration = new PHPEnvironmentConfiguration();
+        $testConfiguration->mainDatabaseName = 'tagnostic';
         #$testConfiguration->mainDatabaseName = 'my_application_test_database';
         return $testConfiguration;
         //_setPHPEnvironemntConfiguration($testConfiguration);
     }
     
 //---------------------------------------- 
-// EXPOSED FUNCTTIONS
+// EXPOSED FUNCTIONS
 //---------------------------------------- 
 
     class PHPEnvironmentConfiguration {
