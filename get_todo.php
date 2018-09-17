@@ -36,23 +36,29 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	
     // $todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
 
-    // $todoListEntries = getTodoListEntries();
-	
-    $outerArray = array();
-    $innerArray = array("task" => "hi Dan", "created_at" => "21/09/2020");
-    array_push($outerArray, $innerArray);
-    echo (json_encode($outerArray));
+    $msg = "yo there ";
+    $todoListEntries = getTodoListEntries();
+    $msg .= json_encode($todoListEntries);
 
-    // if ($todoListEntries) {
-    //     foreach ($todoListEntries as $todoListEntry) {
-    //         $todoEntry = "".$todoListEntry['item_text'];
-    //         $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
-    //         array_push($outerArray, $innerArray);
-    //     }
-    //     $reversedOuterArray = array_reverse($outerArray);
-    //     echo (json_encode($reversedOuterArray));
-    // } else {
-    //     echo  "[]";
-    // }
+	
+    // $outerArray = array();
+    // $innerArray = array("task" => "hi Dan", "created_at" => "21/09/2020");
+    // array_push($outerArray, $innerArray);
+    // echo (json_encode($outerArray));
+
+    if ($todoListEntries) {
+        foreach ($todoListEntries as $todoListEntry) {
+            $todoEntry = "".$todoListEntry['item_text'];
+            $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
+            array_push($outerArray, $innerArray);
+        }
+        $reversedOuterArray = array_reverse($outerArray);
+        echo (json_encode($reversedOuterArray));
+    } else {
+        $outerArray = array();
+        $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
+        array_push($outerArray, $innerArray);
+        echo (json_encode($outerArray));
+    }
 
 ?>
