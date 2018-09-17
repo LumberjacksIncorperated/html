@@ -20,7 +20,7 @@ define("SECONDS_UNTIL_A_SESSION_EXPIRES", 315360676);
 //---------------------------------------- 
     function _makeSanitizedSQLQueryToGetUnexpiredSessionRecordsForSessionKey($sessionKeyFromUser){
     	$sanitisedSessionKeyFromUser = sanitiseStringForSQLQuery($sessionKeyFromUser);
-		$currentSessionRecord = fetchSingleRecordByMakingSQLQuery("SELECT * FROM sessions WHERE TIMESTAMPDIFF(second, sessions.last_session_renewal, CURRENT_TIMESTAMP) < ".SECONDS_UNTIL_A_SESSION_EXPIRES." AND session_key_sha1 = '".strval($sanitisedSessionKeyFromUser)."' LIMIT 1");
+		$currentSessionRecord = fetchSingleRecordByMakingSQLQuery("SELECT * FROM Sessions WHERE TIMESTAMPDIFF(second, Sessions.last_session_renewal, CURRENT_TIMESTAMP) < ".SECONDS_UNTIL_A_SESSION_EXPIRES." AND session_key_sha1 = '".strval($sanitisedSessionKeyFromUser)."' LIMIT 1");
 		return $currentSessionRecord;
     }
 
@@ -37,12 +37,12 @@ define("SECONDS_UNTIL_A_SESSION_EXPIRES", 315360676);
 		$currentSessionRecord = _retriveCurrentSessionRecord();
 		if ($currentSessionRecord) {
 			$sessionKey = $currentSessionRecord['session_key_sha1'];
-			modifyDataByMakingSQLQuery("UPDATE sessions SET last_session_renewal = CURRENT_TIMESTAMP WHERE session_key_sha1 = '".strval($sessionKey)."'");
+			modifyDataByMakingSQLQuery("UPDATE Sessions SET last_session_renewal = CURRENT_TIMESTAMP WHERE session_key_sha1 = '".strval($sessionKey)."'");
 		}
 	}
 
 	function _deleteAllSessionsForAccountID($accountID) {
-		modifyDataByMakingSQLQuery("DELETE FROM sessions WHERE account_id = '".strval($accountID)."'");
+		modifyDataByMakingSQLQuery("DELETE FROM Sessions WHERE account_id = '".strval($accountID)."'");
 	}
 
 //---------------------------------------- 
@@ -63,12 +63,12 @@ define("SECONDS_UNTIL_A_SESSION_EXPIRES", 315360676);
 		if ($username && $password) {
 			$sanitisedUsername = sanitiseStringForSQLQuery($username);
 			$passwordSha1 = sha1($password);
-			$userAccountOnRecord = fetchSingleRecordByMakingSQLQuery("SELECT * FROM accounts WHERE password_sha1 = '".$passwordSha1."' AND username = '".$sanitisedUsername."' LIMIT 1");
+			$userAccountOnRecord = fetchSingleRecordByMakingSQLQuery("SELECT * FROM Accounts WHERE password_sha1 = '".$passwordSha1."' AND username = '".$sanitisedUsername."' LIMIT 1");
 			$accountIDForSession = $userAccountOnRecord['account_id'];
 			if ($accountIDForSession) {
 				_deleteAllSessionsForAccountID($accountIDForSession);
 				$sessionKeyForNewSession = sha1(strval(rand()));
-				modifyDataByMakingSQLQuery("INSERT INTO sessions (account_id, last_session_renewal, session_key_sha1) VALUES ('".$accountIDForSession."', CURRENT_TIMESTAMP, '".strval($sessionKeyForNewSession)."')");
+				modifyDataByMakingSQLQuery("INSERT INTO Sessions (account_id, last_session_renewal, session_key_sha1) VALUES ('".$accountIDForSession."', CURRENT_TIMESTAMP, '".strval($sessionKeyForNewSession)."')");
 			}
 		}
 

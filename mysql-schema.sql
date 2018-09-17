@@ -14,7 +14,8 @@ CREATE TABLE `Accounts` (
 
 -- Insert some dummy accounts
 LOCK TABLES `Accounts` WRITE;
-INSERT INTO `Accounts` VALUES (1,'Bob','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'Bob', 'Smith', 'b@s.com');
+INSERT INTO `Accounts` VALUES (1,'JohnCitizen','5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8', 'John', 'Citizen', 'j@s.com');
+INSERT INTO `Accounts` VALUES (2,'Bob','9d4e1e23bd5b727046a9e3b4b7db57bd8d6ee684', 'Bob', 'Smith', 'b@s.com');
 UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `Sessions`;
@@ -31,6 +32,7 @@ CREATE TABLE `Sessions` (
 LOCK TABLES `Sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `Sessions` VALUES (1,1,'5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8','2018-08-28 22:35:23');
+INSERT INTO `Sessions` VALUES (139,2,'04a354f0807288aa223bbddf6aa2a31b770b59b1','2018-09-12 05:15:39');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
