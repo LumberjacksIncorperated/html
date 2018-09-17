@@ -32,7 +32,7 @@ CREATE TABLE `Sessions` (
 LOCK TABLES `Sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `Sessions` VALUES (1,1,'5BAA61E4C9B93F3F0682250B6CF8331B7EE68FD8','2018-08-28 22:35:23');
-INSERT INTO `Sessions` VALUES (139,2,'04a354f0807288aa223bbddf6aa2a31b770b59b1','2018-09-12 05:15:39');
+INSERT INTO `Sessions` VALUES (2,2,'5a535bf5506603509e5ad04247d2bc211311aa37','2018-09-12 05:15:39');
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,7 +52,7 @@ CREATE TABLE `items` (
 
 
 LOCK TABLES `items` WRITE;
-INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
 UNLOCK TABLES;
 
 

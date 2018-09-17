@@ -47,13 +47,21 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     // echo (json_encode($outerArray));
 
     if ($todoListEntries) {
-        foreach ($todoListEntries as $todoListEntry) {
-            $todoEntry = "".$todoListEntry['item_text'];
-            $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
-            array_push($outerArray, $innerArray);
-        }
-        $reversedOuterArray = array_reverse($outerArray);
-        echo (json_encode($reversedOuterArray));
+        // foreach ($todoListEntries as $todoListEntry) {
+        //     $todoEntry = "".$todoListEntry['item_text'];
+        //     $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
+        //     array_push($outerArray, $innerArray);
+        // }
+        // $reversedOuterArray = array_reverse($outerArray);
+        // echo (json_encode($reversedOuterArray));
+
+        $msg . = " well there are entries";
+        $outerArray = array();
+        $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
+        array_push($outerArray, $innerArray);
+        echo (json_encode($outerArray));
+
+
     } else {
         $outerArray = array();
         $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
