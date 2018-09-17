@@ -50,7 +50,7 @@ include_once dirname(__FILE__).'/../my_application_database_php_api.php';
 	}
 
 //---------------------------------------- 
-// EXPOSED FUNCTTIONS
+// EXPOSED FUNCTIONS
 //---------------------------------------- 
 	function sendMessageFromCurrentUserToDestinationUsernameWithMessageText($destinationUsername, $messageText) {
 		if ($messageText && $destinationUsername) {

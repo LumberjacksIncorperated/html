@@ -37,8 +37,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	
     $outerArray = array();
     if ($todoListEntries) {
-        foreach ($todoListEntries as $todoListEntrie) {
-            $todoEntry = "".$todoListEntrie['todo_text'];
+        foreach ($todoListEntries as $todoListEntry) {
+            $todoEntry = "".$todoListEntry['item_text'];
             $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
             array_push($outerArray, $innerArray);
         }

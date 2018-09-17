@@ -21,7 +21,7 @@
 
     function _getEnvironmentForProduction() {
         $productionConfiguration = new PHPEnvironmentConfiguration();
-        $productionConfiguration->mainDatabaseName = 'TodoApplication';
+        $productionConfiguration->mainDatabaseName = 'tagnostic';
         return $productionConfiguration;
         //_setPHPEnvironemntConfiguration($productionConfiguration);
     }
@@ -89,16 +89,16 @@
     function getTodoTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('todoText');
     }
-    function timeTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
-    }
-    function placeTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('place');
-    }
-    function peopleTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('people');
-    }
-    function topicTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('topic');
-    }
+    // function timeTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
+    // }
+    // function placeTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('place');
+    // }
+    // function peopleTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('people');
+    // }
+    // function topicTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('topic');
+    // }
 ?>
