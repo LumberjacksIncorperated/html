@@ -45,7 +45,7 @@ include_once dirname(__FILE__).'/php_environment_php_api.php';
 	}
 
 //---------------------------------------- 
-// EXPOSED FUNCTTIONS
+// EXPOSED FUNCTIONS
 //---------------------------------------- 
 	function fetchSingleRecordByMakingSQLQuery($queryToFetchSingleRecord) {
 		$fetchedData = _fetchDataByMakingSQLQuery($queryToFetchSingleRecord);

@@ -20,7 +20,7 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 //---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 
-	function addTodoListEntryForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time) {
+	function addTodoListEntryForCurrentUser($todoText, $time) {
 		$accountIDOfUser = getAccountIDOfCurrentUser();
 		if ($accountIDOfUser) {	    
 			$todoText = sanitiseStringForSQLQuery($todoText);

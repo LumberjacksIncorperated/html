@@ -90,9 +90,10 @@
     function getTodoTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('todoText');
     }
-    // function timeTextFieldContentsFromCurrentClientRequest() {
-    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
-    // }
+    function timeTextFieldContentsFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
+    }
+    
     // function placeTextFieldContentsFromCurrentClientRequest() {
     //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('place');
     // }
