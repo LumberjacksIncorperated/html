@@ -22,10 +22,10 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 //---------------------------------------- 
 	function addTodoListEntryForCurrentUser($todoText, $time) {
 		$accountIDOfUser = getAccountIDOfCurrentUser();
-		if ($accountIDOfUser) {	    
+		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
-			modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES (".$accountIDOfUser.", ".$todoText.")");
-			// modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ("2", "my great todo")");
+			modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ($accountIDOfUser, \"$todoText\");");
+            // modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ("2", "my great todo")");
 		}
 	}
 
