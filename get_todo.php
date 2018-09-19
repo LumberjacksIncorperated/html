@@ -28,24 +28,43 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	}
 
     // Leave this bit out for now
-	//$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+	// $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 	//$time = timeTextFieldContentsFromCurrentClientRequest();
 	//$place = placeTextFieldContentsFromCurrentClientRequest();
 	//$people = peopleTextFieldContentsFromCurrentClientRequest();
 	//$topic = topicTextFieldContentsFromCurrentClientRequest();
-	//$todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
+	
+    // $todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
+
+    $msg = "";
+    $todoListEntries = getTodoListEntries();
+    $msg .= json_encode($todoListEntries);
+
 	
     $outerArray = array();
+    // $innerArray = array("task" => "hi Dan", "created_at" => "21/09/2020");
+    // array_push($outerArray, $innerArray);
+    // echo (json_encode($outerArray));
+
     if ($todoListEntries) {
-        foreach ($todoListEntries as $todoListEntrie) {
-            $todoEntry = "".$todoListEntrie['todo_text'];
-            $innerArray = array("task" => $todoEntry, "created_at" => "21/09/2018");
-            array_push($outerArray, $innerArray);
-        }
-        $reversedOuterArray = array_reverse($outerArray);
-        echo (json_encode($reversedOuterArray));
+         foreach ($todoListEntries as $t) {
+             $todoEntry = "".$t['item_text'];
+             $entryTime = "".$t['time_posted'];
+             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime);
+             array_push($outerArray, $innerArray);
+         }
+         $reversedOuterArray = array_reverse($outerArray);
+         echo (json_encode($reversedOuterArray));
+
+        //$outerArray = array();
+        //$innerArray = array("task" => $msg, "created_at" => "21/09/2020");
+        //array_push($outerArray, $innerArray);
+        //echo (json_encode($outerArray));
     } else {
-        echo  "[]";
+        $outerArray = array();
+        $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
+        array_push($outerArray, $innerArray);
+        echo (json_encode($outerArray));
     }
 
 ?>

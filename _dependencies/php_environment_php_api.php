@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------------------------------------
 // AUTHOR
 // -------
-// Lumberjacks Incorperated (2018)
+// Lumberjacks Incorperated (2018) this is a test
 //--------------------------------------------------------------------------------------------------------------
 
 //---------------------------------------- 
@@ -21,19 +21,20 @@
 
     function _getEnvironmentForProduction() {
         $productionConfiguration = new PHPEnvironmentConfiguration();
-        $productionConfiguration->mainDatabaseName = 'TodoApplication';
+        $productionConfiguration->mainDatabaseName = 'tagnostic';
         return $productionConfiguration;
         //_setPHPEnvironemntConfiguration($productionConfiguration);
     }
     function _getEnvironmentForTesting() {
         $testConfiguration = new PHPEnvironmentConfiguration();
+        $testConfiguration->mainDatabaseName = 'tagnostic';
         #$testConfiguration->mainDatabaseName = 'my_application_test_database';
         return $testConfiguration;
         //_setPHPEnvironemntConfiguration($testConfiguration);
     }
     
 //---------------------------------------- 
-// EXPOSED FUNCTTIONS
+// EXPOSED FUNCTIONS
 //---------------------------------------- 
 
     class PHPEnvironmentConfiguration {
@@ -92,13 +93,13 @@
     function timeTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
     }
-    function placeTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('place');
-    }
-    function peopleTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('people');
-    }
-    function topicTextFieldContentsFromCurrentClientRequest() {
-        return _getFieldContentsFromCurrentClientRequestWithParameterKey('topic');
-    }
+    // function placeTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('place');
+    // }
+    // function peopleTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('people');
+    // }
+    // function topicTextFieldContentsFromCurrentClientRequest() {
+    //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('topic');
+    // }
 ?>

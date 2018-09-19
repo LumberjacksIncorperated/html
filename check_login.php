@@ -23,6 +23,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 //---------------------------------------- 
 	if (!ensureThisIsASecuredSession()) {
 		echo 'false';
+		//echo 'true';
 	} else {
 		echo 'true';
 	}

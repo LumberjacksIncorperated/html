@@ -20,33 +20,36 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 //---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 
-	function addTodoListEntryForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic) {
+	function addTodoListEntryForCurrentUser($todoText, $time) {
 		$accountIDOfUser = getAccountIDOfCurrentUser();
-		if ($accountIDOfUser) {	    
+		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
-			$time = sanitiseStringForSQLQuery($time);
-			$place = sanitiseStringForSQLQuery($place);
-			$people = sanitiseStringForSQLQuery($people);
-			$topic = sanitiseStringForSQLQuery($topic);
-			modifyDataByMakingSQLQuery("INSERT INTO todo (account_id, todo_text, time, place, people, topic) VALUES (".$accountIDOfUser.", '".$todoText."', '".$time."', '".$place."', '".$people."', '".$topic."')");
+			modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ($accountIDOfUser, \"$todoText\");");
+            // modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ("2", "my great todo")");
 		}
 	}
 
+	// INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
 
-
-	function getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic) {
-		$accountIDOfUser = getAccountIDOfCurrentUser();
-		if ($accountIDOfUser) {	    
-			$todoText = sanitiseStringForSQLQuery($todoText);
-			$time = sanitiseStringForSQLQuery($time);
-			$place = sanitiseStringForSQLQuery($place);
-			$people = sanitiseStringForSQLQuery($people);
-			$topic = sanitiseStringForSQLQuery($topic);
-			$todoEntriesFilteredByGivenSearchProperties = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM todo WHERE (account_id = ".$accountIDOfUser.") AND (time LIKE '%".$time."%') AND (place LIKE '%".$place."%') AND (people LIKE '%".$people."%') AND (topic LIKE '%".$topic."%')");
-			return $todoEntriesFilteredByGivenSearchProperties;
-		}
-		return NULL;
+	function getTodoListEntries() {
+		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM items");
+		return $r;
 	}
+
+
+	// function getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic) {
+	// 	$accountIDOfUser = getAccountIDOfCurrentUser();
+	// 	if ($accountIDOfUser) {	    
+	// 		$todoText = sanitiseStringForSQLQuery($todoText);
+	// 		$time = sanitiseStringForSQLQuery($time);
+	// 		$place = sanitiseStringForSQLQuery($place);
+	// 		$people = sanitiseStringForSQLQuery($people);
+	// 		$topic = sanitiseStringForSQLQuery($topic);
+	// 		$todoEntriesFilteredByGivenSearchProperties = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM todo WHERE (account_id = ".$accountIDOfUser.") AND (time LIKE '%".$time."%') AND (place LIKE '%".$place."%') AND (people LIKE '%".$people."%') AND (topic LIKE '%".$topic."%')");
+	// 		return $todoEntriesFilteredByGivenSearchProperties;
+	// 	}
+	// 	return NULL;
+	// }
 
 ?>
 
