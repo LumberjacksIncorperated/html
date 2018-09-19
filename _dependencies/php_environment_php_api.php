@@ -44,13 +44,11 @@
 
     function getPHPEnvironmentConfiguration() {
         $environment = NULL;
-
-        $environment = _getEnvironmentForProduction();
-        // if ($_REQUEST['test_environment']) {
-        //     $environment = _getEnvironmentForTesting();
-        // } else {
-        //     $environment = _getEnvironmentForProduction();
-        // }
+        if ($_REQUEST['test_environment']) {
+            $environment = _getEnvironmentForTesting();
+        } else {
+            $environment = _getEnvironmentForProduction();
+        }
         return $environment;
     }
 
@@ -95,7 +93,6 @@
     function timeTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
     }
-
     // function placeTextFieldContentsFromCurrentClientRequest() {
     //     return _getFieldContentsFromCurrentClientRequestWithParameterKey('place');
     // }
