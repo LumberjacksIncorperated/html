@@ -74,6 +74,8 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 	// 	return NULL;
 	// }
 
+
+// GENERATE UUID
 // https://stackoverflow.com/questions/2040240/php-function-to-generate-v4-uuid
 // USAGE: echo uuidv4(openssl_random_pseudo_bytes(16));
 function uuidv4($data) {

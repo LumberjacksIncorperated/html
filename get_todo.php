@@ -50,11 +50,37 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
          foreach ($todoListEntries as $t) {
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
-             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime);
+
+             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime, 
+                "tag_list" => array(array("textValue" => "John", "tagType" => "person"), 
+                                array("textValue" => "UNSW", "tagType" => "location")));
+
+             // $tagArray = array();
+             // $tagOne = array("textValue" => "John", "tagType" => "person");
+             // $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
+             // $tagThree = array("datetimeValue" => $entryTime, "tagType" => "date");
+
+             // array_push($tagOne, $innerArray['tags']);
+             // array_push($tagTwo, $tagArray);
+
+             // $innerArray['tags'] = $tagArray;
+             
+             // array_push($tagArray, $innerArray);
+
              array_push($outerArray, $innerArray);
          }
          $reversedOuterArray = array_reverse($outerArray);
          echo (json_encode($reversedOuterArray));
+
+
+        //  {
+        //     "textValue": "John",
+        //     "tagType": "person"
+        // },
+        // {
+        //     "textValue": "UNSW",
+        //     "tagType": "location"
+        // }
 
         //$outerArray = array();
         //$innerArray = array("task" => $msg, "created_at" => "21/09/2020");
