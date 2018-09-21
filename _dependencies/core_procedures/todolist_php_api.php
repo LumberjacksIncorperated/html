@@ -41,26 +41,8 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 
 		return 1;
 
-
 	}
 
-	// --uuid value: for tagging other users etc?
-	// --description might be e.g. "deadline"
-	// DROP TABLE IF EXISTS `Tags`;
-	// CREATE TABLE Tags (
-	// id VARCHAR(36) PRIMARY KEY,
-	// tagTypeID INTEGER references TagTypes(id),
-	// textValue VARCHAR(100),
-	// dateTimeValue DATETIME,
-	// numericValue1 FLOAT,
-	// numericValue2 FLOAT,
-	// numericValue3 FLOAT,
-	// uuidValue VARCHAR(36),
-	// timeAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	// timeModified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	// addedBy VARCHAR(36) references Accounts(account_id),
-	// description VARCHAR(100)
-	// );
 
 	// ADD TAGS TO ITEMS
 
