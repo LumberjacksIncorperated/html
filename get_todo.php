@@ -54,6 +54,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $tagArray = array();
              $tagOne = array("textValue" => "John", "tagType" => "person");
              $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
+             $tagThree = array("datetimeValue" => $entryTime, "tagType" => "date");
              array_push($tagOne, $tagArray);
              array_push($tagTwo, $tagArray);
 
