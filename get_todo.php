@@ -50,13 +50,16 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
          foreach ($todoListEntries as $t) {
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
-             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime);
+
              $tagArray = array();
              $tagOne = array("textValue" => "John", "tagType" => "person");
              $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
              array_push($tagOne, $tagArray);
              array_push($tagTwo, $tagArray);
-             array_push($tagArray, $innerArray);
+
+             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime, "tags" => $tagArray);
+             
+             // array_push($tagArray, $innerArray);
 
              array_push($outerArray, $innerArray);
          }
