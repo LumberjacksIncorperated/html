@@ -54,12 +54,15 @@ CREATE TABLE `items` (
 
 
 LOCK TABLES `items` WRITE;
-INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES (1,'Just a demo task, Rob');
 INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Dan');
+INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Jack');
+INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Nazif');
+INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Ojasvi');
 UNLOCK TABLES;
 
 
--- e.g. "Person", or "Date". 
+-- e.g. "Person", or "Date".
 -- I think NOT "deadline" etc, that's too specific for this table.
 -- That could go in Tags.description
 --editableField:
@@ -67,33 +70,41 @@ UNLOCK TABLES;
 --iconID: the little image, e.g. from fontawesome
 DROP TABLE IF EXISTS `TagTypes`;
 CREATE TABLE TagTypes (
-id VARCHAR(36) PRIMARY KEY,
-editableField VARCHAR(10), 	
-iconID VARCHAR(10) 		
+id INTEGER unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+name VARCHAR(50),
+iconID VARCHAR(50)
 );
+
+-- Current tag types: date, person, location, other
+insert into TagTypes (name, iconID) values ("date", "fas fa-calendar-alt");
+insert into TagTypes (name, iconID) values ("time", "far fa-clock");
+insert into TagTypes (name, iconID) values ("person", "fas fa-user");
+insert into TagTypes (name, iconID) values ("location", "fas fa-map-marker-alt");
+insert into TagTypes (name, iconID) values ("other", "");
+insert into TagTypes (name, iconID) values ("texttype", "fas fa-file");
 
 --uuid value: for tagging other users etc?
 --description might be e.g. "deadline"
 DROP TABLE IF EXISTS `Tags`;
 CREATE TABLE Tags (
 id VARCHAR(36) PRIMARY KEY,
-tagTypeID VARCHAR(36) references TagTypes(id),
+tagTypeID INTEGER references TagTypes(id),
 textValue VARCHAR(100),
-datetimeValue TIMESTAMP,
+dateTimeValue DATETIME,
 numericValue1 FLOAT,
 numericValue2 FLOAT,
 numericValue3 FLOAT,
-uuidValue VARCHAR(36),				
+uuidValue VARCHAR(36),
 timeAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 timeModified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-addedBy VARCHAR(36) references Accounts(account_id),  
-description VARCHAR(100)		 
+addedBy VARCHAR(36) references Accounts(account_id),
+description VARCHAR(100)
 );
 
 -- Which items have which tags
 DROP TABLE IF EXISTS `ItemTags`;
 CREATE TABLE ItemTags (
-itemID VARCHAR(36) references Items(item_id),
+itemID INTEGER references Items(item_id),
 tagID VARCHAR(36) references Tags(id),
 beginOffset INTEGER,
 endOffset INTEGER,
