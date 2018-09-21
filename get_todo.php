@@ -51,6 +51,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
 
+             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime, "tags" => array());
+
              $tagArray = array();
              $tagOne = array("textValue" => "John", "tagType" => "person");
              $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
@@ -58,7 +60,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              array_push($tagOne, $tagArray);
              array_push($tagTwo, $tagArray);
 
-             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime, "tags" => $tagArray);
+             $innerArray['tags'] = $tagArray;
              
              // array_push($tagArray, $innerArray);
 
