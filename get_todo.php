@@ -51,10 +51,27 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
              $innerArray = array("task" => $todoEntry, "created_at" => $entryTime);
+             $tagArray = array();
+             $tagOne = array("textValue" => "John", "tagType" => "person");
+             $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
+             array_push($tagOne, $tagArray);
+             array_push($tagTwo, $tagArray);
+             array_push($tagArray, $innerArray);
+
              array_push($outerArray, $innerArray);
          }
          $reversedOuterArray = array_reverse($outerArray);
          echo (json_encode($reversedOuterArray));
+
+
+        //  {
+        //     "textValue": "John",
+        //     "tagType": "person"
+        // },
+        // {
+        //     "textValue": "UNSW",
+        //     "tagType": "location"
+        // }
 
         //$outerArray = array();
         //$innerArray = array("task" => $msg, "created_at" => "21/09/2020");
