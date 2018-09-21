@@ -67,7 +67,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              array_push($outerArray, $innerArray);
          }
          $reversedOuterArray = array_reverse($outerArray);
-         echo (json_encode($reversedOuterArray));
+         echo (json_encode($reversedOuterArray, JSON_FORCE_OBJECT));
 
 
         //  {
