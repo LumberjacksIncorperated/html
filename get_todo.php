@@ -57,7 +57,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $tagOne = array("textValue" => "John", "tagType" => "person");
              $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
              $tagThree = array("datetimeValue" => $entryTime, "tagType" => "date");
-             array_push($tagOne, $tagArray);
+             
+             array_push($tagOne, $innerArray['tags']);
              array_push($tagTwo, $tagArray);
 
              $innerArray['tags'] = $tagArray;
@@ -67,7 +68,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              array_push($outerArray, $innerArray);
          }
          $reversedOuterArray = array_reverse($outerArray);
-         echo (json_encode($reversedOuterArray, JSON_FORCE_OBJECT));
+         echo (json_encode($reversedOuterArray));
 
 
         //  {
