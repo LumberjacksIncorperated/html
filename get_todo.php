@@ -41,51 +41,34 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     $msg .= json_encode($todoListEntries);
 
 	
-    $outerArray = array();
+    $tasksArray = array();
     // $innerArray = array("task" => "hi Dan", "created_at" => "21/09/2020");
     // array_push($outerArray, $innerArray);
     // echo (json_encode($outerArray));
+
+    // $task = array("task" => $todoEntry, "created_at" => $entryTime, 
+    //    "tag_list" => array(array("textValue" => "John", "tagType" => "person"), 
+    //                    array("textValue" => "UNSW", "tagType" => "location")));
 
     if ($todoListEntries) {
          foreach ($todoListEntries as $t) {
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
 
-             $innerArray = array("task" => $todoEntry, "created_at" => $entryTime, 
-                "tag_list" => array(array("textValue" => "John", "tagType" => "person"), 
-                                array("textValue" => "UNSW", "tagType" => "location")));
+             $task = array("task" => $todoEntry, "created_at" => $entryTime, "tag_list" => array());
 
-             // $tagArray = array();
-             // $tagOne = array("textValue" => "John", "tagType" => "person");
-             // $tagTwo = array("textValue" => "UNSW", "tagType" => "location");
-             // $tagThree = array("datetimeValue" => $entryTime, "tagType" => "date");
+             array_push($task['tag_list'], array("textValue" => "John", "tagType" => "person"));
+             array_push($task['tag_list'], array("textValue" => "UNSW", "tagType" => "location"));
 
-             // array_push($tagOne, $innerArray['tags']);
-             // array_push($tagTwo, $tagArray);
-
-             // $innerArray['tags'] = $tagArray;
-             
-             // array_push($tagArray, $innerArray);
-
-             array_push($outerArray, $innerArray);
+             array_push($tasksArray, $task);
          }
-         $reversedOuterArray = array_reverse($outerArray);
+
+         $reversedOuterArray = array_reverse($tasksArray);
+
          echo (json_encode($reversedOuterArray));
 
+         //$task = array("task" => "idk", "created_at" => "5pm", "tag_list" => array());
 
-        //  {
-        //     "textValue": "John",
-        //     "tagType": "person"
-        // },
-        // {
-        //     "textValue": "UNSW",
-        //     "tagType": "location"
-        // }
-
-        //$outerArray = array();
-        //$innerArray = array("task" => $msg, "created_at" => "21/09/2020");
-        //array_push($outerArray, $innerArray);
-        //echo (json_encode($outerArray));
     } else {
         $outerArray = array();
         $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
