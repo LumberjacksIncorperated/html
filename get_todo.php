@@ -62,10 +62,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
              array_push($tasksArray, $task);
          }
-         
+
          $reversedOuterArray = array_reverse($tasksArray);
 
-         print(json_encode($reversedOuterArray));
          echo (json_encode($reversedOuterArray));
 
          //$task = array("task" => "idk", "created_at" => "5pm", "tag_list" => array());
