@@ -32,7 +32,7 @@ $options = array(
     'http' => array(
                  'header'  => "Content-type: application/json\r\n",
                          'method'  => 'POST',
-                                 'content' => $requestBody
+                                 'content' => http_build_query($postData)
      )
 );
 
