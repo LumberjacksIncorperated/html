@@ -29,6 +29,11 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 		}
 	}
 
+	function deleteItemWithId($id) {
+			modifyDataByMakingSQLQuery("DELETE FROM items WHERE item_id = $id;");
+	}
+	
+
 	// INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
 
 	function getTodoListEntries() {
