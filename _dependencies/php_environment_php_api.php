@@ -90,6 +90,9 @@
     function getTodoTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('todoText');
     }
+    function getTodoTextFieldContentsFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('itemId');
+    }
     function timeTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
     }
