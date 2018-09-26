@@ -6,9 +6,9 @@ header("Access-control-allow-origin: *");
 //---------------------------------------- 
 // INCLUDES
 //---------------------------------------- 
-include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.php';
-include_once dirname(__FILE__).'/_dependencies/php_environment_php_api.php';
-include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
+//include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.php';
+//include_once dirname(__FILE__).'/_dependencies/php_environment_php_api.php';
+//include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
 
 //---------------------------------------- 
 // SCRIPT
@@ -17,9 +17,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
                 echo 'Bad session';
      }
 
-
+     $tag_text = "Lawrence of Arabia";
      $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=AIzaSyBQJ_GKPMbk0Bo9xUZGp_FCLBzwSS_6wYA";
-
+     $postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $tag_text),'encodingType' => 'UTF8');
      $requestBody = "{
           \"document\":{
                 \"type\":\"PLAIN_TEXT\",
@@ -32,7 +32,7 @@ $options = array(
     'http' => array(
                  'header'  => "Content-type: application/json\r\n",
                          'method'  => 'POST',
-                                 'content' => $requestBody
+                                 'content' => $postData
      )
 );
 
