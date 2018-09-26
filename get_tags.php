@@ -12,13 +12,17 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
 //---------------------------------------- 
 // SCRIPT
-//----------------------------------------  
+//---------------------------------------- 
+
+
     if (!ensureThisIsASecuredSession()) {
                 echo 'Bad session';
      }
 
+      $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+
      $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
-     $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=AIzaSyBQJ_GKPMbk0Bo9xUZGp_FCLBzwSS_6wYA";
+     $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=thing";
      $postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $tag_text),'encodingType' => 'UTF8');
      $requestBody = "{
           \"document\":{
@@ -41,10 +45,5 @@ $result = file_get_contents($requestURL, false, $context);
 if ($result === FALSE) { /* Handle error */ }
 
 echo($result);
-
-
-
-
-
 
 ?>
