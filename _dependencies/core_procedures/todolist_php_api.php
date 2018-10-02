@@ -43,7 +43,9 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 	function getTagsForItem($itemID) {
 		$r = fetchMultipleRecordsByMakingSQLQuery("select * from ItemTags 
 												   JOIN Tags ON Tags.id = ItemTags.tagID 
-												   where ItemTags.itemID = $itemID;");
+												   where ItemTags.itemID = $itemID
+												   JOIN TagTypes
+												   ON TagTypes.id = Tags.tagTypeID;");
 		return $r;
 	}
 
