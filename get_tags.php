@@ -17,12 +17,14 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
     if (!ensureThisIsASecuredSession()) {
                 echo 'Bad session';
-     }
+    }
 
-      $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+    $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+    $api_key = getenv('GOOGLE_API_KEY');
 
      $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
-     $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=thing";
+     $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
+     
      $postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $tag_text),'encodingType' => 'UTF8');
      $requestBody = "{
           \"document\":{
