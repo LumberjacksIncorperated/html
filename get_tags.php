@@ -20,16 +20,16 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     }
 
     $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-    $thing = $_SERVER['LOGNAME'];
-    $api_key = getenv('GOOG_API_KEY', true) ?: getenv('GOOG_API_KEY');
+    // $thing = $_SERVER['LOGNAME'];
+    // $api_key = getenv('GOOG_API_KEY', true) ?: getenv('GOOG_API_KEY');
 
-    echo("yo".$api_key."yo".$thing);
+    // echo("yo".$api_key."yo".$thing);
 
-    require_once '../../secure/api_key.php'; // example only, you will need to use the correct path
-    echo $google_api_key; // testing, you can use the key in the script
+    require_once '../../secure/api_key.php';
+    // echo $google_api_key; 
 
      $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
-     $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
+     $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$google_api_key";
 
      $postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $tag_text),'encodingType' => 'UTF8');
      $requestBody = "{
