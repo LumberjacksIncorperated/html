@@ -41,7 +41,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
-		addTag($tags, "person", $tagID);
+		addTag("john", "person", $tagID);
 
 		addTagForItem($itemID, $tagID);
 
@@ -79,7 +79,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// ADD TAGS
 
 	function addTag($tagName, $tagType, $tagID){
-		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\" ;");
+		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
 		if (!$tagTypeID){ echo("Sorry no tag type like that"); }
 		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
 									VALUES (\"$tagID\", $tagType, \"tagName\");");

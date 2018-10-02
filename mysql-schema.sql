@@ -43,7 +43,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
   `item_id` VARCHAR(36),
-  itemNumber INTEGER unsigned NOT NULL UNIQUE AUTO_INCREMENT,
+  `itemNumber` INTEGER unsigned NOT NULL UNIQUE AUTO_INCREMENT,
   `account_id` int(10) unsigned NOT NULL,
   `item_text` text NOT NULL,
   `time_posted` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
