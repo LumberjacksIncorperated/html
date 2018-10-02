@@ -29,16 +29,21 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
-			addTagsForItem($itemID);
+			addAllTagsForItem($itemID, $todoText);
             
 		}
 	}
 
 
-	function addTagsForItem($itemID){
+	function addAllTagsForItem($itemID, $todoText){
 
-		
-		return 1;
+		$tags = getTagsForText($todoText);
+
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+
+		addTag($tags, "person", $tagID);
+
+		addTagForItem($itemID, $tagID);
 
 	}
 
@@ -71,11 +76,18 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 	}
 
 
-	// ADD TAGS TO ITEMS
+	// ADD TAGS
+
+	function addTag($tagName, $tagType, $tagID){
+		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\" ;");
+		if (!$tagTypeID){ echo("Sorry no tag type like that"); }
+		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
+									VALUES (\"$tagID\", $tagType, \"tagName\");");
+	}
 
 	function addTagForItem($itemID, $tagID){
 		$tagID = sanitiseStringForSQLQuery($todoText);
-		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID) VALUES ($itemID, \"$tagID\");");
+		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID) VALUES (\"$itemID\", \"$tagID\");");
 	}
 
 	function addTagForItemWithOffset($itemID, $tagID, $beginOffset, $endOffset){
