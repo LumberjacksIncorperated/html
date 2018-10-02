@@ -20,7 +20,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     }
 
     $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-    $api_key = getenv('API_KEY');
+    $api_key = $_SERVER['API_KEY'];
 
     echo("yo".$api_key."yo");
 
