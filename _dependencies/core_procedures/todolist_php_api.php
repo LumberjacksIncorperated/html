@@ -41,9 +41,7 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 
 	//get all tags for item
 	function getTagsForItem($itemID) {
-		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT tagID FROM ItemTags WHERE itemID = $itemID
-													JOIN Tags 
-													ON Tags.id = ItemTags.tagID;");
+		$r = fetchMultipleRecordsByMakingSQLQuery("select * from ItemTags JOIN Tags ON Tags.id = ItemTags.tagID where ItemTags.itemID = $itemID;");
 	}
 
 	// CREATE TAGS
