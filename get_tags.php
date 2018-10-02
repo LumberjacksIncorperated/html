@@ -25,6 +25,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
     echo("yo".$api_key."yo".$thing);
 
+    require_once '../../secure/api_key.php'; // example only, you will need to use the correct path
+    echo $google_api_key; // testing, you can use the key in the script
+
      $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
      $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
 
