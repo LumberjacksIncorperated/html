@@ -39,7 +39,7 @@ function getTagsForText($text){
 	$result = file_get_contents($requestURL, false, $context);
 	if ($result === FALSE) { /* Handle error */ }
 
-	return result;
+	return $result;
 
 }
 
