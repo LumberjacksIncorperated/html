@@ -45,7 +45,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		addTag("john", "person", $tagID);
 
 		addTagForItem($itemID, $tagID);
-
 	}
 
 	function deleteItemWithId($id) {
@@ -62,10 +61,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function getTagsForItem($itemID) {
 		$r = fetchMultipleRecordsByMakingSQLQuery("select Tags.textValue, TagTypes.name as tagType 
 												   from ItemTags 
-												   JOIN Tags ON Tags.id = ItemTags.tagID 
+												   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
 												   JOIN TagTypes
 												   ON TagTypes.id = Tags.tagTypeID
-												   where ItemTags.itemID = $itemID;");
+												   where ItemTags.itemID LIKE $itemID;");
 		return $r;
 	}
 
