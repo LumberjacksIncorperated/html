@@ -29,8 +29,6 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		die();
 	}
 
-	1395013509135093531o513905asdkfjdasklfa;afkdjdakl;a;sflkjdsa
-
 	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 	$time = timeTextFieldContentsFromCurrentClientRequest();
 	addTodoListEntryForCurrentUser($todoText, $time);
