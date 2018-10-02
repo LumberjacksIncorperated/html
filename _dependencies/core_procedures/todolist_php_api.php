@@ -39,9 +39,9 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 		return $r;
 	}
 
-	//get all tags for item
+	//get all tags for item (we're only returning the tag name and tag type)
 	function getTagsForItem($itemID) {
-		$r = fetchMultipleRecordsByMakingSQLQuery("select * from ItemTags 
+		$r = fetchMultipleRecordsByMakingSQLQuery("select Tags.textValue, TagTypes.name from ItemTags 
 												   JOIN Tags ON Tags.id = ItemTags.tagID 
 												   JOIN TagTypes
 												   ON TagTypes.id = Tags.tagTypeID
