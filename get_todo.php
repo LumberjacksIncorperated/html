@@ -49,9 +49,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $entryTime = "".$t['time_posted'];
              $itemID = "".$t['item_id'];
 
-             getTagsForItem($itemID);
 
              $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemID, "tag_list" => array());
+
+             $itemTags = getTagsForItem($itemID);
+             foreach ($itemTags as $itag) {
+                array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => "person"));
+             }
 
              array_push($task['tag_list'], array("textValue" => "John", "tagType" => "person"));
              array_push($task['tag_list'], array("textValue" => "UNSW", "tagType" => "location"));
