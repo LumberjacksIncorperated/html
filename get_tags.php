@@ -22,7 +22,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
     $api_key = getenv('API_KEY');
 
-    echo "$api_key";
+    echo("yo".$api_key."yo");
 
      $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
      $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
