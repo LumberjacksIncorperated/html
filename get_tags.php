@@ -14,33 +14,27 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 // SCRIPT
 //---------------------------------------- 
 
+//usage: http://165.227.25.45/get_tags.php?todoText=%22hello%20there%20my%20name%20is%20Dan%22
+//erm ideally authenticate as well
 
-    if (!ensureThisIsASecuredSession()) {
-                echo 'Bad session';
-    }
+if (!ensureThisIsASecuredSession()) {
+            echo 'Bad session';
+}
 
-    $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 
-    //Insert api key variable into script
-    require_once '../../secure/api_key.php';
+//Insert api key variable into script
+require_once '../../secure/api_key.php';
 
-    $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
-    $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$google_api_key";
+$requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$google_api_key";
 
-    $postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $todoText),'encodingType' => 'UTF8');
-//     $requestBody = "{
-//           \"document\":{
-//                 \"type\":\"PLAIN_TEXT\",
-//                    \"language\": \"EN\",
-//                        \"content\":\"we need to do a highly retarded 4920 assignment Wayne Wobke\" },
-// \"encodingType\":\"UTF8\"
-//      }";
+$postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $todoText),'encodingType' => 'UTF8');
      
 $options = array(
     'http' => array(
-                 'header'  => "Content-type: application/json\r\n",
-                         'method'  => 'POST',
-                                 'content' => json_encode($postData)
+                'header'  => "Content-type: application/json\r\n",
+                'method'  => 'POST',
+                'content' => json_encode($postData)
      )
 );
 
