@@ -81,8 +81,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function addTag($tagName, $tagType, $tagID){
 		// $tagName = sanitiseStringForSQLQuery($tagName);
 		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
+		$tagTypeNumber = $tagTypeID['id'];
 		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
-									VALUES (\"$tagID\", $tagTypeID['id'], \"$tagName\");");
+									VALUES (\"$tagID\", $tagTypeNumber, \"$tagName\");");
 	}
 
 	function addTagForItem($itemID, $tagID){
