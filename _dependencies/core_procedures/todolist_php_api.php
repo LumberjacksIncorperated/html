@@ -44,7 +44,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		//function addTag($tagName, $tagType, $tagID)
 		addTag("john", "person", "thing");
 
-		addTagForItem($itemID, "thing");
+		addTagForItem($itemID, $tagID);
 
 	}
 
@@ -87,7 +87,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	function addTagForItem($itemID, $tagID){
-		$tagID = sanitiseStringForSQLQuery($todoText);
+		$tagID = sanitiseStringForSQLQuery($$tagID);
 		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID) VALUES (\"$itemID\", \"$tagID\");");
 	}
 
