@@ -42,7 +42,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
 		//function addTag($tagName, $tagType, $tagID)
-		addTag($tags, "person", $tagID);
+		addTag("uni", "location", $tagID);
 
 		addTagForItem($itemID, $tagID);
 	}
@@ -79,9 +79,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// ADD TAGS
 
 	function addTag($tagName, $tagType, $tagID){
-		// $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
+		$tagName = sanitiseStringForSQLQuery($tagName);
+		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
 		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
-									VALUES (\"$tagID\", 3, \"$tagName\");");
+									VALUES (\"$tagID\", $tagTypeID, \"$tagName\");");
 	}
 
 	function addTagForItem($itemID, $tagID){
@@ -89,7 +90,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	function addTagForItemWithOffset($itemID, $tagID, $beginOffset, $endOffset){
-		$tagID = sanitiseStringForSQLQuery($todoText);
 		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID, beginOffset, endOffset)
 																VALUES ($itemID, \"$tagID\", $beginOffset, $endOffset);");
 	}
