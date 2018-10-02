@@ -64,7 +64,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 												   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
 												   JOIN TagTypes
 												   ON TagTypes.id = Tags.tagTypeID
-												   where ItemTags.itemID LIKE $itemID;");
+												   where ItemTags.itemID LIKE "\$itemID\";");
 		return $r;
 	}
 
