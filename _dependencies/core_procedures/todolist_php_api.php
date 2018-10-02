@@ -16,7 +16,7 @@
 include_once dirname(__FILE__).'/../php_environment_php_api.php';
 include_once dirname(__FILE__).'/../database_php_api.php';
 include_once dirname(__FILE__).'/secured_session_php_api.php';
-include_once dirname(__FILE__).'../_dependencies/nlp_functions.php';
+include_once dirname(__FILE__).'/../nlp_functions.php';
 
 //----------------------------------------
 // SCRIPT
