@@ -20,9 +20,10 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     }
 
     $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-    $api_key = $_SERVER['API_KEY'];
+    $thing = $_SERVER['LOGNAME'];
+    $api_key = getenv('API_KEY', true) ?: getenv('API_KEY')
 
-    echo("yo".$api_key."yo");
+    echo("yo".$api_key."yo".$thing);
 
      $tag_text = "we need to do a highly retarded 4920 assignment Wayne Wobke";
      $requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
