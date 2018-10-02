@@ -55,7 +55,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $itemTags = getTagsForItem(144);
              echo(" hi");
              echo (json_encode($itemTags));
-             echo("hi ");
+             echo("hizz ");
 
              foreach ($itemTags as $itag) {
                 array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => "person"));
