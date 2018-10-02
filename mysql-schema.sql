@@ -102,6 +102,9 @@ addedBy VARCHAR(36) references Accounts(account_id),
 description VARCHAR(100)
 );
 
+--Dummy tag
+insert into Tags(id, tagTypeID, textValue) values ("5a9b34c6-72e7-46b8-a388-6b1d61f58cd3", 9, "Nazif");
+
 -- Which items have which tags
 DROP TABLE IF EXISTS `ItemTags`;
 CREATE TABLE ItemTags (

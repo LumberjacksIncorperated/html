@@ -40,21 +40,16 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     $todoListEntries = getTodoListEntries();
     $msg .= json_encode($todoListEntries);
 
-	
+	//this is the "outer array"
     $tasksArray = array();
-    // $innerArray = array("task" => "hi Dan", "created_at" => "21/09/2020");
-    // array_push($outerArray, $innerArray);
-    // echo (json_encode($outerArray));
-
-    // $task = array("task" => $todoEntry, "created_at" => $entryTime, 
-    //    "tag_list" => array(array("textValue" => "John", "tagType" => "person"), 
-    //                    array("textValue" => "UNSW", "tagType" => "location")));
 
     if ($todoListEntries) {
          foreach ($todoListEntries as $t) {
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
              $itemID = "".$t['item_id'];
+
+             getTagsForItem($itemID);
 
              $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemID, "tag_list" => array());
 

@@ -34,11 +34,16 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 	}
 	
 
-	// INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
-
 	function getTodoListEntries() {
 		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM items");
 		return $r;
+	}
+
+	//get all tags for item
+	function getTagsForItem($itemID) {
+		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT tagID FROM ItemTags WHERE itemID = $itemID
+													JOIN Tags 
+													ON Tags.id = ItemTags.tagID;");
 	}
 
 	// CREATE TAGS
