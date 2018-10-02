@@ -14,8 +14,6 @@
 // Header needed for react
 header("Access-control-allow-origin: *");
 
-1395013509135093531o513905asdkfjdasklfa;afkdjdakl;a;sflkjdsa
-
 //---------------------------------------- 
 // INCLUDES
 //---------------------------------------- 
@@ -30,6 +28,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		echo 'You are not allowed to send messages unless you are logged into a secure session';
 		die();
 	}
+
+	1395013509135093531o513905asdkfjdasklfa;afkdjdakl;a;sflkjdsa
 
 	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 	$time = timeTextFieldContentsFromCurrentClientRequest();
