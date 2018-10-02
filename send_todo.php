@@ -33,5 +33,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	$time = timeTextFieldContentsFromCurrentClientRequest();
 	addTodoListEntryForCurrentUser($todoText, $time);
 	echo 'Successfully sent message \"'.$todoText.'\", time: '.$time;
+
+	fkl;adsjfdklsfja
 ?>
 
