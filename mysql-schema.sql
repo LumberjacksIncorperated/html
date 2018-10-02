@@ -104,6 +104,7 @@ description VARCHAR(100)
 
 --Dummy tag
 insert into Tags(id, tagTypeID, textValue) values ("5a9b34c6-72e7-46b8-a388-6b1d61f58cd3", 9, "Nazif");
+insert into Tags(id, tagTypeID, textValue) values ("5a9b34c6-72e7-46b8-a388-6b1d61f58cd4", 10, "UNSW");
 
 -- Which items have which tags
 DROP TABLE IF EXISTS `ItemTags`;
@@ -114,6 +115,9 @@ beginOffset INTEGER,
 endOffset INTEGER,
 primary key (itemID, tagID)
 );
+
+insert into ItemTags(itemID, tagID) values (144, "5a9b34c6-72e7-46b8-a388-6b1d61f58cd3");
+insert into ItemTags(itemID, tagID) values (145, "5a9b34c6-72e7-46b8-a388-6b1d61f58cd4");
 
 -- Which tags are associated with which other tags for which user
 -- not for MVP
