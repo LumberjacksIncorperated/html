@@ -46,7 +46,7 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 	}
 
 	function deleteItemWithId($id) {
-			modifyDataByMakingSQLQuery("DELETE FROM items WHERE item_id = $id;");
+			modifyDataByMakingSQLQuery("DELETE FROM items WHERE item_id LIKE $id;");
 	}
 	
 
