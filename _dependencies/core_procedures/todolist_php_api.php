@@ -28,19 +28,16 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 			$itemID = uuidv4(openssl_random_pseudo_bytes(16));
 
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
+
+			addTagsForItem($itemID);
             
 		}
 	}
 
 
-	function getItemIDWithTodoText($todoText){
-		// $r = fetchSingleRecordByMakingSQLQuery("SELECT * from items WHERE ")
-		return 1;
-	}
-
-
 	function addTagsForItem($itemID){
 
+		
 		return 1;
 
 	}

@@ -25,7 +25,7 @@ function getTagsForText($text){
 
 	$requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
 
-	$postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $todoText),'encodingType' => 'UTF8');
+	$postData = array('document' => array('type' => 'PLAIN_TEXT', 'language' => 'EN', 'content' => $text),'encodingType' => 'UTF8');
 	 
 	$options = array(
 	'http' => array(
