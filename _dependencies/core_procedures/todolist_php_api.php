@@ -16,6 +16,7 @@
 include_once dirname(__FILE__).'/../php_environment_php_api.php';
 include_once dirname(__FILE__).'/../database_php_api.php';
 include_once dirname(__FILE__).'/secured_session_php_api.php';
+include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 
 //----------------------------------------
 // SCRIPT
@@ -24,9 +25,24 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 		$accountIDOfUser = getAccountIDOfCurrentUser();
 		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
-			modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ($accountIDOfUser, \"$todoText\");");
-            // modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ("2", "my great todo")");
+			$itemID = uuidv4(openssl_random_pseudo_bytes(16));
+
+			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
+            
 		}
+	}
+
+
+	function getItemIDWithTodoText($todoText){
+		// $r = fetchSingleRecordByMakingSQLQuery("SELECT * from items WHERE ")
+		return 1;
+	}
+
+
+	function addTagsForItem($itemID){
+
+		return 1;
+
 	}
 
 	function deleteItemWithId($id) {

@@ -21,13 +21,13 @@
 
     function _getEnvironmentForProduction() {
         $productionConfiguration = new PHPEnvironmentConfiguration();
-        $productionConfiguration->mainDatabaseName = 'tagnostic';
+        $productionConfiguration->mainDatabaseName = 'tagnostic2';
         return $productionConfiguration;
         //_setPHPEnvironemntConfiguration($productionConfiguration);
     }
     function _getEnvironmentForTesting() {
         $testConfiguration = new PHPEnvironmentConfiguration();
-        $testConfiguration->mainDatabaseName = 'tagnostic';
+        $testConfiguration->mainDatabaseName = 'tagnostic2';
         #$testConfiguration->mainDatabaseName = 'my_application_test_database';
         return $testConfiguration;
         //_setPHPEnvironemntConfiguration($testConfiguration);
