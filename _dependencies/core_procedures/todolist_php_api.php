@@ -41,9 +41,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
-		addTag("john", "person", $tagID);
+		//function addTag($tagName, $tagType, $tagID)
+		addTag("john", "person", "thing");
 
-		addTagForItem($itemID, $tagID);
+		addTagForItem($itemID, "thing");
 
 	}
 
