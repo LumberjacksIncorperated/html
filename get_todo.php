@@ -52,7 +52,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
              $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemID, "tag_list" => array());
 
-             $itemTags = getTagsForItem($itemID);
+             $itemTags = getTagsForItem(144);
              echo(" hi");
              echo (json_encode($itemTags));
              echo("hi ");
