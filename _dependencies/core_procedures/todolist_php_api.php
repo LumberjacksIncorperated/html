@@ -41,7 +41,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$mytags = json_decode($tags, true);
 
-		$first_elem = $mytags[0];
+		echo($mytags['entities']);
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
