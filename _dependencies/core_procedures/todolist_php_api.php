@@ -47,8 +47,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		addTagForItem($itemID, $tagID);
 	}
 
-	function deleteItemWithId($id) {
-			modifyDataByMakingSQLQuery("DELETE FROM items WHERE item_id LIKE \"$id\";");
+	function deleteItemWithId($num) {
+			modifyDataByMakingSQLQuery("DELETE FROM items WHERE itemNumber LIKE \"$num\";");
 	}
 	
 

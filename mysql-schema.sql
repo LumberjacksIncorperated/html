@@ -59,7 +59,7 @@ INSERT INTO `items` (item_id, account_id, item_text) VALUES ("1", 1, 'Just a dem
 INSERT INTO `items` (item_id, account_id, item_text) VALUES ("2", 2, 'Just a demo task, Dan');
 INSERT INTO `items` (item_id, account_id, item_text) VALUES ("3", 2, 'Just a demo task, Jack');
 INSERT INTO `items` (item_id, account_id, item_text) VALUES ("4", 1, 'Just a demo task, Nazif');
-INSERT INTO `items` (item_id, account_id, item_text) VALUES ("5", 1, 'Just a demo task, Ojasvi');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES ("f878e1c8-8ae0-4c9c-a9e7-2a0de041ec15", 1, 'Just a demo task, Ojasvi');
 UNLOCK TABLES;
 
 

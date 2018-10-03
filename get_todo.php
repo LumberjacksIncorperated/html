@@ -48,9 +48,10 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $todoEntry = "".$t['item_text'];
              $entryTime = "".$t['time_posted'];
              $itemID = "".$t['item_id'];
+             $itemNumber = "".$t['itemNumber']
 
 
-             $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemID, "tag_list" => array());
+             $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
 
              // Get list of tags for a particular item
              $itemTags = getTagsForItem($itemID);
