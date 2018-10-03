@@ -54,7 +54,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			elseif ($mytags['entities'][$i]['type'] == "CONSUMER_GOOD") {
 				$tagTypex = "other";
 			}
-			elseif($mytags['entities'][$i]['name'] == "priority"){
+			elseif(preg_match('/priority/', $mytags['entities'][$i]['name'])){
 				// We leave this for our "specialty" function
 				continue;
 			}
