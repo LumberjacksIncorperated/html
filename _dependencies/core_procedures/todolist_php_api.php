@@ -95,7 +95,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function markTaskAsCompleted($tagID) {
 
 		//Get tag ID
-		// $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from Tags WHERE name LIKE \"$tagType\";");
+	    // $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT * from Tags WHERE id LIKE \"$tagID\";");
+	    modifyDataByMakingSQLQuery("UPDATE Tags
+									SET textValue = \"Done\"
+									WHERE id LIKE $tagID;");
 
 	}
 

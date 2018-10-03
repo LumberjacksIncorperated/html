@@ -93,6 +93,9 @@
     function getIdTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('itemId');
     }
+    function getTagIDTextFieldContentsFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('tagId');
+    }
     function timeTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
     }

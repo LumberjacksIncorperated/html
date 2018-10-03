@@ -22,7 +22,9 @@ if (!ensureThisIsASecuredSession()) {
             echo 'Bad session';
 }
 
-// $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+$id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
+
+
 
 // $result = getTagsForText($todoText);
 
