@@ -85,6 +85,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addTag($matches[0], "priority", $tagID);
 			addTagForItem($itemID, $tagID);
 		}
+
+		if preg_match('/important/', $todoText, $matches) {
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag("high priority", "priority", $tagID);
+			addTagForItem($itemID, $tagID);
+		}
 	}
 
 
