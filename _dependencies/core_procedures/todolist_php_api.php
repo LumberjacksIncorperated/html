@@ -131,8 +131,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	//We're doing this by item number, which is effectively a second ID
 	function modifyItemText($itemText, $itemNum){
 	    modifyDataByMakingSQLQuery("UPDATE items
-									SET item_text = \"$itemText\"
-									SET time_modified = now()
+									SET item_text = \"$itemText\",
+									time_modified = CURRENT_TIMESTAMP
 									WHERE itemNumber = $itemNum;");
 	}
 
