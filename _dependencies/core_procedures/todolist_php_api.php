@@ -49,11 +49,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		for ($i=0; $i < count($mytags['entities']) ; $i++) { 
 			addTag($mytags['entities'][i]['name'], strtolower($mytags['entities'][i]['type']), $tagID);
+			addTagForItem($itemID, $tagID);
 		}
 
 		// addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
 
-		addTagForItem($itemID, $tagID);
+		// addTagForItem($itemID, $tagID);
 	}
 
 	//We're doing this by item number, which is effectively a second ID
