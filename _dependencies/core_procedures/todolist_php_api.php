@@ -133,7 +133,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	    modifyDataByMakingSQLQuery("UPDATE items
 									SET item_text = \"$itemText\",
 									time_modified = CURRENT_TIMESTAMP
-									WHERE itemNumber = $itemNum;");
+									WHERE itemNumber LIKE \"$itemNum\";");
 	}
 
 
