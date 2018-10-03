@@ -99,10 +99,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	    modifyDataByMakingSQLQuery("UPDATE Tags
 									SET textValue = \"Done\"
 									WHERE id LIKE $tagID;");
-
 	}
-
-
 	
 
 	function getTodoListEntries() {
