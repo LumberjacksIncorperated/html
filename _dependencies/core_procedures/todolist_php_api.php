@@ -46,7 +46,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
 		//function addTag($tagName, $tagType, $tagID)
-		addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
+
+		for ($i=0; $i < count($mytags['entities']) ; $i++) { 
+			addTag($mytags['entities'][i]['name'], strtolower($mytags['entities'][i]['type']), $tagID);
+		}
+
+		// addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
 
 		addTagForItem($itemID, $tagID);
 	}
