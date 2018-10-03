@@ -100,6 +100,16 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 									SET textValue = \"Done\"
 									WHERE id LIKE $tagID;");
 	}
+
+	function markItemAsCompleted($id_of_item){
+
+		// modifyDataByMakingSQLQuery("UPDATE Tags
+		// 							SET textValue = \"Done\"
+		// 							WHERE id LIKE 
+		// 							(SELECT )");
+		return 1;
+
+	}
 	
 
 	function getTodoListEntries() {
