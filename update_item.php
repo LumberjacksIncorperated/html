@@ -21,6 +21,9 @@ if (!ensureThisIsASecuredSession()) {
 $item_id = getIdTextFieldContentsFromCurrentClientRequest();
 $item_text = getTodoTextFieldContentsFromCurrentClientRequest();
 
+echo("item: ".$item_id);
+echo("new text: ".$item_text);
+
 modifyItemText($item_text, $item_id);
 
 ?>
