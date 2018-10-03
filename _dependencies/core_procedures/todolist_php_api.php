@@ -38,6 +38,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function addAllTagsForItem($itemID, $todoText){
 
 		$tags = getTagsForText($todoText);
+		$tags = json_encode($tags);
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
@@ -47,6 +48,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		addTagForItem($itemID, $tagID);
 	}
 
+	//We're doing this by item number, which is effectively a second ID
 	function deleteItemWithId($num) {
 			modifyDataByMakingSQLQuery("DELETE FROM items WHERE itemNumber LIKE \"$num\";");
 	}

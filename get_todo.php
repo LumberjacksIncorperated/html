@@ -56,6 +56,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              // Get list of tags for a particular item
              $itemTags = getTagsForItem($itemID);
 
+
              // Push tags to array
              foreach ($itemTags as $itag) {
                 array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType']));
