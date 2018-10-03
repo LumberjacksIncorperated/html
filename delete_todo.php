@@ -3,7 +3,7 @@
 //
 // PURPOSE
 // -------
-// Take a client request containing a message, and add that message to a local message storage 
+// Take a client request containing a tag id, and delete that message 
 //
 // AUTHOR
 // -------
@@ -29,9 +29,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		// die();
 	}
 
-	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-	$time = timeTextFieldContentsFromCurrentClientRequest();
-	addTodoListEntryForCurrentUser($todoText, $time);
-	echo 'Successfully sent message \"'.$todoText.'\", time: '.$time;
+	$item_id = getIdTextFieldContentsFromCurrentClientRequest();
+
+	deleteItemWithId($item_id);
+	echo 'Successfully deleted item \"'.$item_id;
 ?>
 

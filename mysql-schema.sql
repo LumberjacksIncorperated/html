@@ -42,7 +42,8 @@ UNLOCK TABLES;
 --This is a simple design for now.
 DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
-  `item_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `item_id` VARCHAR(36),
+  `itemNumber` INTEGER unsigned NOT NULL UNIQUE AUTO_INCREMENT,
   `account_id` int(10) unsigned NOT NULL,
   `item_text` text NOT NULL,
   `time_posted` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -54,11 +55,11 @@ CREATE TABLE `items` (
 
 
 LOCK TABLES `items` WRITE;
-INSERT INTO `items` (item_id, account_id, item_text) VALUES (1,'Just a demo task, Rob');
-INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Dan');
-INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Jack');
-INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Nazif');
-INSERT INTO `items` (account_id, item_text) VALUES (2,'Just a demo task, Ojasvi');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES ("1", 1, 'Just a demo task, Rob');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES ("2", 2, 'Just a demo task, Dan');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES ("3", 2, 'Just a demo task, Jack');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES ("4", 1, 'Just a demo task, Nazif');
+INSERT INTO `items` (item_id, account_id, item_text) VALUES ("f878e1c8-8ae0-4c9c-a9e7-2a0de041ec15", 1, 'Just a demo task, Ojasvi');
 UNLOCK TABLES;
 
 
@@ -79,9 +80,12 @@ iconID VARCHAR(50)
 insert into TagTypes (name, iconID) values ("date", "fas fa-calendar-alt");
 insert into TagTypes (name, iconID) values ("time", "far fa-clock");
 insert into TagTypes (name, iconID) values ("person", "fas fa-user");
+insert into TagTypes (name, iconID) values ("checkbox", "fas fa-user");
 insert into TagTypes (name, iconID) values ("location", "fas fa-map-marker-alt");
 insert into TagTypes (name, iconID) values ("other", "");
 insert into TagTypes (name, iconID) values ("texttype", "fas fa-file");
+insert into TagTypes (name, iconID) values ("priority", "fas fa-file");
+--insert into TagTypes (name, iconID) values ("texttype", "fas fa-file");
 
 --uuid value: for tagging other users etc?
 --description might be e.g. "deadline"
@@ -101,15 +105,23 @@ addedBy VARCHAR(36) references Accounts(account_id),
 description VARCHAR(100)
 );
 
+--Dummy tag
+--insert into Tags(id, tagTypeID, textValue) values ("5a9b34c6-72e7-46b8-a388-6b1d61f58cd3", 9, "Nazif");
+--insert into Tags(id, tagTypeID, textValue) values ("5a9b34c6-72e7-46b8-a388-6b1d61f58cd4", 3, "Paul");
+
 -- Which items have which tags
 DROP TABLE IF EXISTS `ItemTags`;
 CREATE TABLE ItemTags (
-itemID INTEGER references Items(item_id),
+itemID VARCHAR(36) references Items(item_id),
 tagID VARCHAR(36) references Tags(id),
 beginOffset INTEGER,
 endOffset INTEGER,
 primary key (itemID, tagID)
 );
+
+--insert into ItemTags(itemID, tagID) values (144, "5a9b34c6-72e7-46b8-a388-6b1d61f58cd3");
+--insert into ItemTags(itemID, tagID) values (145, "5a9b34c6-72e7-46b8-a388-6b1d61f58cd4");
+--insert into ItemTags(itemID, tagID) values ("f878e1c8-8ae0-4c9c-a9e7-2a0de041ec15", "5a9b34c6-72e7-46b8-a388-6b1d61f58cd4");
 
 -- Which tags are associated with which other tags for which user
 -- not for MVP

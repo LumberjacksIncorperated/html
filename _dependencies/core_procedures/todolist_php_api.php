@@ -16,6 +16,7 @@
 include_once dirname(__FILE__).'/../php_environment_php_api.php';
 include_once dirname(__FILE__).'/../database_php_api.php';
 include_once dirname(__FILE__).'/secured_session_php_api.php';
+include_once dirname(__FILE__).'/../nlp_functions.php';
 
 //----------------------------------------
 // SCRIPT
@@ -24,17 +25,116 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 		$accountIDOfUser = getAccountIDOfCurrentUser();
 		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
-			modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ($accountIDOfUser, \"$todoText\");");
-            // modifyDataByMakingSQLQuery("INSERT INTO items (account_id, item_text) VALUES ("2", "my great todo")");
+			$itemID = uuidv4(openssl_random_pseudo_bytes(16));
+
+			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
+
+			addAllTagsForItem($itemID, $todoText);
+            
 		}
 	}
 
-	// INSERT INTO `items` (item_id, account_id, item_text) VALUES (29,1,'Just a demo task, Dan');
 
+	function addAllTagsForItem($itemID, $todoText){
+
+		$tags = getTagsForText($todoText);
+		$mytags = json_decode($tags, true);
+
+		for ($i=0; $i < count($mytags['entities']); $i++) { 
+
+			if ($mytags['entities'][$i]['type'] == "ORGANIZATION"){
+				$tagTypex = "location";
+			}
+			elseif ($mytags['entities'][$i]['type'] == "WORK_OF_ART") {
+				$tagTypex = "other";
+			}
+			elseif ($mytags['entities'][$i]['type'] == "UNKNOWN") {
+				$tagTypex = "other";
+			}
+			elseif ($mytags['entities'][$i]['type'] == "CONSUMER_GOOD") {
+				$tagTypex = "other";
+			}
+			elseif(preg_match('/priority/', $mytags['entities'][$i]['name'])){
+				// We leave this for our "specialty" function
+				continue;
+			}
+			else {
+				$tagTypex = strtolower($mytags['entities'][$i]['type']);
+			}
+
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag($mytags['entities'][$i]['name'], $tagTypex, $tagID);
+			addTagForItem($itemID, $tagID);
+			
+		}
+
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag("Done?", "checkbox", $tagID);
+			addTagForItem($itemID, $tagID);
+
+			addPriorityForItem($itemID, $todoText);
+	}
+
+
+	//Add "priority" tag with simple regex
+	function addPriorityForItem($itemID, $todoText) {
+
+		$matches = array();
+		preg_match('/([a-zA-Z]+) priority/', $todoText, $matches);
+
+		if ($matches[0]){
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag($matches[0], "priority", $tagID);
+			addTagForItem($itemID, $tagID);
+		}
+
+		if (preg_match('/important/', $todoText, $matches)) {
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag("high priority", "priority", $tagID);
+			addTagForItem($itemID, $tagID);
+		}
+	}
+
+
+
+
+	//We're doing this by item number, which is effectively a second ID
+	function deleteItemWithId($num) {
+			modifyDataByMakingSQLQuery("DELETE FROM items WHERE itemNumber LIKE \"$num\";");
+	}
+
+	function markTaskAsCompleted($tagID) {
+	    modifyDataByMakingSQLQuery("UPDATE Tags
+									SET textValue = \"Done!\"
+									WHERE id LIKE \"$tagID\";");
+	}
+
+	
 	function getTodoListEntries() {
 		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM items");
 		return $r;
 	}
+
+	//get all tags for item (we're only returning the tag name and tag type)
+	function getTagsForItem($itemID) {
+		$r = fetchMultipleRecordsByMakingSQLQuery("select Tags.textValue, TagTypes.name as tagType, Tags.id 
+												   from ItemTags 
+												   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
+												   JOIN TagTypes
+												   ON TagTypes.id = Tags.tagTypeID
+												   where ItemTags.itemID LIKE \"$itemID\";");
+		return $r;
+	}
+
+
+	//MODIFY ITEMS
+	//We're doing this by item number, which is effectively a second ID
+	function modifyItemText($itemText, $itemNum){
+		echo("modifyDataByMakingSQLQuery(\"UPDATE items SET item_text = \"$itemText\", time_modified = CURRENT_TIMESTAMP WHERE itemNumber LIKE \"$itemNum\";");
+
+	    modifyDataByMakingSQLQuery("UPDATE items SET item_text = \"$itemText\", time_modified = CURRENT_TIMESTAMP WHERE itemNumber LIKE $itemNum;");
+	}
+
 
 	// CREATE TAGS
 	function createDateTag($dateString){
@@ -44,15 +144,20 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 	}
 
 
-	// ADD TAGS TO ITEMS
+	// ADD TAGS
+	function addTag($tagName, $tagType, $tagID){
+		$tagName = sanitiseStringForSQLQuery($tagName);
+		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
+		$tagTypeNumber = $tagTypeID['id'];
+		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
+									VALUES (\"$tagID\", $tagTypeNumber, \"$tagName\");");
+	}
 
 	function addTagForItem($itemID, $tagID){
-		$tagID = sanitiseStringForSQLQuery($todoText);
-		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID) VALUES ($itemID, \"$tagID\");");
+		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID) VALUES (\"$itemID\", \"$tagID\");");
 	}
 
 	function addTagForItemWithOffset($itemID, $tagID, $beginOffset, $endOffset){
-		$tagID = sanitiseStringForSQLQuery($todoText);
 		modifyDataByMakingSQLQuery("INSERT INTO ItemTags (itemID, tagID, beginOffset, endOffset)
 																VALUES ($itemID, \"$tagID\", $beginOffset, $endOffset);");
 	}
