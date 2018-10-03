@@ -75,6 +75,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addPriorityForItem($itemID, $todoText);
 	}
 
+
+	//Add "priority" tag with simple regex
 	function addPriorityForItem($itemID, $todoText) {
 
 		$matches = array();
@@ -92,6 +94,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addTagForItem($itemID, $tagID);
 		}
 	}
+
+
 
 
 	//We're doing this by item number, which is effectively a second ID
@@ -121,6 +125,17 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 												   where ItemTags.itemID LIKE \"$itemID\";");
 		return $r;
 	}
+
+
+	//MODIFY ITEMS
+	//We're doing this by item number, which is effectively a second ID
+	function modifyItemText($itemText, $itemNum){
+	    modifyDataByMakingSQLQuery("UPDATE items
+									SET item_text = \"$itemText\"
+									SET time_modified = now()
+									WHERE itemNumber = $itemNum;");
+	}
+
 
 	// CREATE TAGS
 	function createDateTag($dateString){
