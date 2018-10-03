@@ -39,6 +39,10 @@ function getTagsForText($text){
 	$result = file_get_contents($requestURL, false, $context);
 	if ($result === FALSE) { /* Handle error */ }
 
+	if ($result === NULL) { return "dog"; }
+
+	return "cat";
+
 	return $result;
 
 }
