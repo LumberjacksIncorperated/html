@@ -56,8 +56,15 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
+			if ($mytags['entities'][$i]['type'] == "ORGANIZATION"){
+				$tagTypex = "location";
+			}
+			else {
+				$tagTypex = strtolower($mytags['entities'][$i]['type']);
+			}
+
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($mytags['entities'][$i]['name'], strtolower($mytags['entities'][$i]['type']), $tagID);
+			addTag($mytags['entities'][$i]['name'], $tagTypex, $tagID);
 			addTagForItem($itemID, $tagID);
 			
 		}
