@@ -109,7 +109,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 	//get all tags for item (we're only returning the tag name and tag type)
 	function getTagsForItem($itemID) {
-		$r = fetchMultipleRecordsByMakingSQLQuery("select Tags.textValue, TagTypes.name as tagType 
+		$r = fetchMultipleRecordsByMakingSQLQuery("select Tags.textValue, TagTypes.name as tagType, Tags.id 
 												   from ItemTags 
 												   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
 												   JOIN TagTypes
