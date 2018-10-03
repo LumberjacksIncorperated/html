@@ -54,6 +54,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			elseif ($mytags['entities'][$i]['type'] == "CONSUMER_GOOD") {
 				$tagTypex = "other";
 			}
+			elseif($mytags['entities'][$i]['name'] == "priority"){
+				// We leave this for our "specialty" function
+				continue;
+			}
 			else {
 				$tagTypex = strtolower($mytags['entities'][$i]['type']);
 			}
@@ -78,7 +82,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		if ($matches[0]){
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($matches[0]." priority", "other", $tagID);
+			addTag($matches[0], "other", $tagID);
 			addTagForItem($itemID, $tagID);
 		}
 	}
