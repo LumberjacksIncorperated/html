@@ -39,12 +39,15 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$tags = getTagsForText($todoText);
 
-		echo($tags."hellooooo");
+		$mytags = implode(" ",$tags);
+
+		// echo($tags."hellooooo");
+		// echo("hellooooo");
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
 		//function addTag($tagName, $tagType, $tagID)
-		addTag("uni", "location", $tagID);
+		addTag($mytags, "location", $tagID);
 
 		addTagForItem($itemID, $tagID);
 	}
