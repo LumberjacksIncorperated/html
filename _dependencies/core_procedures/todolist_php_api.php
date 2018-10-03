@@ -54,10 +54,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		// addTag($mytags['entities'][1]['name'], strtolower($mytags['entities'][1]['type']), $tagID);
 		// addTagForItem($itemID, $tagID);
 
-		for ($i=0; $i < 3; $i++) { 
+		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
+			addTag($mytags['entities'][$i]['name'], strtolower($mytags['entities'][$i]['type']), $tagID);
 			addTagForItem($itemID, $tagID);
 			
 		}
