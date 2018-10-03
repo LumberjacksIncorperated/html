@@ -80,6 +80,7 @@ iconID VARCHAR(50)
 insert into TagTypes (name, iconID) values ("date", "fas fa-calendar-alt");
 insert into TagTypes (name, iconID) values ("time", "far fa-clock");
 insert into TagTypes (name, iconID) values ("person", "fas fa-user");
+insert into TagTypes (name, iconID) values ("checkbox", "fas fa-user");
 insert into TagTypes (name, iconID) values ("location", "fas fa-map-marker-alt");
 insert into TagTypes (name, iconID) values ("other", "");
 insert into TagTypes (name, iconID) values ("texttype", "fas fa-file");

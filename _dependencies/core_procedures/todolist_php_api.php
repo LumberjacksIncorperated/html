@@ -59,6 +59,15 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			if ($mytags['entities'][$i]['type'] == "ORGANIZATION"){
 				$tagTypex = "location";
 			}
+			elseif ($mytags['entities'][$i]['type'] == "WORK_OF_ART") {
+				$tagTypex = "other";
+			}
+			elseif ($mytags['entities'][$i]['type'] == "UNKNOWN") {
+				$tagTypex = "other";
+			}
+			elseif ($mytags['entities'][$i]['type'] == "CONSUMER_GOOD") {
+				$tagTypex = "other";
+			}
 			else {
 				$tagTypex = strtolower($mytags['entities'][$i]['type']);
 			}
@@ -68,6 +77,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addTagForItem($itemID, $tagID);
 			
 		}
+
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag("false", "checkbox", $tagID);
+			addTagForItem($itemID, $tagID);
 
 		// addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
 
