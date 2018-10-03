@@ -24,7 +24,7 @@ if (!ensureThisIsASecuredSession()) {
 
 $id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
 
-
+markTaskAsCompleted($id_of_tag);
 
 // $result = getTagsForText($todoText);
 
