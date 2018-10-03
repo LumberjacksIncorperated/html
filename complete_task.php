@@ -26,6 +26,8 @@ $id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
 
 markTaskAsCompleted($id_of_tag);
 
+echo($id_of_tag);
+
 // markItemAsCompleted($id_of_item);
 
 // $result = getTagsForText($todoText);
