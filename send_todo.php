@@ -26,7 +26,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 //---------------------------------------- 
 	if (!ensureThisIsASecuredSession()) {
 		echo 'You are not allowed to send messages unless you are logged into a secure session';
-		die();
+		// die();
 	}
 
 	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
