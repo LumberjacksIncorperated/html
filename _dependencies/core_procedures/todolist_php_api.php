@@ -41,13 +41,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$mytags = implode(" ",$tags);
 
-		// echo($tags."hellooooo");
-		// echo("hellooooo");
+
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
 		//function addTag($tagName, $tagType, $tagID)
-		addTag($mytags, "location", $tagID);
+		addTag("Ojasvi", "person", $tagID);
 
 		addTagForItem($itemID, $tagID);
 	}
