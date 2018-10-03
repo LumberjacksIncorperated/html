@@ -41,8 +41,6 @@ function getTagsForText($text){
 
 	if ($result === NULL) { return "dog"; }
 
-	return "cat";
-
 	return $result;
 
 }

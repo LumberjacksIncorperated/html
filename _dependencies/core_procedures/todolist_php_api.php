@@ -39,7 +39,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$tags = getTagsForText($todoText);
 
-		// $tags = json_encode($tags);
+		$tags = (string)$tags;
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 
