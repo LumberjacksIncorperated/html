@@ -74,11 +74,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function addPriorityForItem($itemID, $todoText) {
 
 		$matches = array();
-		preg_match('/([a-zA-Z]) priority/', $todoText, $matches);
+		preg_match('/([a-zA-Z]+) priority/', $todoText, $matches);
 
-		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		addTag($matches[0]." priority", "other", $tagID);
-		addTagForItem($itemID, $tagID);
+		if ($matches[0]){
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag($matches[0]." priority", "other", $tagID);
+			addTagForItem($itemID, $tagID);
+		}
 	}
 
 
