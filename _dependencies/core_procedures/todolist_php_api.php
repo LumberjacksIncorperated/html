@@ -38,21 +38,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function addAllTagsForItem($itemID, $todoText){
 
 		$tags = getTagsForText($todoText);
-
 		$mytags = json_decode($tags, true);
-
-		echo($mytags['entities']);
-
-
-		//function addTag($tagName, $tagType, $tagID)
-
-		// $tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		// addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
-		// addTagForItem($itemID, $tagID);
-
-		// $tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		// addTag($mytags['entities'][1]['name'], strtolower($mytags['entities'][1]['type']), $tagID);
-		// addTagForItem($itemID, $tagID);
 
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
@@ -82,10 +68,19 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addTag("Done?", "checkbox", $tagID);
 			addTagForItem($itemID, $tagID);
 
-		// addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
-
-		// addTagForItem($itemID, $tagID);
+			addPriorityForItem($itemID, $todoText);
 	}
+
+	function addPriorityForItem($itemID, $todoText) {
+
+		$matches = array();
+		preg_match('/([a-zA-Z]) priority/', $todoText, $matches);
+
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		addTag($matches[0]." priority", "other", $tagID);
+		addTagForItem($itemID, $tagID);
+	}
+
 
 	//We're doing this by item number, which is effectively a second ID
 	function deleteItemWithId($num) {
@@ -93,25 +88,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	function markTaskAsCompleted($tagID) {
-
-		//Get tag ID
-	    // $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT * from Tags WHERE id LIKE \"$tagID\";");
 	    modifyDataByMakingSQLQuery("UPDATE Tags
 									SET textValue = \"Done!\"
 									WHERE id LIKE \"$tagID\";");
 	}
 
-	function markItemAsCompleted($id_of_item){
-
-		// modifyDataByMakingSQLQuery("UPDATE Tags
-		// 							SET textValue = \"Done\"
-		// 							WHERE id LIKE 
-		// 							(SELECT )");
-		return 1;
-
-	}
 	
-
 	function getTodoListEntries() {
 		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM items");
 		return $r;
@@ -137,7 +119,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 
 	// ADD TAGS
-
 	function addTag($tagName, $tagType, $tagID){
 		$tagName = sanitiseStringForSQLQuery($tagName);
 		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
