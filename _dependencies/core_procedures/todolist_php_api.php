@@ -82,7 +82,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		if ($matches[0]){
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($matches[0], "other", $tagID);
+			addTag($matches[0], "priority", $tagID);
 			addTagForItem($itemID, $tagID);
 		}
 	}

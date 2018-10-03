@@ -84,6 +84,7 @@ insert into TagTypes (name, iconID) values ("checkbox", "fas fa-user");
 insert into TagTypes (name, iconID) values ("location", "fas fa-map-marker-alt");
 insert into TagTypes (name, iconID) values ("other", "");
 insert into TagTypes (name, iconID) values ("texttype", "fas fa-file");
+insert into TagTypes (name, iconID) values ("priority", "fas fa-file");
 --insert into TagTypes (name, iconID) values ("texttype", "fas fa-file");
 
 --uuid value: for tagging other users etc?
