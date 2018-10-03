@@ -97,7 +97,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		//Get tag ID
 	    // $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT * from Tags WHERE id LIKE \"$tagID\";");
 	    modifyDataByMakingSQLQuery("UPDATE Tags
-									SET textValue = \"Done\"
+									SET textValue = \"Done!\"
 									WHERE id LIKE \"$tagID\";");
 	}
 
