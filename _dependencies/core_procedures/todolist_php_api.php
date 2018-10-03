@@ -91,6 +91,15 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function deleteItemWithId($num) {
 			modifyDataByMakingSQLQuery("DELETE FROM items WHERE itemNumber LIKE \"$num\";");
 	}
+
+	function markTaskAsCompleted($tagID) {
+
+		//Get tag ID
+		// $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from Tags WHERE name LIKE \"$tagType\";");
+
+	}
+
+
 	
 
 	function getTodoListEntries() {

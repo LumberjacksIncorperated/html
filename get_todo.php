@@ -59,7 +59,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
              // Push tags to array
              foreach ($itemTags as $itag) {
-                array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType']));
+                array_push($task['tag_list'], array("textValue" => $itag['textValue'], 
+                                                    "tagType" => $itag['tagType']
+                                                    "tagID" => $itag['id']));
              }
 
              // array_push($task['tag_list'], array("textValue" => "John", "tagType" => "person"));
