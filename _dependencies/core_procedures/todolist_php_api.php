@@ -79,7 +79,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		}
 
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag("false", "checkbox", $tagID);
+			addTag("Done?", "checkbox", $tagID);
 			addTagForItem($itemID, $tagID);
 
 		// addTag($mytags['entities'][0]['name'], strtolower($mytags['entities'][0]['type']), $tagID);
