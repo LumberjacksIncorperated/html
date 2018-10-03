@@ -49,6 +49,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              $entryTime = "".$t['time_posted'];
              $itemID = "".$t['item_id'];
              $itemNumber = "".$t['itemNumber'];
+             $
 
 
              $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
@@ -60,7 +61,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
              // Push tags to array
              foreach ($itemTags as $itag) {
                 array_push($task['tag_list'], array("textValue" => $itag['textValue'], 
-                                                    "tagType" => $itag['tagType']
+                                                    "tagType" => $itag['tagType'],
                                                     "tagID" => $itag['id']));
              }
 
