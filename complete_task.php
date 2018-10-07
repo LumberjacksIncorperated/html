@@ -30,4 +30,6 @@ if ($flag == ""){
 
 markTaskAsCompleted($id_of_tag, $flag);
 
+echo "setting tag $id_of_tag to $flag";
+
 ?>
