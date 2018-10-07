@@ -21,6 +21,13 @@ if (!ensureThisIsASecuredSession()) {
 }
 
 $id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
-markTaskAsCompleted($id_of_tag);
+$flag = getFlagContentsFromCurrentClientRequest();
+
+// If no flags, we're marking the task as completed
+if ($flag == ""){
+	$flag = "true";
+}
+
+markTaskAsCompleted($id_of_tag, $flag);
 
 ?>

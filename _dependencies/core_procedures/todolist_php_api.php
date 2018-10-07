@@ -103,10 +103,19 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			modifyDataByMakingSQLQuery("DELETE FROM items WHERE itemNumber LIKE \"$num\";");
 	}
 
-	function markTaskAsCompleted($tagID) {
-	    modifyDataByMakingSQLQuery("UPDATE Tags
-									SET textValue = \"Done!\"
-									WHERE id LIKE \"$tagID\";");
+	// Mark task as completed or not completed
+	function markTaskAsCompleted($tagID, $flag) {
+		$flag = strtolower($flag);
+		if ($flag === "true"){
+		    modifyDataByMakingSQLQuery("UPDATE Tags
+							SET textValue = \"Done!\"
+							WHERE id LIKE \"$tagID\";");
+		} 
+		if ($flag === "false"){
+		    modifyDataByMakingSQLQuery("UPDATE Tags
+							SET textValue = \"Done?\"
+							WHERE id LIKE \"$tagID\";");
+		} 
 	}
 
 	
