@@ -31,9 +31,9 @@ $result2 = getTagsForText($todoText);
 var_dump($result2);
 echo($result2);
 
-//$result_date = getDateTags($todoText);
+$result_date = getDateTags($todoText);
 
-//echo($result_date);
+echo($result_date);
 
 
 //echo($result);
