@@ -30,7 +30,7 @@ var_dump($todoText);
 $result2 = getTagsForText($todoText);
 var_dump($result2);
 echo($result2);
-
+echo("+++++");
 $result_date = getDateTags($todoText);
 echo("========");
 echo($result_date);

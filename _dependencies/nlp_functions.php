@@ -55,25 +55,27 @@ function getTagsForText($text){
 }
 
 function getDateTags($text){
+	echo("1");
 	$ch = curl_init();
-
+echo("2");
 	curl_setopt($ch, CURLOPT_URL, "https://api.dateparser.io/DMY/parse");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, "[\"$text\"]");
 	curl_setopt($ch, CURLOPT_POST, 1);
-
+echo("3");
 	$headers = array();
 	$headers[] = "Accept: application/json";
 	$headers[] = "X-Api-Key: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1";
 	$headers[] = "Content-Type: application/json";
 	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-
+echo("4");
 	$result = curl_exec($ch);
+	echo("5");
 	if (curl_errno($ch)) {
 	    echo 'Error:' . curl_error($ch);
 	}
 	curl_close ($ch);
-
+echo("6");
 	return $result;
 
 }
