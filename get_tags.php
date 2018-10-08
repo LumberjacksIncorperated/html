@@ -32,7 +32,7 @@ var_dump($result2);
 echo($result2);
 
 $result_date = getDateTags($todoText);
-
+echo("========");
 echo($result_date);
 
 
