@@ -22,17 +22,17 @@ if (!ensureThisIsASecuredSession()) {
             echo 'Bad session';
 }
 
-$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+//$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 
-$text_text = "meeting on the 22nd of October";
+//$text_text = "meeting on the 22nd of October";
 
-$result = getTagsForText($text_text);
+//$result = getTagsForText($text_text);
 
-$result_date = getDateTags($text_text);
+//$result_date = getDateTags($text_text);
 
-echo($result_date);
+//echo($result_date);
 
 
-echo($result);
-
+//echo($result);
+    echo("here");
 ?>
