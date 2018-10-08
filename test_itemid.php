@@ -13,7 +13,6 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 include_once dirname(__FILE__).'/_dependencies/core_procedures/items_api.php';
 
 $itemIdToGet = getIdTextFieldContentsFromCurrentClientRequest();
-$result = retrieveSingleItemById($itemIdToGet);
-echo($result);
+displaySingleItemById($itemIdToGet);
 
 ?>
