@@ -24,7 +24,14 @@ if (!ensureThisIsASecuredSession()) {
 
 $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 
-$result = getTagsForText($todoText);
+$text_text = "meeting on the 22nd of October"
+
+$result = getTagsForText($text_text);
+
+$result_date = getDateTags($text_text);
+
+echo($result_date);
+
 
 echo($result);
 
