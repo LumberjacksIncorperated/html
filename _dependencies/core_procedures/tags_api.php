@@ -22,15 +22,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // FUNCTIONS
 //----------------------------------------
 
-
-//MODIFY ITEMS
-//We're doing this by item number, which is effectively a second ID
 function updateTagText($tagText, $tagId){
-
-    // echo("modifyDataByMakingSQLQuery(\"UPDATE items SET item_text = \"$itemText\", time_modified = CURRENT_TIMESTAMP WHERE itemNumber LIKE \"$itemNum\";");
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
-    modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", time_modified = CURRENT_TIMESTAMP WHERE id LIKE $tagId;");
+    modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE $tagId;");
 }
 
 
