@@ -21,9 +21,6 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 if (!ensureThisIsASecuredSession()) {
             echo 'Bad session';
 }
-
-$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-
 $text_text = "meeting on the 22nd of October"
 
 $result = getTagsForText($text_text);
@@ -34,5 +31,9 @@ echo($result_date);
 
 
 echo($result);
+
+$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
+
+
 
 ?>
