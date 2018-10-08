@@ -40,6 +40,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
 	$tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
+	echo("the tag is $tagId and the text is $tagText");
 
 	updateTagText($tagText, $tagId);
 
