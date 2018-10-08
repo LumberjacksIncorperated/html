@@ -32,6 +32,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
     function _createTaskFromItemListEntryForSingleEntry($itemEntry) {
         $itemID = "".$itemListEntry['item_id'];
+        var_dump($itemID);
         $task = _createTaskWithoutTagsForSingleEntry($itemEntry);
         $itemTags = getTagsForItem($itemID);
         var_dump($itemTags);
