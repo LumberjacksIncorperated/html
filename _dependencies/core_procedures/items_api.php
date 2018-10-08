@@ -24,6 +24,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 function retrieveSingleItemById($itemNum){
 	$item = fetchSingleRecordByMakingSQLQuery("SELECT * from items WHERE itemNumber = $itemNum;");
+	echo($item);
 	return item;
 }
 
