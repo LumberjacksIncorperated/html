@@ -59,14 +59,10 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		echo 'Bad session';
 	}
 
-
     $itemListEntriesArray = getTodoListEntries();
-
-	//this is the "outer array"
     $tasksArray = array();
 
     if ($itemListEntriesArray) {
-         
          foreach ($itemListEntriesArray as $itemListEntry) {
              $task = _createTaskFromItemListEntry($itemListEntry);
              array_push($tasksArray, $task);
@@ -76,5 +72,4 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     } else {
         _displayDefaultForNoTasks();
     }
-
 ?>
