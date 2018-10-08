@@ -39,6 +39,7 @@ function getTagsForText($text){
 	$api_key =  _getGoogleApiKey();
 	$requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
 	$requestPacket = _createRequestPacketForData($text);
+	var_dump($requestPacket);
 	$requestPacketStream  = stream_context_create($requestPacket);
 	$nlpResult = file_get_contents($requestURL, false, $requestPacketStream);
 	// var_dump($nlpResult);
