@@ -26,13 +26,13 @@ $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 
 $text_text = "meeting on the 22nd of October"
 
-$result = getTagsForText($todoText);
+$result = getTagsForText($text_text);
 
 $result_date = getDateTags($text_text);
 
 echo($result_date);
 
 
-// echo($result);
+echo($result);
 
 ?>
