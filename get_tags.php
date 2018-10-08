@@ -26,6 +26,11 @@ $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 
 $result = getTagsForText($todoText);
 
-echo($result);
+$result_date = getDateTags($todoText);
+
+echo($result_date);
+
+
+// echo($result);
 
 ?>
