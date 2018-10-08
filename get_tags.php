@@ -24,17 +24,18 @@ if (!ensureThisIsASecuredSession()) {
 
 $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 var_dump($todoText);
-$text_text = "meeting on the 22nd of October";
+//$text_text = "meeting on the 22nd of October";
 
-$result = getTagsForText($text_text);
+//$result = getTagsForText($text_text);
 $result2 = getTagsForText($todoText);
 var_dump($result2);
+echo($result2);
 
-$result_date = getDateTags($todoText);
+//$result_date = getDateTags($todoText);
 
-echo($result_date);
+//echo($result_date);
 
 
-echo($result);
+//echo($result);
 
 ?>
