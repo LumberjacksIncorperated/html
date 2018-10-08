@@ -31,6 +31,6 @@ $result_date = getDateTags($todoText);
 echo($result_date);
 
 
-// echo($result);
+echo($result);
 
 ?>
