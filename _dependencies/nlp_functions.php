@@ -17,6 +17,7 @@
 
 
 //Takes in a text string and returns tags in some kind of JSON string
+//TODO: deal with escape characters
 function getTagsForText($text){
 
 	//Insert api key variable into script

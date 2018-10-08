@@ -27,18 +27,10 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		echo 'Bad session';
 	}
 
-    // Leave this bit out for now
-	// $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-	//$time = timeTextFieldContentsFromCurrentClientRequest();
-	//$place = placeTextFieldContentsFromCurrentClientRequest();
-	//$people = peopleTextFieldContentsFromCurrentClientRequest();
-	//$topic = topicTextFieldContentsFromCurrentClientRequest();
-	
-    // $todoListEntries = getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic);
 
-    $msg = "";
+    $arrayOfTodoListEntries = "";
     $todoListEntries = getTodoListEntries();
-    $msg .= json_encode($todoListEntries);
+    $arrayOfTodoListEntries .= json_encode($todoListEntries);
 
 	//this is the "outer array"
     $tasksArray = array();
@@ -64,8 +56,6 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
                                                     "tagID" => $itag['id']));
              }
 
-             // array_push($task['tag_list'], array("textValue" => "John", "tagType" => "person"));
-             // array_push($task['tag_list'], array("textValue" => "UNSW", "tagType" => "location"));
 
              array_push($tasksArray, $task);
          }
@@ -78,7 +68,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 
     } else {
         $outerArray = array();
-        $innerArray = array("task" => $msg, "created_at" => "21/09/2020");
+        $innerArray = array("task" => $arrayOfTodoListEntries, "created_at" => "21/09/2020");
         array_push($outerArray, $innerArray);
         echo (json_encode($outerArray));
     }
