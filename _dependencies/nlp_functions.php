@@ -52,10 +52,10 @@ function getTagsForText($text){
 
 function getDateTags($text){
 	echo("1");
-	echo('curl -X POST \"https://api.dateparser.io/DMY/parse\" -H \"accept: applicatio
-n/json\" -H \"X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1\" -H \"Content-Type: application/json\" -d \"[ \"$text\"]\"');
-    $output = shell_exec('curl -X POST \"https://api.dateparser.io/DMY/parse\" -H \"accept: applicatio
-n/json\" -H \"X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1\" -H \"Content-Type: application/json\" -d \"[ \"$text\"]\"');
+	$string = "curl -X POST \"https://api.dateparser.io/DMY/parse\" -H \"accept: applicatio
+n/json\" -H \"X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1\" -H \"Content-Type: application/json\" -d \"[".$text."]\"";
+	echo("$string");
+    $output = shell_exec("$string");
 	echo("$output");
 	echo("2");
 	return $output;
