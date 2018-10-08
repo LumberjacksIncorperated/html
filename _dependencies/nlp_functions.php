@@ -41,7 +41,7 @@ function getTagsForText($text){
 	$requestPacket = _createRequestPacketForData($text);
 	$requestPacketStream  = stream_context_create($requestPacket);
 	$nlpResult = file_get_contents($requestURL, false, $requestPacketStream);
-	var_dump($nlpResult);
+	// var_dump($nlpResult);
 	
 	if ($nlpResult === FALSE) { /* Handle error */ }
 	if ($nlpResult === NULL) { return "dog"; }
