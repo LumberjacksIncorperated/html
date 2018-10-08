@@ -28,19 +28,17 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	}
 
 
-    $arrayOfTodoListEntries = "";
-    $todoListEntries = getTodoListEntries();
-    $arrayOfTodoListEntries .= json_encode($todoListEntries);
+    $todoListEntriesArray = getTodoListEntries();
 
 	//this is the "outer array"
     $tasksArray = array();
 
-    if ($todoListEntries) {
-         foreach ($todoListEntries as $t) {
-             $todoEntry = "".$t['item_text'];
-             $entryTime = "".$t['time_posted'];
-             $itemID = "".$t['item_id'];
-             $itemNumber = "".$t['itemNumber'];
+    if ($todoListEntriesArray) {
+         foreach ($todoListEntriesArray as $todoListEntry) {
+             $todoEntry = "".$todoListEntry['item_text'];
+             $entryTime = "".$todoListEntry['time_posted'];
+             $itemID = "".$todoListEntry['item_id'];
+             $itemNumber = "".$todoListEntry['itemNumber'];
 
 
              $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
@@ -67,10 +65,11 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
          //$task = array("task" => "idk", "created_at" => "5pm", "tag_list" => array());
 
     } else {
-        $outerArray = array();
-        $innerArray = array("task" => $arrayOfTodoListEntries, "created_at" => "21/09/2020");
-        array_push($outerArray, $innerArray);
-        echo (json_encode($outerArray));
+        // fix default for if there is none
+        //$outerArray = array();
+        //$innerArray = array("task" => $arrayOfTodoListEntries, "created_at" => "21/09/2020");
+        ///array_push($outerArray, $innerArray);
+        //echo (json_encode($outerArray));
     }
 
 ?>
