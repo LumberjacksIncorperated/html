@@ -172,23 +172,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 
-
-
-	// function getTodoListEntrysForCurrentUserWithTodoTextTimePlacePeopleAndTopic($todoText, $time, $place, $people, $topic) {
-	// 	$accountIDOfUser = getAccountIDOfCurrentUser();
-	// 	if ($accountIDOfUser) {
-	// 		$todoText = sanitiseStringForSQLQuery($todoText);
-	// 		$time = sanitiseStringForSQLQuery($time);
-	// 		$place = sanitiseStringForSQLQuery($place);
-	// 		$people = sanitiseStringForSQLQuery($people);
-	// 		$topic = sanitiseStringForSQLQuery($topic);
-	// 		$todoEntriesFilteredByGivenSearchProperties = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM todo WHERE (account_id = ".$accountIDOfUser.") AND (time LIKE '%".$time."%') AND (place LIKE '%".$place."%') AND (people LIKE '%".$people."%') AND (topic LIKE '%".$topic."%')");
-	// 		return $todoEntriesFilteredByGivenSearchProperties;
-	// 	}
-	// 	return NULL;
-	// }
-
-
 // GENERATE UUID
 // https://stackoverflow.com/questions/2040240/php-function-to-generate-v4-uuid
 // USAGE: echo uuidv4(openssl_random_pseudo_bytes(16));
