@@ -56,9 +56,9 @@ function getTagsForText($text){
 
 function getDateTags($text){
 	echo("1");
-	$ch = curl_init();
+	$ch = curl_init("https://api.dateparser.io/DMY/parse");
 echo("2");
-	curl_setopt($ch, CURLOPT_URL, "https://api.dateparser.io/DMY/parse");
+	// curl_setopt($ch, CURLOPT_URL, "https://api.dateparser.io/DMY/parse");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, "[\"$text\"]");
 	curl_setopt($ch, CURLOPT_POST, 1);
