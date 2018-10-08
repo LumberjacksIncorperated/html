@@ -8,8 +8,8 @@ header("Access-control-allow-origin: *");
 //---------------------------------------- 
 // include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.php';
 // include_once dirname(__FILE__).'/_dependencies/php_environment_php_api.php';
-include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
-include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
+//include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
+//include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 
 //---------------------------------------- 
 // SCRIPT
@@ -18,9 +18,9 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 //usage: http://165.227.25.45/get_tags.php?todoText=%22hello%20there%20my%20name%20is%20Dan%22
 //erm ideally authenticate as well
 
-if (!ensureThisIsASecuredSession()) {
-            echo 'Bad session';
-}
+//if (!ensureThisIsASecuredSession()) {
+//            echo 'Bad session';
+//}
 
 //$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 
