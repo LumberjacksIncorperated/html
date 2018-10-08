@@ -23,7 +23,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 //---------------------------------------- 
 // INTERNAL FUNCTIONS
 //---------------------------------------- 
-    function _createTaskForItemListEntry($itemListEntry) {
+    function _createTaskWithoutTags($itemListEntry) {
         $todoEntry = "".$itemListEntry['item_text'];
         $entryTime = "".$itemListEntry['time_posted'];
         $itemID = "".$itemListEntry['item_id'];
@@ -32,6 +32,25 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
         return $task;
     }
 
+    function _createTaskFromItemListEntry($itemListEntry) {
+        $itemID = "".$itemListEntry['item_id'];
+        $task = _createTaskWithoutTags($itemListEntry);
+        $itemTags = getTagsForItem($itemID);
+
+        foreach ($itemTags as $itag) {
+            array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType'], "tagID" => $itag['id']));
+        }
+        return $task;
+    }
+
+    function _displayTaskArrayAsJson($tasksArray) {
+        $reversedOuterArray = array_reverse($tasksArray);
+        echo (json_encode($reversedOuterArray));
+    }
+
+    function _displayDefaultForNoTasks() {
+        // nothing here yet...
+    }
 
 //---------------------------------------- 
 // SCRIPT
@@ -49,30 +68,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
     if ($itemListEntriesArray) {
          
          foreach ($itemListEntriesArray as $itemListEntry) {
-             $itemID = "".$itemListEntry['item_id'];
-             $task = _createTaskForItemListEntry($itemListEntry);
-             $itemTags = getTagsForItem($itemID);
-
-             // Push tags to array
-             foreach ($itemTags as $itag) {
-                array_push($task['tag_list'], array("textValue" => $itag['textValue'], 
-                                                    "tagType" => $itag['tagType'],
-                                                    "tagID" => $itag['id']));
-             }
-
+             $task = _createTaskFromItemListEntry($itemListEntry);
              array_push($tasksArray, $task);
          }
-
-         $reversedOuterArray = array_reverse($tasksArray);
-
-         echo (json_encode($reversedOuterArray));
+         _displayTaskArrayAsJson($tasksArray);
 
     } else {
-        // fix default for if there is none
-        //$outerArray = array();
-        //$innerArray = array("task" => $arrayOfTodoListEntries, "created_at" => "21/09/2020");
-        ///array_push($outerArray, $innerArray);
-        //echo (json_encode($outerArray));
+        _displayDefaultForNoTasks();
     }
 
 ?>
