@@ -38,14 +38,10 @@ function getTagsForText($text){
 
 	$api_key =  _getGoogleApiKey();
 	$requestURL = "https://language.googleapis.com/v1/documents:analyzeEntities?key=$api_key";
-	$requestPacket = _createRequestPacketForData($text);
-	echo("::::::");
-	var_dump($requestPacket);
-	echo("::::::");
+	$requestPacket = _createRequestPacketForData($text);	var_dump($requestPacket);
 	$requestPacketStream  = stream_context_create($requestPacket);
 	$nlpResult = file_get_contents($requestURL, false, $requestPacketStream);
 	var_dump($nlpResult);
-	echo("::::::");
 	// var_dump($nlpResult);
 	
 	if ($nlpResult === FALSE) { /* Handle error */ }
@@ -56,7 +52,14 @@ function getTagsForText($text){
 
 function getDateTags($text){
 	echo("1");
-	$ch = curl_init("http://api.dateparser.io/DMY/parse");
+    $output = shell_exec('curl -X POST \"https://api.dateparser.io/DMY/parse\" -H \"accept: applicatio
+n/json\" -H \"X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1\" -H \"Content-Type: application/json\" -d \"[ \"$text\"]\"');
+	echo("$output");
+	echo("2");
+	return $output;
+
+
+	/*
 echo("2");
 	// curl_setopt($ch, CURLOPT_URL, "https://api.dateparser.io/DMY/parse");
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -76,7 +79,7 @@ echo("4");
 	}
 	curl_close ($ch);
 echo("6");
-	return $result;
+	return $result;*/
 
 }
 
