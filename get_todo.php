@@ -21,6 +21,19 @@ include_once dirname(__FILE__).'/_dependencies/php_environment_php_api.php';
 include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
 
 //---------------------------------------- 
+// INTERNAL FUNCTIONS
+//---------------------------------------- 
+    function _createTaskForItemListEntry($itemListEntry) {
+        $todoEntry = "".$itemListEntry['item_text'];
+        $entryTime = "".$itemListEntry['time_posted'];
+        $itemID = "".$itemListEntry['item_id'];
+        $itemNumber = "".$itemListEntry['itemNumber'];
+        $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
+        return $task;
+    }
+
+
+//---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 	
 	if (!ensureThisIsASecuredSession()) {
@@ -28,24 +41,17 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	}
 
 
-    $todoListEntriesArray = getTodoListEntries();
+    $itemListEntriesArray = getTodoListEntries();
 
 	//this is the "outer array"
     $tasksArray = array();
 
-    if ($todoListEntriesArray) {
-         foreach ($todoListEntriesArray as $todoListEntry) {
-             $todoEntry = "".$todoListEntry['item_text'];
-             $entryTime = "".$todoListEntry['time_posted'];
-             $itemID = "".$todoListEntry['item_id'];
-             $itemNumber = "".$todoListEntry['itemNumber'];
-
-
-             $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
-
-             // Get list of tags for a particular item
+    if ($itemListEntriesArray) {
+         
+         foreach ($itemListEntriesArray as $itemListEntry) {
+             $itemID = "".$itemListEntry['item_id'];
+             $task = _createTaskForItemListEntry($itemListEntry);
              $itemTags = getTagsForItem($itemID);
-
 
              // Push tags to array
              foreach ($itemTags as $itag) {
@@ -54,15 +60,12 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
                                                     "tagID" => $itag['id']));
              }
 
-
              array_push($tasksArray, $task);
          }
 
          $reversedOuterArray = array_reverse($tasksArray);
 
          echo (json_encode($reversedOuterArray));
-
-         //$task = array("task" => "idk", "created_at" => "5pm", "tag_list" => array());
 
     } else {
         // fix default for if there is none
