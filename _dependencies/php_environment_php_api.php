@@ -96,6 +96,9 @@
     function getTagIDTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('tagId');
     }
+    function getTagTextValueFieldContentsFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('tagText');
+    }
     function getFlagContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('flag');
     }
