@@ -34,6 +34,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
         $itemID = "".$itemListEntry['item_id'];
         $task = _createTaskWithoutTagsForSingleEntry($itemEntry);
         $itemTags = getTagsForItem($itemID);
+        var_dump($itemTags);
         foreach ($itemTags as $itag) {
             array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType'], "tagID" => $itag['id']));
         }
