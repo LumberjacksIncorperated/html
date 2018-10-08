@@ -25,7 +25,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 function updateTagText($tagText, $tagId){
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
-    modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE $tagId;");
+    modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 }
 
 
