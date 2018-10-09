@@ -31,11 +31,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			addAllTagsForItem($itemID, $todoText);
 			addDateTagForItem($itemID, $time);
+			echo("addDateTagForItem($itemID, $time)");
             
 		}
 	}
 
 	function addDateTagForItem($itemID, $dateString){
+		// echo("addDateTagForItem($itemID, $time)");
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
 		$tagTypeNumber = $tagTypeID['id'];
