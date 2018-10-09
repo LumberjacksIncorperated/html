@@ -136,9 +136,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 	//get all tags for item (we're only returning the tag name and tag type)
 	function getTagsForItem($itemID) {
-		//COALESCE(Tags.textValue, Tags.dateTimeValue) as textValue,
 		$r = fetchMultipleRecordsByMakingSQLQuery("select 
-												   Tags.textValue as textValue, 
+												   COALESCE(Tags.textValue, Tags.dateTimeValue) as textValue, 
 												   TagTypes.name as tagType, Tags.id 
 												   from ItemTags 
 												   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
