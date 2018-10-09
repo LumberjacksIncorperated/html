@@ -41,7 +41,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
             array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType'], "tagID" => $itag['id']));
             $textV = $itag['textValue'];
             $tagT = $itag['tagType'];
-            echo("$tagT: $textValue \n");
+            echo("$tagT: - $textValue -");
         }
         return $task;
     }
