@@ -32,6 +32,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addAllTagsForItem($itemID, $todoText);
 			addDateTagForItem($itemID, $time);
 			echo("addDateTagForItem($itemID, $time)");
+			adsfadsf
             
 		}
 	}
