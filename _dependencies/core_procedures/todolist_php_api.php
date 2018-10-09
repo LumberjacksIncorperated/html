@@ -30,8 +30,18 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
 			addAllTagsForItem($itemID, $todoText);
+			addDateTagForItem($itemID, $time);
             
 		}
+	}
+
+	function addDateTagForItem($itemID, $dateString){
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
+		$tagTypeNumber = $tagTypeID['id'];
+		$dateValue = date($dateString);
+		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description) 
+		                                VALUES (\"$tagID\", $tagTypeNumber, $dateValue, \"Due\");");
 	}
 
 

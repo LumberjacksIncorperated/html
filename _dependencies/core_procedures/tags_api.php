@@ -28,6 +28,24 @@ function updateTagText($tagText, $tagId){
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 }
 
+// DATE TAG
+// 2018-11-20T00:00:00.000Z
+function addDateTag($dateString, $tagID){
+    $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
+    $tagTypeNumber = $tagTypeID['id'];
+    $dateValue = date($dateString);
+    modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue) 
+                                    VALUES (\"$tagID\", $tagTypeNumber, $dateValue);");
+
+}
+
+    // function addTag($tagName, $tagType, $tagID){
+    //     $tagName = sanitiseStringForSQLQuery($tagName);
+    //     $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
+    //     $tagTypeNumber = $tagTypeID['id'];
+        // modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
+        //                             VALUES (\"$tagID\", $tagTypeNumber, \"$tagName\");");
+    // }
 
 
 
