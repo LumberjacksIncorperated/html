@@ -42,6 +42,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$tagTypeNumber = $tagTypeID['id'];
 		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description) 
 		                                VALUES (\"$tagID\", $tagTypeNumber, \"$dateString\", \"Due\");");
+
+		addTagForItem($itemID, $tagID);
+	}
+
 	}
 
 
