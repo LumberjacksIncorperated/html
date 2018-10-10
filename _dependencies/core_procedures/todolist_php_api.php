@@ -30,7 +30,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
-			echo("   addAllTagsForItem($itemID, $todoText);   ");
+			// echo("   addAllTagsForItem($itemID, $todoText);   ");
 
 			addAllTagsForItem($itemID, $todoText);
 			addDateTagForItem($itemID, $time);
@@ -56,15 +56,16 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		////////DATES///////////
 
 		$dates = getDateTags($todoText); //TODO NAZIF
+		echo("^^^^^^^^^^^^^^^^^^");
+		var_dump($mydates);
+		echo("^^^^^^^^^^^^^^^^^^");
 
 		$mydates = $dates[0]; //json_decode($dates, true);
 
 		$mydates = json_decode($mydates);
 		//$mydates = json_decode($mydates, true);
 
-		var_dump($mydates);
-
-		echo("hi!!!!!!!!!!!!");
+		// var_dump($mydates);
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 		addTag($mydates['date'], "person", $tagID);
