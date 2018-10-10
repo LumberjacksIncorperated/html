@@ -49,6 +49,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	function addAllTagsForItem($itemID, $todoText){
 
 		$tags = getTagsForText($todoText);
+
+		//$dates = getDateTags($todoText); //TODO NAZIF
+
 		$mytags = json_decode($tags, true);
 
 		for ($i=0; $i < count($mytags['entities']); $i++) { 

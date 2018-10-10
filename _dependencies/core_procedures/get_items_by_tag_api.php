@@ -35,7 +35,7 @@ function getItemsByTags($queryArray, $accountId){
 	//Turn array into a string in the form: 'John', 'Newtown', 'coffee'
 	$queryArrayString = "";
 	foreach ($queryArray as $queryItem) {
-		$queryArrayString = $queryArrayString."'".$queryItem."'".","." ";
+		$queryArrayString = $queryArrayString."'".$queryItem.',';
 	}
 	$queryArrayString = rtrim($queryArrayString,", ");
 	echo(" queryArrayString = ".$queryArrayString);
