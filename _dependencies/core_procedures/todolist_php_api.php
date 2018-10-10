@@ -22,6 +22,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // SCRIPT
 //----------------------------------------
 	function addTodoListEntryForCurrentUser($todoText, $time) {
+		echo("hi!!!!!**************");
 		$accountIDOfUser = getAccountIDOfCurrentUser();
 		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
@@ -59,9 +60,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		var_dump($mydates);
 
 		echo("hi!!!!!!!!!!!!");
-
-		asdfsdf
-
 
 		////////DATES///////////
 
