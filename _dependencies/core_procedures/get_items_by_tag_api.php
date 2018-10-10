@@ -35,7 +35,11 @@ function getItemsByTags($queryArray, $accountId){
 	//Turn array into a string in the form: 'John', 'Newtown', 'coffee'
 	$queryArrayString = "";
 	foreach ($queryArray as $queryItem) {
-		$queryArrayString = $queryArrayString."'".$queryItem.',';
+		$queryArrayString = $queryArrayString."'";
+		$queryArrayString = $queryArrayString.$queryItem;
+		$queryArrayString = $queryArrayString."'";
+		$queryArrayString = $queryArrayString.",";
+		$queryArrayString = $queryArrayString." ";
 	}
 	$queryArrayString = rtrim($queryArrayString,", ");
 	echo(" queryArrayString = ".$queryArrayString);
@@ -43,7 +47,7 @@ function getItemsByTags($queryArray, $accountId){
 	$r = fetchMultipleRecordsByMakingSQLQuery(
 
 	"CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;
-	
+
 	CREATE OR REPLACE VIEW items_with_the_tags as 
 	SELECT * from user_items 
 	JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
