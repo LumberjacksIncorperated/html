@@ -67,9 +67,12 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
         // Get user id
         // TODO
         $user_id = 2;
+
+        // Somehow the browser interprets the plus as a space, much like %20?
         $queryArray = explode(" ", $query);
         echo("query = ".$query);
         var_dump($queryArray);
+
         $itemListEntriesArray = getItemsByTags($queryArray, $user_id);
     }
     ///////////// NO QUERY PARAMETERS ////////////////
@@ -78,6 +81,10 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
     }
 
     $tasksArray = array();
+
+    $size = count($itemListEntriesArray);
+    echo("the size of itemListEntriesArray is $size");
+
 
     if ($itemListEntriesArray) {
          foreach ($itemListEntriesArray as $itemListEntry) {
