@@ -55,18 +55,19 @@ function getDateTags($text){
 	echo("$curlCommandString");
     $output = shell_exec("$curlCommandString");
     echo("333");
-    $tagDate = json_decode($output[0][0], true);
+    $tagDate = json_decode($output, true);
     echo("2");
     //echo(($output[0]);
     //echo("2");
     //echo(($output[0][0]);
    // echo("2");
-   // echo($tagDate);
+    echo($tagDate);
    // echo("2");
   //  echo($tagDate["date"]);
     echo("333");
 	return $output;
 
+[[{"date":"2018-11-20T00:00:00.000Z","ms":1542672000000,"epoch":1542672000,"match":"20th of November","index":16}]]
 
 	/*
 echo("2");
