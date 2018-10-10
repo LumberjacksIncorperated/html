@@ -32,6 +32,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // Ordered by how many were matched
 function getItemsByTags($queryArray, $accountId){
 
+	$size = count($queryArray);
+	echo("the size is $size");
+
 	//Turn array into a string in the form: 'John', 'Newtown', 'coffee'
 	$queryArrayString = "";
 	foreach ($queryArray as $queryItem) {
