@@ -30,6 +30,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
+			echo("   addAllTagsForItem($itemID, $todoText);   ");
+
 			addAllTagsForItem($itemID, $todoText);
 			addDateTagForItem($itemID, $time);
 			// echo("addDateTagForItem($itemID, $time)");
