@@ -57,7 +57,15 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$mydates = json_decode($dates, true);
 		
 		for ($i=0; $i < count($mydates[0]); $i++) {
-			addDateTagForItem($itemID, $mydates[0][$i]['date']);
+			$dateString = $mydates[0][$i]['date'];
+
+			// Remove timezone things
+			str_replace("T"," ",$dateString);
+			str_replace("Z","",$dateString);
+			addDateTagForItem($itemID, $dateString);
+
+			// addDateTagForItem($itemID, $mydates[0][$i]['date']);
+			
 			// addTag($mydates[0][$i]['date'], "date", $tagID);
 			// addTagForItem($itemID, $tagID);
 		}
