@@ -54,7 +54,10 @@ function getDateTags($text){
 	$curlCommandString = "curl -X POST \"https://api.dateparser.io/DMY/parse\" -H \"accept: application/json\" -H \"X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1\" -H \"Content-Type: application/json\" -d \"[\\\".$text.\\\"]\"";
 	echo("$curlCommandString");
     $output = shell_exec("$curlCommandString");
-    echo($output[0][0]["date"]);
+    echo("333");
+    $tagDate = json_decode($output[0][0], true);
+    echo($tagDate["date"]);
+    echo("333");
 	return $output;
 
 
