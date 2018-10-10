@@ -27,10 +27,37 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // FUNCTIONS
 //----------------------------------------
 
-function getItemsByTags($queryArray){
+function getItemsByTags($queryArray, $accountId){
 
 
-	// We need to get 
+	// We need to get all the items that match all tags (for now)
+	$r = fetchMultipleRecordsByMakingSQLQuery("WITH
+  												user_items AS (SELECT * from items where account_id = $accountId)
+  											   
+  										
+
+
+
+											   SELECT b, d FROM cte1 JOIN cte2
+											   WHERE cte1.a = cte2.c;;");
+
+
+
+
+
+
+	// 	function getTagsForItem($itemID) {
+	// 	$r = fetchMultipleRecordsByMakingSQLQuery("select 
+	// 											   COALESCE(Tags.textValue, Tags.dateTimeValue) as textValue, 
+	// 											   TagTypes.name as tagType, Tags.id 
+	// 											   from ItemTags 
+	// 											   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
+	// 											   JOIN TagTypes
+	// 											   ON TagTypes.id = Tags.tagTypeID
+	// 											   where ItemTags.itemID LIKE \"$itemID\";");
+	// 	return $r;
+	// }
+
 
 
 

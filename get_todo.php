@@ -19,6 +19,7 @@ header("Access-control-allow-origin: *");
 include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.php';
 include_once dirname(__FILE__).'/_dependencies/php_environment_php_api.php';
 include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
+include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_api.php';
 
 //---------------------------------------- 
 // INTERNAL FUNCTIONS
@@ -58,6 +59,14 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	if (!ensureThisIsASecuredSession()) {
 		echo 'Bad session';
 	}
+
+    // If there are query parameters along with the request
+    $query = getQueryFieldContentsFromCurrentClientRequest();
+
+    if ($query){
+        echo "we got a query";
+    }
+
 
     $itemListEntriesArray = getTodoListEntries();
     $tasksArray = array();
