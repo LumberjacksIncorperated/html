@@ -22,7 +22,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // SCRIPT
 //----------------------------------------
 	function addTodoListEntryForCurrentUser($todoText, $time) {
-		echo("boo**************");
+
 		$accountIDOfUser = getAccountIDOfCurrentUser();
 		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
@@ -30,17 +30,16 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
-			// echo("   addAllTagsForItem($itemID, $todoText);   ");
 
-			addAllTagsForItem($itemID, $todoText);
-			addDateTagForItem($itemID, $time);
-			addNlpDateTagsForItem($itemID, $todoText);
-			// echo("addDateTagForItem($itemID, $time)");
+			//Tagging functions
+			addAllTagsForItem($itemID, $todoText);		// Google API
+			addDateTagForItem($itemID, $time);			// Manual date
+			addNlpDateTagsForItem($itemID, $todoText);	// NLP date api
 		}
 	}
 
+	// Manual date tagging
 	function addDateTagForItem($itemID, $dateString){
-		// echo("addDateTagForItem again ($itemID, $dateString)");
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
 		$tagTypeNumber = $tagTypeID['id'];
@@ -49,11 +48,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		addTagForItem($itemID, $tagID);
 	}
 
+	// NLP date tagging
 	function addNlpDateTagsForItem($itemID, $todoText){
 
-		////////DATES///////////
-
-		$dates = getDateTags($todoText); //TODO NAZIF
+		$dates = getDateTags($todoText); //Actual function which calls the NLP API
 		$mydates = json_decode($dates, true);
 		
 		for ($i=0; $i < count($mydates[0]); $i++) {
@@ -63,21 +61,14 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$dateString = str_replace("T"," ",$dateString);
 			$dateString = str_replace("Z","",$dateString);
 			addDateTagForItem($itemID, $dateString);
-
-			// addDateTagForItem($itemID, $mydates[0][$i]['date']);
-			
-			// addTag($mydates[0][$i]['date'], "date", $tagID);
-			// addTagForItem($itemID, $tagID);
 		}
 
 	}
 
-
+	// Google NLP tagging
 	function addAllTagsForItem($itemID, $todoText){
 
 		$tags = getTagsForText($todoText);
-
-
 		$mytags = json_decode($tags, true);
 
 
@@ -112,7 +103,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 			addTag("Done?", "checkbox", $tagID);
 			addTagForItem($itemID, $tagID);
-
 			addPriorityForItem($itemID, $todoText);
 	}
 
@@ -129,7 +119,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addTagForItem($itemID, $tagID);
 		}
 
-		if (preg_match('/important/', $todoText, $matches)) {
+		if (preg_match('/[Ii]mportant/', $todoText, $matches)) {
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 			addTag("high priority", "priority", $tagID);
 			addTagForItem($itemID, $tagID);

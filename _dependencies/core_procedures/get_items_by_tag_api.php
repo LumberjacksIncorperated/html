@@ -43,15 +43,17 @@ function getItemsByTags($queryArray, $accountId){
 	$r = fetchMultipleRecordsByMakingSQLQuery(
 
 	"CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;
+	
 	CREATE OR REPLACE VIEW items_with_the_tags as 
 	SELECT * from user_items 
 	JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
 	JOIN Tags ON Tags.id LIKE ItemTags.tagID
 	WHERE Tags.textValue IN ($queryArrayString);
+
 	SELECT *, count(*) as match_count
 	FROM items_with_the_tags
 	GROUP BY item_id
-	ORDER BY match_count;"
+	ORDER BY match_count DESC;"
 	);
 
 	return $r;
