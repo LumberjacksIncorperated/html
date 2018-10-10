@@ -70,6 +70,8 @@ function getItemsByTags($queryArray, $accountId){
 	"
 	);
 
+	$c = count($r);
+	echo("the size of r is $c");
 	return $r;
 }
 
