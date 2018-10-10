@@ -58,6 +58,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		var_dump($mydates);
 
+		echo("hi!!!!!!!!!!!!");
+
 
 
 
