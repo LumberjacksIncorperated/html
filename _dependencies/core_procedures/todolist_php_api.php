@@ -86,6 +86,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$mytags = json_decode($tags, true);
 
+		echo("_________________");
+		var_dump($mytags);
+		echo("_________________");
+
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
 			if ($mytags['entities'][$i]['type'] == "ORGANIZATION"){
