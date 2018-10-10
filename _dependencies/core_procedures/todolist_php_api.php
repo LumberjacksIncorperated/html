@@ -60,8 +60,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$dateString = $mydates[0][$i]['date'];
 
 			// Remove timezone things
-			str_replace("T"," ",$dateString);
-			str_replace("Z","",$dateString);
+			$dateString = str_replace("T"," ",$dateString);
+			$dateString = str_replace("Z","",$dateString);
 			addDateTagForItem($itemID, $dateString);
 
 			// addDateTagForItem($itemID, $mydates[0][$i]['date']);
