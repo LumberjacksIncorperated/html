@@ -58,7 +58,7 @@ function getItemsByTags($queryArray, $accountId){
 	SELECT * from user_items 
 	JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
 	JOIN Tags ON Tags.id LIKE ItemTags.tagID
-	WHERE Tags.textValue IN ($queryArrayString);
+	WHERE Tags.textValue IN (\"$queryArrayString\");
 
 	CREATE OR REPLACE VIEW items_with_tag_count as
 	SELECT item_id, count(*) as match_count
