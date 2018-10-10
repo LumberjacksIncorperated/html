@@ -38,6 +38,7 @@ function getItemsByTags($queryArray, $accountId){
 		$queryArrayString = $queryArrayString."\'".$queryItem."\', ";
 	}
 	$queryArrayString = rtrim($queryArrayString,", ");
+	echo(" queryArrayString = ".$queryArrayString);
 
 	$r = fetchMultipleRecordsByMakingSQLQuery(
 
