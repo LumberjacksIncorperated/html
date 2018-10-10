@@ -50,7 +50,22 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$tags = getTagsForText($todoText);
 
-		//$dates = getDateTags($todoText); //TODO NAZIF
+		////////DATES///////////
+
+		$dates = getDateTags($todoText); //TODO NAZIF
+
+		$mydates = json_decode($dates, true);
+
+		var_dump($mydates);
+
+
+
+
+
+		////////DATES///////////
+
+
+
 
 		$mytags = json_decode($tags, true);
 
