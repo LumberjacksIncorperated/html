@@ -60,8 +60,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		echo("hi!!!!!!!!!!!!");
 
-
-
+		asdfsdf
 
 
 		////////DATES///////////
