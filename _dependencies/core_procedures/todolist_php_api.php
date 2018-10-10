@@ -60,9 +60,17 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		var_dump($dates);
 		echo("^^^^^^^^^^^^^^^^^^");
 
-		$mydates = $dates[0]; //json_decode($dates, true);
 
-		$mydates = json_decode($mydates);
+		echo("++++++++++++++++++++");
+		$mydates = json_decode($dates);
+		var_dump($mydates);
+		echo("++++++++++++++++++++");
+
+
+
+		// $mydates = $dates[0]; //json_decode($dates, true);
+
+		// $mydates = json_decode($mydates);
 		//$mydates = json_decode($mydates, true);
 
 		// var_dump($mydates);
