@@ -57,7 +57,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$dates = getDateTags($todoText); //TODO NAZIF
 		echo("^^^^^^^^^^^^^^^^^^");
-		var_dump($mydates);
+		var_dump($dates);
 		echo("^^^^^^^^^^^^^^^^^^");
 
 		$mydates = $dates[0]; //json_decode($dates, true);
