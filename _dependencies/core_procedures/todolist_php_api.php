@@ -76,7 +76,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		// var_dump($mydates);
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		addTag($mydates['date'], "person", $tagID);
+		addTag($mydates[0][0][‘date’], "person", $tagID);
 		addTagForItem($itemID, $tagID);
 
 		////////DATES///////////
