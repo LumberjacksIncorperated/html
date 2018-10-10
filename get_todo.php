@@ -60,15 +60,21 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 		echo 'Bad session';
 	}
 
-    // If there are query parameters along with the request
+    ///////////// QUERY PARAMETERS ////////////////
     $query = getQueryFieldContentsFromCurrentClientRequest();
-
     if ($query){
-        echo "we got a query";
+
+        // Get user id
+        // TODO
+        $user_id = 2;
+        $queryArray = explode("+", $query);
+        $itemListEntriesArray = getItemsByTags($queryArray, $user_id);
+    }
+    ///////////// NO QUERY PARAMETERS ////////////////
+    else {
+        $itemListEntriesArray = getTodoListEntries();
     }
 
-
-    $itemListEntriesArray = getTodoListEntries();
     $tasksArray = array();
 
     if ($itemListEntriesArray) {
