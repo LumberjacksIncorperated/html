@@ -19,12 +19,19 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 include_once dirname(__FILE__).'/../nlp_functions.php';
 
 //----------------------------------------
+// INTERNAL FUNCTIONS
+//----------------------------------------
+
+
+//----------------------------------------
 // FUNCTIONS
 //----------------------------------------
 
 function getItemsByTags($queryArray){
 
-	
+
+	// We need to get 
+
 
 
 

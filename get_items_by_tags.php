@@ -29,10 +29,15 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		// die();
 	}
 
+	// Turn query string into array
 	$query = getQueryFieldContentsFromCurrentClientRequest();
 	$queryArray = explode("+", $query);
 
-	getItemsByTags($queryArray)
+	// Get user id
+	// TODO
+	$user_id = 2;
+
+	getItemsByTags($queryArray, $user_id)
 
 	echo 'Successfully sent the query \"'.$query.'\"';
 ?>
