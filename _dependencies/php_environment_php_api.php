@@ -90,6 +90,9 @@
     function getTodoTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('todoText');
     }
+    function getQueryFieldContentsFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('query');
+    }
     function getIdTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('itemId');
     }
