@@ -66,6 +66,7 @@ function getDateTags($text){
    // echo("2");
   //  echo($tagDate["date"]);
     echo("333");
+    echo($tagDate);
 	return $output;
 
 //[[{"date":"2018-11-20T00:00:00.000Z","ms":1542672000000,"epoch":1542672000,"match":"20th of November","index":16}]]
