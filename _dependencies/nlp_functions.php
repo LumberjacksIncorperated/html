@@ -57,14 +57,13 @@ function getDateTags($text){
     echo("333");
     $tagDate = json_decode($output[0][0], true);
     echo("2");
-    echo(($output[0]);
-    echo("2");
-    echo(($output[0][0]);
-    echo("2");
-    echo($tagDate);
-    echo("2");
-    echo("2");
-    echo($tagDate["date"]);
+    //echo(($output[0]);
+    //echo("2");
+    //echo(($output[0][0]);
+   // echo("2");
+   // echo($tagDate);
+   // echo("2");
+  //  echo($tagDate["date"]);
     echo("333");
 	return $output;
 
