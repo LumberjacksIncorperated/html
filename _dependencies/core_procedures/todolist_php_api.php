@@ -22,7 +22,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // SCRIPT
 //----------------------------------------
 	function addTodoListEntryForCurrentUser($todoText, $time) {
-		echo("hi!!!!!**************");
+		echo("boo**************");
 		$accountIDOfUser = getAccountIDOfCurrentUser();
 		if ($accountIDOfUser) {
 			$todoText = sanitiseStringForSQLQuery($todoText);
@@ -60,6 +60,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		var_dump($mydates);
 
 		echo("hi!!!!!!!!!!!!");
+
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		addTag($mydates[0][0], "date", $tagID);
+		addTagForItem($itemID, $tagID);
 
 		////////DATES///////////
 
