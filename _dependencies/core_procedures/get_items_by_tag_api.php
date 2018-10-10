@@ -32,6 +32,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // Ordered by how many were matched
 function getItemsByTags($queryArray, $accountId){
 
+	echo(" account id is $accountId ");
+
 	$size = count($queryArray);
 	echo("the size is $size");
 
@@ -62,7 +64,6 @@ function getItemsByTags($queryArray, $accountId){
 	SELECT item_id, count(*) as match_count
 	FROM items_with_the_tags
 	GROUP BY item_id;
-	ORDER BY match_count DESC;
 
 	SELECT * from items_with_tag_count
 	JOIN user_items ON items_with_tag_count.item_id LIKE user_items.item_id;
