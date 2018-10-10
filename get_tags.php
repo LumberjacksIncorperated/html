@@ -23,17 +23,17 @@ if (!ensureThisIsASecuredSession()) {
 }
 
 $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-var_dump($todoText);
+// var_dump($todoText);
 //$text_text = "meeting on the 22nd of October";
 
 //$result = getTagsForText($text_text);
 $result2 = getTagsForText($todoText);
-var_dump($result2);
-echo($result2);
-echo("+++++");
+// var_dump($result2);
+// echo($result2);
+// echo("+++++");
 $result_date = getDateTags($todoText);
-echo("========");
-echo($result_date);
+// echo("========");
+// echo($result_date);
 
 
 //echo($result);

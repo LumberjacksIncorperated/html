@@ -59,7 +59,7 @@ function getDateTags($text){
     $tagDate = json_decode($output, true);
     echo("2");
     //echo(($output[0]);
-    //echo("2");
+    //echo("2"); 
     //echo(($output[0][0]);
    // echo("2");
     echo($output);
