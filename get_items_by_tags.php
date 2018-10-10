@@ -25,13 +25,19 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 // SCRIPT
 //---------------------------------------- 
 	if (!ensureThisIsASecuredSession()) {
-		echo 'You are not allowed to send messages unless you are logged into a secure session';
+		echo 'You are not allowed to send queries unless you are logged into a secure session';
 		// die();
 	}
 
-	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
-	$time = timeTextFieldContentsFromCurrentClientRequest();
-	addTodoListEntryForCurrentUser($todoText, $time);
-	echo 'Successfully sent the message \"'.$todoText.'\", time: '.$time;
-?>
+	// Turn query string into array
+	$query = getQueryFieldContentsFromCurrentClientRequest();
+	$queryArray = explode("+", $query);
 
+	// Get user id
+	// TODO
+	$user_id = 2;
+
+	getItemsByTags($queryArray, $user_id)
+
+	echo 'Successfully sent the query \"'.$query.'\"';
+?>

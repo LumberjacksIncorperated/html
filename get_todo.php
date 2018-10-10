@@ -19,6 +19,7 @@ header("Access-control-allow-origin: *");
 include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.php';
 include_once dirname(__FILE__).'/_dependencies/php_environment_php_api.php';
 include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_php_api.php';
+include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_api.php';
 
 //---------------------------------------- 
 // INTERNAL FUNCTIONS
@@ -59,7 +60,21 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 		echo 'Bad session';
 	}
 
-    $itemListEntriesArray = getTodoListEntries();
+    ///////////// QUERY PARAMETERS ////////////////
+    $query = getQueryFieldContentsFromCurrentClientRequest();
+    if ($query){
+
+        // Get user id
+        // TODO
+        $user_id = 2;
+        $queryArray = explode("+", $query);
+        $itemListEntriesArray = getItemsByTags($queryArray, $user_id);
+    }
+    ///////////// NO QUERY PARAMETERS ////////////////
+    else {
+        $itemListEntriesArray = getTodoListEntries();
+    }
+
     $tasksArray = array();
 
     if ($itemListEntriesArray) {

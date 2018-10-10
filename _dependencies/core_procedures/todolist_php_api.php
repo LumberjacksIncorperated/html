@@ -30,8 +30,19 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
 			addAllTagsForItem($itemID, $todoText);
-            
+			addDateTagForItem($itemID, $time);
+			// echo("addDateTagForItem($itemID, $time)");
 		}
+	}
+
+	function addDateTagForItem($itemID, $dateString){
+		// echo("addDateTagForItem again ($itemID, $dateString)");
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
+		$tagTypeNumber = $tagTypeID['id'];
+		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description) 
+		                                VALUES (\"$tagID\", $tagTypeNumber, \"$dateString\", \"Due\");");
+		addTagForItem($itemID, $tagID);
 	}
 
 
@@ -126,7 +137,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 	//get all tags for item (we're only returning the tag name and tag type)
 	function getTagsForItem($itemID) {
-		$r = fetchMultipleRecordsByMakingSQLQuery("select Tags.textValue, TagTypes.name as tagType, Tags.id 
+		$r = fetchMultipleRecordsByMakingSQLQuery("select 
+												   COALESCE(Tags.textValue, Tags.dateTimeValue) as textValue, 
+												   TagTypes.name as tagType, Tags.id 
 												   from ItemTags 
 												   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
 												   JOIN TagTypes
