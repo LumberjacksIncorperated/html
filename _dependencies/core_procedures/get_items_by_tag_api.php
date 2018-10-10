@@ -27,41 +27,33 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // FUNCTIONS
 //----------------------------------------
 
+
+// Returns a set of the items which matched the input tags
+// Ordered by how many were matched
 function getItemsByTags($queryArray, $accountId){
 
+	//Turn array into a string in the form: 'John', 'Newtown', 'coffee'
+	$queryArrayString = "";
+	foreach ($queryArray as $queryItem) {
+		$queryArrayString = $queryArrayString."\'".$queryItem."\', ";
+	}
+	$queryArrayString = rtrim($queryArrayString,", ");
 
-	// We need to get all the items that match all tags (for now)
-	$r = fetchMultipleRecordsByMakingSQLQuery("WITH
-  												user_items AS (SELECT * from items where account_id = $accountId)
-  											   
-  										
+	$r = fetchMultipleRecordsByMakingSQLQuery(
 
+	"CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;
+	CREATE OR REPLACE VIEW items_with_the_tags as 
+	SELECT * from user_items 
+	JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
+	JOIN Tags ON Tags.id LIKE ItemTags.tagID
+	WHERE Tags.textValue IN ($queryArrayString);
+	SELECT *, count(*) as match_count
+	FROM items_with_the_tags
+	GROUP BY item_id
+	ORDER BY match_count;"
+	);
 
-
-											   SELECT b, d FROM cte1 JOIN cte2
-											   WHERE cte1.a = cte2.c;;");
-
-
-
-
-
-
-	// 	function getTagsForItem($itemID) {
-	// 	$r = fetchMultipleRecordsByMakingSQLQuery("select 
-	// 											   COALESCE(Tags.textValue, Tags.dateTimeValue) as textValue, 
-	// 											   TagTypes.name as tagType, Tags.id 
-	// 											   from ItemTags 
-	// 											   JOIN Tags ON Tags.id LIKE ItemTags.tagID 
-	// 											   JOIN TagTypes
-	// 											   ON TagTypes.id = Tags.tagTypeID
-	// 											   where ItemTags.itemID LIKE \"$itemID\";");
-	// 	return $r;
-	// }
-
-
-
-
-
+	return $r;
 }
 
 
