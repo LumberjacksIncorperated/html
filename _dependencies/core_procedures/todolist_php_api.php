@@ -34,6 +34,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			addAllTagsForItem($itemID, $todoText);
 			addDateTagForItem($itemID, $time);
+			addNlpDateTagsForItem($itemID, $todoText);
 			// echo("addDateTagForItem($itemID, $time)");
 		}
 	}
@@ -48,56 +49,29 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		addTagForItem($itemID, $tagID);
 	}
 
+	function addNlpDateTagsForItem($itemID, $todoText){
+
+		////////DATES///////////
+
+		$dates = getDateTags($todoText); //TODO NAZIF
+		$mydates = json_decode($dates, true);
+		
+		for ($i=0; $i < count($mydates[0]); $i++) {
+			addDateTagForItem($itemID, $mydates[0][$i]['date']);
+			// addTag($mydates[0][$i]['date'], "date", $tagID);
+			// addTagForItem($itemID, $tagID);
+		}
+
+	}
+
 
 	function addAllTagsForItem($itemID, $todoText){
 
 		$tags = getTagsForText($todoText);
 
-		////////DATES///////////
-
-		$dates = getDateTags($todoText); //TODO NAZIF
-		echo("^^^^^^^^^^^^^^^^^^");
-		var_dump($dates);
-		echo("^^^^^^^^^^^^^^^^^^");
-
-
-		echo("++++++++++++++++++++");
-		$mydates = json_decode($dates, true);
-		var_dump($mydates);
-		echo("++++++++++++++++++++");
-
-
-
-		// $mydates = $dates[0]; //json_decode($dates, true);
-
-		// $mydates = json_decode($mydates);
-		//$mydates = json_decode($mydates, true);
-
-		// var_dump($mydates);
-
-		
-
-
-		for ($i=0; $i < count($mydates[0]); $i++) {
-			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($mydates[0][$i]['date'], "date", $tagID);
-			addTagForItem($itemID, $tagID);
-		}
-
-
-		// addTag($mydates[0][0]['date'], "date", $tagID);
-		// addTagForItem($itemID, $tagID);
-
-		////////DATES///////////
-
-
-
 
 		$mytags = json_decode($tags, true);
 
-		echo("_________________");
-		var_dump($mytags);
-		echo("_________________");
 
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
