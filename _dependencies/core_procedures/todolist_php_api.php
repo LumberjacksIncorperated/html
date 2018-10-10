@@ -55,7 +55,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$dates = getDateTags($todoText); //TODO NAZIF
 
-		$mydates = $dates[0][0]; //json_decode($dates, true);
+		$mydates = $dates[0]; //json_decode($dates, true);
 
 		$mydates = json_decode($mydates);
 		//$mydates = json_decode($mydates, true);
@@ -64,9 +64,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		echo("hi!!!!!!!!!!!!");
 
-		// $tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		// addTag($mydates['date'], "date", $tagID);
-		// addTagForItem($itemID, $tagID);
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		addTag($mydates['date'], "person", $tagID);
+		addTagForItem($itemID, $tagID);
 
 		////////DATES///////////
 
