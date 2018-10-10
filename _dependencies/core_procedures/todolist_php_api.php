@@ -55,14 +55,14 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$dates = getDateTags($todoText); //TODO NAZIF
 
-		$mydates = json_decode($dates, true);
+		$mydates = $dates; //json_decode($dates, true);
 
 		var_dump($mydates);
 
 		echo("hi!!!!!!!!!!!!");
 
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		addTag($mydates[0][0][0]['date'], "date", $tagID);
+		addTag($mydates[0][0]['date'], "date", $tagID);
 		addTagForItem($itemID, $tagID);
 
 		////////DATES///////////
