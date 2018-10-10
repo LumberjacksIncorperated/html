@@ -56,7 +56,7 @@ function getDateTags($text){
 	echo("$curlCommandString");
     $output = shell_exec("$curlCommandString");
     echo("333");
-    $tagDate = json_decode($output, true);
+    // $tagDate = json_decode($output, true);
     echo("2");
     //echo(($output[0]);
     //echo("2"); 
@@ -66,7 +66,7 @@ function getDateTags($text){
    // echo("2");
   //  echo($tagDate["date"]);
     echo("333");
-    var_dump($tagDate);
+    var_dump($output);
     echo("999");
 	return $output;
 
