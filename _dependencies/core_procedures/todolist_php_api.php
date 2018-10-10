@@ -80,13 +80,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		for ($i=0; $i < count($mydates[0]); $i++) {
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($mydates[0][i]['date'], "date", $tagID);
+			addTag($mydates[0][$i]['date'], "date", $tagID);
 			addTagForItem($itemID, $tagID);
 		}
 
 
-		addTag($mydates[0][0]['date'], "date", $tagID);
-		addTagForItem($itemID, $tagID);
+		// addTag($mydates[0][0]['date'], "date", $tagID);
+		// addTagForItem($itemID, $tagID);
 
 		////////DATES///////////
 
