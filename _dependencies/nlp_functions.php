@@ -62,7 +62,7 @@ function getDateTags($text){
     //echo("2"); 
     //echo(($output[0][0]);
    // echo("2");
-    echo($output);
+    // echo($output);
    // echo("2");
   //  echo($tagDate["date"]);
     echo("333");
