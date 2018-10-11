@@ -29,19 +29,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 
 // Returns a set of the items which matched the input tags
-// Ordered by how many were matched
 function getItemsByTags($queryArray, $accountId){
 
-	$size = count($queryArray);
-
-	//Turn array into a string in the form: 'John', 'Newtown', 'coffee',
+	//Turn query array into a string in the form: 'John', 'Newtown', 'coffee', etc
 	$queryArrayString = "";
 	foreach ($queryArray as $queryItem) {
 		$queryArrayString = $queryArrayString."'".$queryItem."', "; 
-		// $queryArrayString = $queryArrayString.$queryItem; 
-		// $queryArrayString = $queryArrayString."'"; 
-		// $queryArrayString = $queryArrayString.","; 
-		// $queryArrayString = $queryArrayString." "; 
 	}
 	// Remove trailing comma/space 
 	$queryArrayString = rtrim($queryArrayString,", ");
