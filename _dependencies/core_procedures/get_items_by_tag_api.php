@@ -54,18 +54,7 @@ function getItemsByTags($queryArray, $accountId){
 
 	$r = fetchMultipleRecordsByMakingSQLQuery(
 
-	"CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = 2;
-
-	CREATE OR REPLACE VIEW items_with_the_tags as 
-	SELECT * from user_items 
-	JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
-	JOIN Tags ON Tags.id LIKE ItemTags.tagID
-	WHERE Tags.textValue IN ('coffee');
-
-	CREATE OR REPLACE VIEW items_with_tag_count as
-	SELECT item_id, count(*) as match_count
-	FROM items_with_the_tags
-	GROUP BY item_id;
+	"
 
 	SELECT * from items_with_tag_count
 	JOIN user_items ON items_with_tag_count.item_id LIKE user_items.item_id;
@@ -76,6 +65,20 @@ function getItemsByTags($queryArray, $accountId){
 	echo("the size of r is $c");
 	return $r;
 }
+
+//
+// CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = 2;
+
+// 	CREATE OR REPLACE VIEW items_with_the_tags as 
+// 	SELECT * from user_items 
+// 	JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
+// 	JOIN Tags ON Tags.id LIKE ItemTags.tagID
+// 	WHERE Tags.textValue IN ('coffee');
+
+// 	CREATE OR REPLACE VIEW items_with_tag_count as
+// 	SELECT item_id, count(*) as match_count
+// 	FROM items_with_the_tags
+// 	GROUP BY item_id;
 
 
 
