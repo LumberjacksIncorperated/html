@@ -52,11 +52,11 @@ function getItemsByTags($queryArray, $accountId){
 
 	$mystring = $queryArray[0];
 
+	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW cats as SELECT * from items where account_id = 2;");
+
 	$r = fetchMultipleRecordsByMakingSQLQuery(
 
 	"
-	CREATE OR REPLACE VIEW cats as SELECT * from items where account_id = 2;
-
 	SELECT * from items_with_tag_count
 	JOIN user_items ON items_with_tag_count.item_id LIKE user_items.item_id;
 	"
