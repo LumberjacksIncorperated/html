@@ -37,11 +37,11 @@ function getItemsByTags($queryArray, $accountId){
 	//Turn array into a string in the form: 'John', 'Newtown', 'coffee',
 	$queryArrayString = "";
 	foreach ($queryArray as $queryItem) {
-		$queryArrayString = $queryArrayString."'"; //echo("  >".$queryArrayString."<   ");
-		$queryArrayString = $queryArrayString.$queryItem; //echo("  >".$queryArrayString."<   ");
-		$queryArrayString = $queryArrayString."'"; //echo("  >".$queryArrayString."<   ");
-		$queryArrayString = $queryArrayString.","; //echo("  >".$queryArrayString."<   ");
-		$queryArrayString = $queryArrayString." "; //echo("  >".$queryArrayString."<   ");
+		$queryArrayString = $queryArrayString."'".$queryItem."', "; 
+		// $queryArrayString = $queryArrayString.$queryItem; 
+		// $queryArrayString = $queryArrayString."'"; 
+		// $queryArrayString = $queryArrayString.","; 
+		// $queryArrayString = $queryArrayString." "; 
 	}
 	// Remove trailing comma/space 
 	$queryArrayString = rtrim($queryArrayString,", ");
