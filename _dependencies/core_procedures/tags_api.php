@@ -38,7 +38,13 @@ function addDateTag($dateString, $tagID){
 
 }
 
-
+// DELETE TAG
+// TABLE `ItemTags`;
+// itemID VARCHAR(36) references Items(item_id),
+// tagID VARCHAR(36) references Tags(id),
+function deleteTag($tagID, $itemID){
+	modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID like \"$itemID\" AND tagID like \"$tagID\";");
+}
 
 
 ?>

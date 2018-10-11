@@ -4,7 +4,7 @@
 //
 // PURPOSE
 // -------
-// To edit a tag
+// To delete a tag (delete association between tag and item)
 //
 // AUTHOR
 // -------
@@ -12,8 +12,9 @@
 //
 //
 // Inputs:
-// 				tagText - text value of the tag
+// 				
 //				tagID - ID of the tag
+//				itemID - ID of the item that tag is associated with
 //				session_key - secure session key
 // Outputs:
 // 				Nothing
@@ -39,8 +40,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	}
 
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
-	$tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
+	$itemId = getIdTextFieldContentsFromCurrentClientRequest();
 
-	updateTagText($tagText, $tagId);
+	deleteTag($tagId, $itemId);
 
 ?>
