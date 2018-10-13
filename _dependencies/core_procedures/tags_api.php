@@ -46,26 +46,21 @@ function deleteTag($tagID, $itemID){
 	modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID like \"$itemID\" AND tagID like \"$tagID\";");
 }
 
+// Find tags (tag type and id), given the text value of the tag
 function getTagsByNameAndUser($tagText, $accountId){
 
-	echo(" tag text is $tagText, account id $accountId is < that");
-
-	// modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW matching_tags as
-	// 							SELECT * from Tags
-	// 							WHERE COALESCE(Tags.textValue, Tags.dateTimeValue) 
-	// 							LIKE \"$tagText\"");
-
+	// Only items which belong to the given user
 	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;");
 
 	$r = fetchMultipleRecordsByMakingSQLQuery(
-
 		"SELECT Tags.id, 
-		(SELECT name from TagTypes where id = Tags.tagTypeID) as type
+		(SELECT name from TagTypes where id = Tags.tagTypeID) as tagType
 		from Tags
 		JOIN ItemTags ON Tags.id LIKE ItemTags.tagID
 		JOIN user_items ON user_items.item_id LIKE ItemTags.itemID
 		WHERE COALESCE(Tags.textValue, Tags.dateTimeValue)
-		LIKE \"$tagText\";");
+		LIKE \"$tagText\";"
+	);
 
 	return $r;
 }

@@ -47,10 +47,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
         return $task;
     }
 
+    function _createTagListArrayFromQueryResults(){
+        ;
+    }
 
 
-    function _displayTaskArrayAsJson($tasksArray) {
-        $reversedOuterArray = array_reverse($tasksArray);
+
+    function _displayArrayAsJson($array) {
         echo (json_encode($reversedOuterArray));
     }
 
@@ -72,7 +75,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     $tagsArray = getTagsByNameAndUser($tagText, $userId); 
 
-    var_dump($tagsArray);
+    // var_dump($tagsArray);
+
+    _displayArrayAsJson($tagsArray);
 
 
 
