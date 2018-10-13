@@ -48,7 +48,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
     }
 
     function _createTagListArrayFromQueryResults($queryArray, $tagText){
-        $returnArray = ();
+        $returnArray = array();
         foreach ($queryArray as $queryResult) {
             array_push($returnArray, array("textValue" => $tagText, "tagID" => $queryResult['tagId'], "tagType" => $queryResult['tagType']));
         }
