@@ -27,28 +27,30 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 //---------------------------------------- 
 // INTERNAL FUNCTIONS
 //---------------------------------------- 
-    function _createTaskWithoutTags($itemListEntry) {
-        $todoEntry = "".$itemListEntry['item_text'];
-        $entryTime = "".$itemListEntry['time_posted'];
-        $itemID = "".$itemListEntry['item_id'];
-        $itemNumber = "".$itemListEntry['itemNumber'];
-        $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
-        return $task;
-    }
+    // function _createTaskWithoutTags($itemListEntry) {
+    //     $todoEntry = "".$itemListEntry['item_text'];
+    //     $entryTime = "".$itemListEntry['time_posted'];
+    //     $itemID = "".$itemListEntry['item_id'];
+    //     $itemNumber = "".$itemListEntry['itemNumber'];
+    //     $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
+    //     return $task;
+    // }
 
-    function _createTaskFromItemListEntry($itemListEntry) {
-        $itemID = "".$itemListEntry['item_id'];
-        $task = _createTaskWithoutTags($itemListEntry);
-        $itemTags = getTagsForItem($itemID);
+    // function _createTaskFromItemListEntry($itemListEntry) {
+    //     $itemID = "".$itemListEntry['item_id'];
+    //     $task = _createTaskWithoutTags($itemListEntry);
+    //     $itemTags = getTagsForItem($itemID);
 
-        foreach ($itemTags as $itag) {
-            array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType'], "tagID" => $itag['id']));
-        }
-        return $task;
-    }
+    //     foreach ($itemTags as $itag) {
+    //         array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType'], "tagID" => $itag['id']));
+    //     }
+    //     return $task;
+    // }
 
     function _createTagListArrayFromQueryResults($queryArray, $tagText){
         $returnArray = array();
+
+        // If nothing was found
         if ($queryArray == NULL){
             array_push($returnArray, array("textValue" => $tagText, "tagID" => NULL, "tagType" => NULL));
             return $returnArray;
@@ -64,9 +66,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
         echo (json_encode($array));
     }
 
-    function _displayDefaultForNoTasks() {
-        // nothing here yet...
-    }
+    // function _displayDefaultForNoTasks() {
+    //     // nothing here yet...
+    // }
 
 //---------------------------------------- 
 // SCRIPT
@@ -82,14 +84,14 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     $tagsArray = getTagsByNameAndUser($tagText, $userId); 
 
-     var_dump($tagsArray);
+     // var_dump($tagsArray);
 
-     echo "---------------------";
+     // echo "---------------------";
 
-    _displayArrayAsJson($tagsArray);
+    // _displayArrayAsJson($tagsArray);
 
 
-    echo "---------------------";
+    // echo "---------------------";
 
 
     $prettyJSONArray = _createTagListArrayFromQueryResults($tagsArray, $tagText);
