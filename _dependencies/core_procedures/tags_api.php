@@ -46,5 +46,26 @@ function deleteTag($tagID, $itemID){
 	modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID like \"$itemID\" AND tagID like \"$tagID\";");
 }
 
+function getTagsByNameAndUser($tagText, $userID){
+
+	// modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW matching_tags as
+	// 							SELECT * from Tags
+	// 							WHERE COALESCE(Tags.textValue, Tags.dateTimeValue) 
+	// 							LIKE \"$tagText\"");
+
+	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;");
+
+	$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * from Tags
+								JOIN ItemTags ON Tags.id LIKE ItemTags.tagID
+								JOIN user_items ON user_items.item_id LIKE ItemTags.itemID
+								WHERE COALESCE(Tags.textValue, Tags.dateTimeValue)
+								LIKE \"$tagText\";");
+
+	return $r;
+}
+
+
+
+
 
 ?>
