@@ -53,7 +53,7 @@ function getTagsByNameAndUser($tagText, $accountId){
 	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;");
 
 	$r = fetchMultipleRecordsByMakingSQLQuery(
-		"SELECT Tags.id, 
+		"SELECT Tags.id as tagId, 
 		(SELECT name from TagTypes where id = Tags.tagTypeID) as tagType
 		from Tags
 		JOIN ItemTags ON Tags.id LIKE ItemTags.tagID

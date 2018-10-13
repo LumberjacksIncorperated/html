@@ -47,11 +47,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
         return $task;
     }
 
-    function _createTagListArrayFromQueryResults(){
-        ;
+    function _createTagListArrayFromQueryResults($queryArray, $tagText){
+        $returnArray = ();
+        foreach ($queryArray as $queryResult) {
+            array_push($returnArray, array("textValue" => $tagText, "tagID" => $queryResult['tagId'], "tagType" => $queryResult['tagType']));
+        }
+        return $returnArray;
     }
-
-
 
     function _displayArrayAsJson($array) {
         echo (json_encode($array));
@@ -80,6 +82,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
      echo "---------------------";
 
     _displayArrayAsJson($tagsArray);
+
+
+    echo "---------------------";
+
+
+    $prettyJSONArray = _createTagListArrayFromQueryResults($tagsArray, $tagText);
+    _displayArrayAsJson($prettyJSONArray);
 
 
 
