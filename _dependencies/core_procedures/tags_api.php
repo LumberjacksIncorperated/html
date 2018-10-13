@@ -59,7 +59,9 @@ function getTagsByNameAndUser($tagText, $accountId){
 
 	$r = fetchMultipleRecordsByMakingSQLQuery(
 
-		"SELECT * from Tags
+		"SELECT Tags.id, 
+		(SELECT name from TagTypes where id = Tags.tagTypeID) as type
+		from Tags
 		JOIN ItemTags ON Tags.id LIKE ItemTags.tagID
 		JOIN user_items ON user_items.item_id LIKE ItemTags.itemID
 		WHERE COALESCE(Tags.textValue, Tags.dateTimeValue)
