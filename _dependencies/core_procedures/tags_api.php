@@ -46,6 +46,8 @@ function deleteTag($tagID, $itemID){
 	modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID like \"$itemID\" AND tagID like \"$tagID\";");
 }
 
+
+
 // Find tags (tag type and id), given the text value of the tag
 function getTagsByNameAndUser($tagText, $accountId){
 
