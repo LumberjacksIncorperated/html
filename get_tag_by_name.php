@@ -54,7 +54,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
 
     function _displayArrayAsJson($array) {
-        echo (json_encode($reversedOuterArray));
+        echo (json_encode($array));
     }
 
     function _displayDefaultForNoTasks() {
@@ -75,7 +75,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     $tagsArray = getTagsByNameAndUser($tagText, $userId); 
 
-    // var_dump($tagsArray);
+     var_dump($tagsArray);
+
+     echo "---------------------";
 
     _displayArrayAsJson($tagsArray);
 
