@@ -66,7 +66,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	}
 
     ///////////// QUERY PARAMETERS ////////////////
-    $tagName = getTagTextValueFieldContentsFromCurrentClientRequest();
+    $tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
 
     $userId = 2; //TODO
 
