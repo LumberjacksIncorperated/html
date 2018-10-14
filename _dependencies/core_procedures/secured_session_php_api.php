@@ -61,7 +61,7 @@ define("SECONDS_UNTIL_A_SESSION_EXPIRES", 315360676);
 	function checkSecuredSessionOtherwiseDie(){
 		if (!_ensureThisIsASecuredSession()) {
 			echo 'You must be logged into a secure session to use Tagnostic';
-			// die();
+			die();
 		}
 	}
 
