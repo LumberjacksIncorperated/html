@@ -72,9 +72,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
     if ($datesArray != NULL){
         echo("found a date");
         $tagsArray = getTagsByNameAndUser($datesArray[0], $userId); 
+        // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
+        $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $datesArray[0]);
     }
     else {
         $tagsArray = getTagsByNameAndUser($tagText, $userId); 
+        // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
+        $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
     }
 
     // Query the DB
@@ -82,7 +86,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
 
     // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
-    $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
+    // $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
 
     // Echo the array as JSON
     _displayArrayAsJson($prettyArrayWithNullValues);
