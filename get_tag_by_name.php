@@ -70,6 +70,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     //For now, just use the first result
     if ($datesArray != NULL){
+        echo("found a date");
         $tagsArray = getTagsByNameAndUser($datesArray[0], $userId); 
     }
     else {
