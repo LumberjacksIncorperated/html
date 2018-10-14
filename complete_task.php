@@ -19,15 +19,9 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 checkSecuredSessionOtherwiseDie();
 
 $id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
-$flag = getFlagContentsFromCurrentClientRequest();
 
-// If no flags, we're marking the task as completed
-if ($flag == ""){
-	$flag = "true";
-}
+toggleTaskCompletion($id_of_tag);
 
-toggleTaskCompletion($id_of_tag, $flag);
-
-echo "setting tag $id_of_tag to $flag";
+// echo "setting tag $id_of_tag to $flag";
 
 ?>

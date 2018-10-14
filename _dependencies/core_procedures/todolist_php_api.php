@@ -145,18 +145,11 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	// Mark task as completed or not completed
-	function toggleTaskCompletion($tagID, $flag) {
+	function toggleTaskCompletion($tagID) {
 
 		$completionStatus = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagID\";");
-
-		var_dump($completionStatus);
-
-		// For some reason this is an array
 		$completionStatus = $completionStatus['textValue'];
-		echo(" completionStatus = $completionStatus ");
-		echo(" tagID = $tagID ");
 
-		// $flag = strtolower($flag);
 		if ($completionStatus === "Done?"){
 		    modifyDataByMakingSQLQuery("UPDATE Tags
 							SET textValue = \"Done!\"
