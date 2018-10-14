@@ -149,6 +149,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$completionStatus = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagID\";");
 
+		echo(" completionStatus = $completionStatus ");
+		echo(" tagID = $tagID ");
+
 		// $flag = strtolower($flag);
 		if ($completionStatus === "Done?"){
 		    modifyDataByMakingSQLQuery("UPDATE Tags
