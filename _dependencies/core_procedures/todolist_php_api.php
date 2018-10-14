@@ -149,6 +149,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$completionStatus = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagID\";");
 
+		// For some reason this is an array
+		$completionStatus = $completionStatus[0];
 		echo(" completionStatus = $completionStatus ");
 		echo(" tagID = $tagID ");
 
