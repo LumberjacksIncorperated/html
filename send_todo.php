@@ -24,10 +24,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 //---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 
-	if (!ensureThisIsASecuredSession()) {
-		echo 'You are not allowed to send messages unless you are logged into a secure session';
-		// die();
-	}
+	
+	// Security
+	checkSecuredSessionOtherwiseDie();
 
 	$todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 	$time = timeTextFieldContentsFromCurrentClientRequest();
