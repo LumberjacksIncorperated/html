@@ -34,9 +34,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/items_api.php';
 //---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 
-	if (!ensureThisIsASecuredSession()) {
-		echo 'Bad session';
-	}
+
+	// Security
+	checkSecuredSessionOtherwiseDie();
 
 	$itemIdToGet = getIdTextFieldContentsFromCurrentClientRequest();
 	displaySingleItemById($itemIdToGet);

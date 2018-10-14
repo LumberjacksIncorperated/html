@@ -15,10 +15,8 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 // SCRIPT
 //---------------------------------------- 
 
-//erm ideally authenticate as well
-if (!ensureThisIsASecuredSession()) {
-            echo 'Bad session';
-}
+// Security
+checkSecuredSessionOtherwiseDie();
 
 $id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
 $flag = getFlagContentsFromCurrentClientRequest();

@@ -13,10 +13,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 // SCRIPT
 //---------------------------------------- 
 
-//erm ideally authenticate as well
-if (!ensureThisIsASecuredSession()) {
-            echo 'Bad session';
-}
+// Security
+checkSecuredSessionOtherwiseDie();
 
 $item_id = getIdTextFieldContentsFromCurrentClientRequest();
 $item_text = getTodoTextFieldContentsFromCurrentClientRequest();

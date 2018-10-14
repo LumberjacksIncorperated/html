@@ -34,13 +34,12 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 //---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 
-	if (!ensureThisIsASecuredSession()) {
-		echo 'Bad session';
-	}
+
+	// Security
+	checkSecuredSessionOtherwiseDie();
 
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
 	$tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
-
 	updateTagText($tagText, $tagId);
 
 ?>

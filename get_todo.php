@@ -56,9 +56,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 //---------------------------------------- 
 // SCRIPT
 //---------------------------------------- 	
-	if (!ensureThisIsASecuredSession()) {
-		echo 'Bad session';
-	}
+    
+    // Security
+    checkSecuredSessionOtherwiseDie();
 
     ///////////// QUERY PARAMETERS ////////////////
     $query = getQueryFieldContentsFromCurrentClientRequest();

@@ -18,9 +18,8 @@ include_once dirname(__FILE__).'/_dependencies/nlp_functions.php';
 //usage: http://165.227.25.45/get_tags.php?todoText=%22hello%20there%20my%20name%20is%20Dan%22
 //erm ideally authenticate as well
 
-if (!ensureThisIsASecuredSession()) {
-            echo 'Bad session';
-}
+// Security
+checkSecuredSessionOtherwiseDie();
 
 $todoText = getTodoTextFieldContentsFromCurrentClientRequest();
 // var_dump($todoText);
