@@ -70,8 +70,11 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     //For now, just use the first result
     if ($datesArray != NULL){
-        echo("found a date");
-        $tagsArray = getTagsByNameAndUser($datesArray[0], $userId); 
+        $dateString = str_replace(".000","",$datesArray[0]);
+        $tagsArray = getTagsByNameAndUser($dateString, $userId); 
+
+        echo("found a date, it's $dateString ");
+
         // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
         $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $datesArray[0]);
     }
