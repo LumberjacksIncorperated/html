@@ -40,6 +40,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
         else {
             foreach ($queryArray as $queryResult) {
                 array_push($returnArray, array("textValue" => $tagText, "tagID" => $queryResult['tagId'], "tagType" => $queryResult['tagType']));
+                break; //for now, just give the first match.
             }
             // foreach ($datesArray as $dateResult) {
             //     array_push($returnArray, array("textValue" => $dateResult, "tagID" => "id-here", "tagType" => "date"));
