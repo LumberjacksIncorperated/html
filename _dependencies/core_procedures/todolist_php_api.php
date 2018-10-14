@@ -144,14 +144,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		}
 	}
 
-
-
-
-	//We're doing this by item number, which is effectively a second ID
-	function deleteItemWithId($num) {
-			modifyDataByMakingSQLQuery("DELETE FROM items WHERE itemNumber LIKE \"$num\";");
-	}
-
 	// Mark task as completed or not completed
 	function markTaskAsCompleted($tagID, $flag) {
 		$flag = strtolower($flag);
@@ -167,11 +159,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		} 
 	}
 
-	
-	function getTodoListEntries() {
-		$r = fetchMultipleRecordsByMakingSQLQuery("SELECT * FROM items");
-		return $r;
-	}
 
 	//get all tags for item (we're only returning the tag name and tag type)
 	function getTagsForItem($itemID) {
@@ -186,22 +173,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		return $r;
 	}
 
-
-	//MODIFY ITEMS
-	//We're doing this by item number, which is effectively a second ID
-	function modifyItemText($itemText, $itemNum){
-		echo("modifyDataByMakingSQLQuery(\"UPDATE items SET item_text = \"$itemText\", time_modified = CURRENT_TIMESTAMP WHERE itemNumber LIKE \"$itemNum\";");
-
-	    modifyDataByMakingSQLQuery("UPDATE items SET item_text = \"$itemText\", time_modified = CURRENT_TIMESTAMP WHERE itemNumber LIKE $itemNum;");
-	}
-
-
-	// CREATE TAGS
-	function createDateTag($dateString){
-
-		return 1;
-
-	}
 
 
 	// ADD TAGS
