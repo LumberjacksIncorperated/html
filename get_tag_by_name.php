@@ -68,28 +68,20 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
     //E.g. if someone types "tomorrow" in the search bar, they should get the date
     $datesArray = getNlpDatesForItem($tagText);
 
-    //For now, just use the first result
+    //For now, if we find a date in the query string, just go with this.
     if ($datesArray != NULL){
         $dateString = str_replace(".000","",$datesArray[0]);
         $tagsArray = getTagsByNameAndUser($dateString, $userId); 
 
-        echo("found a date, it's $dateString ");
-
         // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
-        $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $datesArray[0]);
+        $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $dateString);
     }
+    // If no date found, treat it as a normal tag
     else {
         $tagsArray = getTagsByNameAndUser($tagText, $userId); 
         // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
         $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
     }
-
-    // Query the DB
-    // $tagsArray = getTagsByNameAndUser($tagText, $userId); 
-
-
-    // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
-    // $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
 
     // Echo the array as JSON
     _displayArrayAsJson($prettyArrayWithNullValues);
