@@ -26,7 +26,7 @@ if ($flag == ""){
 	$flag = "true";
 }
 
-markTaskAsCompleted($id_of_tag, $flag);
+toggleTaskCompletion($id_of_tag, $flag);
 
 echo "setting tag $id_of_tag to $flag";
 
