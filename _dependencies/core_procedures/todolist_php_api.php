@@ -152,7 +152,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		var_dump($completionStatus);
 
 		// For some reason this is an array
-		$completionStatus = $completionStatus[0];
+		$completionStatus = $completionStatus['textValue'];
 		echo(" completionStatus = $completionStatus ");
 		echo(" tagID = $tagID ");
 
