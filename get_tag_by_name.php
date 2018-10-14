@@ -61,11 +61,21 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
     $tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
     $userId = 2; //TODO
 
+    //Preprocess dates.
+    //E.g. if someone types "tomorrow" in the search bar, they should get the date
+    $datesArray = getNlpDatesForItem($tagText);
+
     // Query the DB
     $tagsArray = getTagsByNameAndUser($tagText, $userId); 
 
+    $allTagsArray = array();
+
+    array_push($allTagsArray, $datesArray);
+    array_push($allTagsArray, $tagsArray);
+
+
     // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
-    $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
+    $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($allTagsArray, $tagText);
 
     // Echo the array as JSON
     _displayArrayAsJson($prettyArrayWithNullValues);
