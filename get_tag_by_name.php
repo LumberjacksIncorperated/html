@@ -28,12 +28,12 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 // INTERNAL FUNCTIONS
 //---------------------------------------- 
 
-    function _createTagListArrayFromQueryResults($queryArray, $datesArray, $tagText){
+    function _createTagListArrayFromQueryResults($queryArray, $tagText){
         
         $returnArray = array();
 
         // If nothing was found
-        if (($queryArray == NULL) and ($datesArray == NULL)){
+        if ($queryArray == NULL){
             array_push($returnArray, array("textValue" => $tagText, "tagID" => NULL, "tagType" => NULL));
         }
         // If something was found
@@ -41,9 +41,9 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
             foreach ($queryArray as $queryResult) {
                 array_push($returnArray, array("textValue" => $tagText, "tagID" => $queryResult['tagId'], "tagType" => $queryResult['tagType']));
             }
-            foreach ($datesArray as $dateResult) {
-                array_push($returnArray, array("textValue" => $dateResult, "tagID" => "id-here", "tagType" => "date"));
-            }
+            // foreach ($datesArray as $dateResult) {
+            //     array_push($returnArray, array("textValue" => $dateResult, "tagID" => "id-here", "tagType" => "date"));
+            // }
         }
         return $returnArray;
     }
@@ -68,17 +68,20 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
     //E.g. if someone types "tomorrow" in the search bar, they should get the date
     $datesArray = getNlpDatesForItem($tagText);
 
+    //For now, just use the first result
+    if ($datesArray != NULL){
+        $tagsArray = getTagsByNameAndUser($datesArray[0], $userId); 
+    }
+    else {
+        $tagsArray = getTagsByNameAndUser($tagText, $userId); 
+    }
+
     // Query the DB
-    $tagsArray = getTagsByNameAndUser($tagText, $userId); 
-
-    // $allTagsArray = array();
-
-    // array_push($allTagsArray, $datesArray);
-    // array_push($allTagsArray, $tagsArray);
+    // $tagsArray = getTagsByNameAndUser($tagText, $userId); 
 
 
     // Make sure that the FE gets a predictable array type, not just null, even if DB query result is empty
-    $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $datesArray, $tagText);
+    $prettyArrayWithNullValues = _createTagListArrayFromQueryResults($tagsArray, $tagText);
 
     // Echo the array as JSON
     _displayArrayAsJson($prettyArrayWithNullValues);
