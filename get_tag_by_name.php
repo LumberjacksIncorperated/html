@@ -70,7 +70,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     $allTagsArray = array();
 
-    array_push($allTagsArray, $datesArray);
+    // array_push($allTagsArray, $datesArray);
     array_push($allTagsArray, $tagsArray);
 
 
