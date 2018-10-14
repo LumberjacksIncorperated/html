@@ -145,14 +145,17 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	// Mark task as completed or not completed
-	function markTaskAsCompleted($tagID, $flag) {
-		$flag = strtolower($flag);
-		if ($flag === "true"){
+	function toggleTaskCompletion($tagID, $flag) {
+
+		$completionStatus = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagID\";");
+
+		// $flag = strtolower($flag);
+		if ($completionStatus === "Done?"){
 		    modifyDataByMakingSQLQuery("UPDATE Tags
 							SET textValue = \"Done!\"
 							WHERE id LIKE \"$tagID\";");
 		} 
-		if ($flag === "false"){
+		if ($completionStatus === "Done!"){
 		    modifyDataByMakingSQLQuery("UPDATE Tags
 							SET textValue = \"Done?\"
 							WHERE id LIKE \"$tagID\";");
