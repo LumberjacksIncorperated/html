@@ -38,8 +38,11 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	// Security
 	checkSecuredSessionOtherwiseDie();
 
+	$user_id = 2; //TODO
+
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
 	$tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
-	updateTagText($tagText, $tagId);
+	
+	updateTagText($tagText, $tagId, $user_id);
 
 ?>

@@ -64,7 +64,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 
     // Get user id
     // TODO
-    $user_id = 2;
+    $user_id = getAccountIDOfCurrentUser();
 
 
     /// EITHER GET FULL ITEM LIST, OR FILTERED BY QUERY PARAMS ///

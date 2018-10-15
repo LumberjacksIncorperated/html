@@ -17,15 +17,49 @@ include_once dirname(__FILE__).'/../database_php_api.php';
 include_once dirname(__FILE__).'/secured_session_php_api.php';
 include_once dirname(__FILE__).'/../nlp_functions.php';
 
+
 //----------------------------------------
-// FUNCTIONS
+// INTERNAL FUNCTIONS
 //----------------------------------------
 
-function updateTagText($tagText, $tagId){
+function _createTagNameAssociation(){
+
+	;
+}
+
+//----------------------------------------
+// EXPOSED FUNCTIONS
+//----------------------------------------
+
+
+// -- Rudimentary "autocorrect" for tags
+// -- e.g. ability to apply tag "UNSW" if "uni" is mentioned 
+// DROP TABLE IF EXISTS `AssociatedNames`;
+// CREATE TABLE AssociatedNames (
+// tagID VARCHAR(36) references Tags(id),
+// associatedName VARCHAR(100),
+// userID VARCHAR(36) references Accounts(account_id),
+// probability REAL,
+// primary key (tagID, associatedName, userID)
+// );
+function updateTagText($tagText, $tagId, $userId){
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
+
+    // Save old value of tag
+    $oldTagName = fetchSingleRecordByMakingSQLQuery = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagId\";");
+    $oldTagName = $oldTagName['textValue'];
+
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
+
+    // "Learn" the change in tags
+    modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (tagID, associatedName, userID) VALUES (\"$tagId\", \"$oldTagName\", \"$userId\");");
+
 }
+
+
+
+
 
 // DATE TAG
 // 2018-11-20T00:00:00.000Z
