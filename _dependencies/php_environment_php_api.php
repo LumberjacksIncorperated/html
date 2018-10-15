@@ -8,6 +8,7 @@
 //---------------------------------------- 
 // INTERNAL FUNCTTIONS
 //---------------------------------------- 
+
     function _getFieldContentsFromCurrentClientRequestWithParameterKey($parameterKey) {
         $fieldContentsOfCurrentHTTPRequest = '';
         if (isset($_REQUEST[$parameterKey]))
