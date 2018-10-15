@@ -26,9 +26,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$password = sha1($password);
 
-		INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");");
+		modifyDataByMakingSQLQuery("INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");");
 
-		echo("INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");\")\")";
+		echo("INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");\")\")");
 
 	}
 	function addTodoListEntryForCurrentUser($todoText, $time) {
