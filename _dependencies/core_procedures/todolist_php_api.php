@@ -21,6 +21,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 //----------------------------------------
 // SCRIPT
 //----------------------------------------
+	function createNewUserAccount($username,$password,$email,$firstName,$lastName) {
+
+		$password = sha1($password);
+
+		INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");");
+
+	}
 	function addTodoListEntryForCurrentUser($todoText, $time) {
 
 		$accountIDOfUser = getAccountIDOfCurrentUser();

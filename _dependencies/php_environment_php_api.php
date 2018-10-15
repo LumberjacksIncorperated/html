@@ -111,4 +111,13 @@
     function timeTextFieldContentsFromCurrentClientRequest() {
         return _getFieldContentsFromCurrentClientRequestWithParameterKey('time');
     }
+    function getEmailFieldContentFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('email');
+    }
+    function getFirstNameFieldContentFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('firstName'); 
+    }
+    function getLastNameFieldContentFromCurrentClientRequest() {
+        return _getFieldContentsFromCurrentClientRequestWithParameterKey('lastName');
+    }
 ?>
