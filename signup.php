@@ -37,5 +37,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.
 	// 	echo 'Failed to login, incorrect username and password';
 	// }
 
+	echo("$username $password $email $firstName $lastName");
+
 	createNewUserAccount($username,$password,$email,$firstName,$lastName);
 ?>
