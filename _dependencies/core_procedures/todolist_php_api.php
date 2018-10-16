@@ -26,11 +26,28 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$password = sha1($password);
 
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+  			return "Invalid email format"; 
+		}
+		$checkUserName = fetchSingleRecordByMakingSQLQuery("SELECT * from Accounts WHERE username LIKE \"$username\";");
+		if ($checkUserName) {
+			return "User name is already taken";
+		}
+		$checkEmail = fetchSingleRecordByMakingSQLQuery("SELECT * from Accounts WHERE email LIKE \"$email\";");
+		if ($checkUserName) {
+			return "Email address is already associated with an account";
+		}
+
 		modifyDataByMakingSQLQuery("INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");");
 
-		echo("INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");\")\")");
-
+		$checkUserName = fetchSingleRecordByMakingSQLQuery("SELECT * from Accounts WHERE username LIKE \"$username\";");
+		if ($checkUserName) {
+			return "success";
+		}
+		return "Failed to create new user record";
 	}
+
+
 	function addTodoListEntryForCurrentUser($todoText, $time) {
 
 		$accountIDOfUser = getAccountIDOfCurrentUser();

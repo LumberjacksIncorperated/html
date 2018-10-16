@@ -3,11 +3,15 @@
 //
 // PURPOSE
 // -------
-// To login:
+// To sign up.
+//
+// RETURNS
+// -------
+// Session key
 //
 // AUTHOR
 // -------
-// Lumberjacks Incorperated (2018)
+// Lumberjacks Incorperated (2018) and Dan and Nazif
 //--------------------------------------------------------------------------------------------------------------
 
 // Header needed for react
@@ -31,14 +35,17 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.
 	$firstName = getFirstNameFieldContentFromCurrentClientRequest();
 	$lastName = getLastNameFieldContentFromCurrentClientRequest();
 
-	// $loginSessionKey = getSessionKeyForNewSessionWithUsernameAndPassword($username, $password);
-	// if ($loginSessionKey) {
-	// 	echo $loginSessionKey;
-	// } else {
-	// 	echo 'Failed to login, incorrect username and password';
-	// }
+	$signupStatusMessage = createNewUserAccount($username,$password,$email,$firstName,$lastName);
 
-	echo("$username $password $email $firstName $lastName");
-
-	createNewUserAccount($username,$password,$email,$firstName,$lastName);
+	if ($signupStatusMessage == "success"){
+		$loginSessionKey = getSessionKeyForNewSessionWithUsernameAndPassword($username, $password);
+		if ($loginSessionKey) {
+			echo $loginSessionKey;
+		} else {
+			echo 'Failed to login';
+		}	
+	}
+	else {
+		echo($signupStatusMessage);
+	}
 ?>
