@@ -54,6 +54,8 @@ function updateTagText($tagText, $tagId, $userId){
 
     // "Learn" the change in tags
     modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (inputName, outputName, userID) VALUES (\"$oldTagName\", \"$tagText\", \"$userId\");");
+
+    echo("$oldTagName -> $tagText for $userId");
 }
 
 
