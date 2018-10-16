@@ -45,4 +45,6 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	
 	updateTagText($tagText, $tagId, $user_id);
 
+	echo("updateTagText($tagText, $tagId, $user_id)");
+
 ?>

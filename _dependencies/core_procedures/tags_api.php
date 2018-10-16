@@ -43,6 +43,9 @@ function _createTagNameAssociation(){
 // primary key (tagID, associatedName, userID)
 // );
 function updateTagText($tagText, $tagId, $userId){
+
+	echo("$oldTagName -> $tagText for $userId !!!! ");
+
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
 
