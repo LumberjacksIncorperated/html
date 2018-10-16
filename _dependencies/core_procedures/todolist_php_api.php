@@ -20,8 +20,30 @@ include_once dirname(__FILE__).'/secured_session_php_api.php';
 include_once dirname(__FILE__).'/../nlp_functions.php';
 
 //----------------------------------------
-// SCRIPT
+// INTERNAL FUNCTIONS
 //----------------------------------------
+
+	// Check for any "preferred" name associated with a current tag name
+	// Return either the preferred name, or the input name if nothing preferred was found
+	_checkForAssociatedNames($tagName, $accountIDOfUser) {
+		$associatedName = fetchSingleRecordByMakingSQLQuery("SELECT outputName from AssociatedNames WHERE 
+															userID = $accountIDOfUser 
+															AND inputName LIKE \"$tagName\";");
+		if ($associatedName['outputName']){
+			return $associatedName['outputName'];
+		}
+		else {
+			return $tagName;
+		}
+	}
+
+
+//----------------------------------------
+// FUNCTIONS
+//----------------------------------------
+
+
+
 	function createNewUserAccount($username,$password,$email,$firstName,$lastName) {
 
 		$password = sha1($password);
@@ -59,9 +81,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 
 			//Tagging functions
-			addAllTagsForItem($itemID, $todoText);		// Google API
-			addDateTagForItem($itemID, $time);			// Manual date
-			addNlpDateTagsForItem($itemID, $todoText);	// NLP date api
+			addAllTagsForItem($itemID, $todoText, $accountIDOfUser);		// Google API
+			addDateTagForItem($itemID, $time);								// Manual date
+			addNlpDateTagsForItem($itemID, $todoText);						// NLP date api
 		}
 	}
 
@@ -111,7 +133,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	// Google NLP tagging
-	function addAllTagsForItem($itemID, $todoText){
+	function addAllTagsForItem($itemID, $todoText, $accountIDOfUser){
 
 		$tags = getTagsForText($todoText);
 		$mytags = json_decode($tags, true);
@@ -139,8 +161,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 				$tagTypex = strtolower($mytags['entities'][$i]['type']);
 			}
 
+			$tagName = $mytags['entities'][$i]['name'];
+			$tagName = _checkForAssociatedNames($tagName, $accountIDOfUser);
+
+
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($mytags['entities'][$i]['name'], $tagTypex, $tagID);
+			addTag($tagName, $tagTypex, $tagID);
 			addTagForItem($itemID, $tagID);
 			
 		}
