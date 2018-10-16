@@ -63,8 +63,11 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
     checkSecuredSessionOtherwiseDie();
 
     // Get user id
-    // TODO
     $user_id = getAccountIDOfCurrentUser();
+    if (! $user_id){
+        echo("Just testing with Bob account");
+        $user_id = 2;
+    }
 
 
     /// EITHER GET FULL ITEM LIST, OR FILTERED BY QUERY PARAMS ///

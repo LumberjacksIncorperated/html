@@ -38,7 +38,12 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	// Security
 	checkSecuredSessionOtherwiseDie();
 
-	$user_id = 2; //TODO
+	// Get user id
+    $user_id = getAccountIDOfCurrentUser();
+    if (! $user_id){
+        echo(" Just testing with Bob account ");
+        $user_id = 2;
+    }
 
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
 	$tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
