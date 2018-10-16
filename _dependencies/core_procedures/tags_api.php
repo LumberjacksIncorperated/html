@@ -53,8 +53,7 @@ function updateTagText($tagText, $tagId, $userId){
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 
     // "Learn" the change in tags
-    modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (tagID, associatedName, userID) VALUES (\"$tagId\", \"$oldTagName\", \"$userId\");");
-
+    modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (inputName, outputName, userID) VALUES (\"$oldTagName\", \"$tagText\", \"$userId\");");
 }
 
 

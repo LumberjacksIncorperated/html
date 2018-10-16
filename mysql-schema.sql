@@ -140,11 +140,11 @@ primary key (tagID, associatedTagID, userID)
 -- e.g. ability to apply tag "UNSW" if "uni" is mentioned 
 DROP TABLE IF EXISTS `AssociatedNames`;
 CREATE TABLE AssociatedNames (
-tagID VARCHAR(36) references Tags(id),
-associatedName VARCHAR(100),
+inputName VARCHAR(100),
+outputName VARCHAR(100),
 userID VARCHAR(36) references Accounts(account_id),
 probability REAL,
-primary key (tagID, associatedName, userID)
+primary key (inputName, outputName, userID)
 );
 
 
