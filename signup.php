@@ -42,7 +42,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/todolist_php_api.
 		if ($loginSessionKey) {
 			echo $loginSessionKey;
 		} else {
-			echo 'Failed to login';
+			echo 'Error: Failed to login';
 		}	
 	}
 	else {
