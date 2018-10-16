@@ -39,8 +39,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	checkSecuredSessionOtherwiseDie();
 
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
-	$itemId = getIdTextFieldContentsFromCurrentClientRequest();
 
-	deleteTag($tagId, $itemId);
+	deleteTag($tagId);
 
 ?>
