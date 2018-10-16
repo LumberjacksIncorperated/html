@@ -50,7 +50,7 @@ function updateTagText($tagText, $tagId, $userId){
     $tagId = sanitiseStringForSQLQuery($tagId);
 
     // Save old value of tag
-    $oldTagName = fetchSingleRecordByMakingSQLQuery = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagId\";");
+    $oldTagName = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagId\";");
     $oldTagName = $oldTagName['textValue'];
 
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
