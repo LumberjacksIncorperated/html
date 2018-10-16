@@ -47,13 +47,19 @@ function updateTagText($tagText, $tagId, $userId){
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
 
-    // Save old value of tag
+    // Save old value of tag for learning association
     $oldTagName = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagId\";");
     $oldTagName = $oldTagName['textValue'];
 
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 
-    // "Learn" the change in tags
+    learnAssociationBetweenWords($oldTagName, $tagText, $userID);
+
+}
+
+
+// "Learn" the association between an old tag name and new tag text, for a given user
+function learnAssociationBetweenWords($oldTagName, $tagText, $userID){
 
     // For now, if an existing association exists, we just override it with a new one
     $existingAssociation = fetchSingleRecordByMakingSQLQuery("SELECT * from AssociatedNames WHERE inputName LIKE \"$oldTagName\";");
@@ -67,13 +73,8 @@ function updateTagText($tagText, $tagId, $userId){
     	echo("making a new association");
 	    modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (inputName, outputName, userID) VALUES (\"$oldTagName\", \"$tagText\", \"$userId\");");
     }
-
-
-    echo("$oldTagName -> $tagText for $userId");
+    echo("in function $oldTagName -> $tagText for $userId");
 }
-
-
-
 
 
 // DATE TAG
