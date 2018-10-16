@@ -63,7 +63,13 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 
     // Parameters
     $tagText = getTagTextValueFieldContentsFromCurrentClientRequest();
-    $userId = 2; //TODO
+    
+    // Get user id
+    $user_id = getAccountIDOfCurrentUser();
+    if (! $user_id){
+        echo(" Just testing with Bob account ");
+        $user_id = 2;
+    }
 
     //Preprocess dates.
     //E.g. if someone types "tomorrow" in the search bar, they should get the date

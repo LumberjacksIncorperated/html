@@ -32,8 +32,11 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
 	$queryArray = explode("+", $query);
 
 	// Get user id
-	// TODO
-	$user_id = 2;
+    $user_id = getAccountIDOfCurrentUser();
+    if (! $user_id){
+        echo(" Just testing with Bob account ");
+        $user_id = 2;
+    }
 
 	getItemsByTags($queryArray, $user_id)
 
