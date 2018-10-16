@@ -44,8 +44,6 @@ function _createTagNameAssociation(){
 // );
 function updateTagText($tagText, $tagId, $userId){
 
-	echo("$oldTagName -> $tagText for $userId !!!! ");
-
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
 
@@ -56,7 +54,20 @@ function updateTagText($tagText, $tagId, $userId){
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 
     // "Learn" the change in tags
-    modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (inputName, outputName, userID) VALUES (\"$oldTagName\", \"$tagText\", \"$userId\");");
+
+    // For now, if an existing association exists, we just override it with a new one
+    $existingAssociation = fetchSingleRecordByMakingSQLQuery("SELECT * from AssociatedNames WHERE inputName LIKE \"$oldTagName\";");
+    $existingAssociationInputName = $existingAssociation['inputName'];
+
+    if ($existingAssociation){
+    	echo("changing an existing association");
+    	modifyDataByMakingSQLQuery("UPDATE AssociatedNames SET outputName = \"$tagText\" WHERE userID = \"$userId\" AND inputName LIKE \"$oldTagName\";");
+    }
+    else {
+    	echo("making a new association");
+	    modifyDataByMakingSQLQuery("INSERT INTO AssociatedNames (inputName, outputName, userID) VALUES (\"$oldTagName\", \"$tagText\", \"$userId\");");
+    }
+
 
     echo("$oldTagName -> $tagText for $userId");
 }
