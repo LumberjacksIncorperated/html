@@ -25,7 +25,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 	// Check for any "preferred" name associated with a current tag name
 	// Return either the preferred name, or the input name if nothing preferred was found
-	_checkForAssociatedNames($tagName, $accountIDOfUser) {
+	function _checkForAssociatedNames($tagName, $accountIDOfUser) {
 		$associatedName = fetchSingleRecordByMakingSQLQuery("SELECT outputName from AssociatedNames WHERE 
 															userID = $accountIDOfUser 
 															AND inputName LIKE \"$tagName\";");
