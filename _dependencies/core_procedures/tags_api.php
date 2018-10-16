@@ -53,13 +53,13 @@ function updateTagText($tagText, $tagId, $userId){
 
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 
-    learnAssociationBetweenWords($oldTagName, $tagText, $userID);
+    learnAssociationBetweenWords($oldTagName, $tagText, $userId);
 
 }
 
 
 // "Learn" the association between an old tag name and new tag text, for a given user
-function learnAssociationBetweenWords($oldTagName, $tagText, $userID){
+function learnAssociationBetweenWords($oldTagName, $tagText, $userId){
 
     // For now, if an existing association exists, we just override it with a new one
     $existingAssociation = fetchSingleRecordByMakingSQLQuery("SELECT * from AssociatedNames WHERE inputName LIKE \"$oldTagName\";");
