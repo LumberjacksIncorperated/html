@@ -52,7 +52,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
     }
 
     function _displayDefaultForNoTasks() {
-        // nothing here yet...
+        $myArray = array();
+        echo($myArray);
     }
 
 //---------------------------------------- 
@@ -79,11 +80,6 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 
         // Somehow the browser interprets "+" as a space, much like %20
         $queryArray = explode("~", $query);
-
-        // foreach ($queryArray as $q) {
-        //     // echo("&&&&&& $q &&&&&&&");
-        //     # code...
-        // }
 
         $itemListEntriesArray = getItemsByTags($queryArray, $user_id);
     }
