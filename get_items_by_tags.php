@@ -38,7 +38,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/secured_session_p
         $user_id = 2;
     }
 
-	getItemsByTags($queryArray, $user_id)
+	getItemsByTags($queryArray, $user_id);
 
 	echo 'Successfully sent the query \"'.$query.'\"';
 ?>
