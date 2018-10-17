@@ -37,6 +37,7 @@ include_once dirname(__FILE__).'/php_environment_php_api.php';
 	}
 
 	function _fetchDataByMakingSQLQuery($queryToFetchData) {
+		$queryToFetchData = sanitiseStringForSQLQuery($queryToFetchData);
 		$connectionToMyApplicationDatabase = _makeConnectionToMyApplicationDatabase();
 		$resultOfQuery = $connectionToMyApplicationDatabase->query($queryToFetchData);
 		$fetchedData = _fetchDataFromQueryResult($resultOfQuery);
