@@ -135,6 +135,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// Google NLP tagging
 	function addAllTagsForItem($itemID, $todoText, $accountIDOfUser){
 
+		$todoText = str_replace("\'s","",$todoText);
+
 		$tags = getTagsForText($todoText);
 		$mytags = json_decode($tags, true);
 
