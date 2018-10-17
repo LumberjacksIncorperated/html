@@ -46,6 +46,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 	function createNewUserAccount($username,$password,$email,$firstName,$lastName) {
 
+		// Security
+		$username = sanitiseStringForSQLQuery($username);
+		$email = sanitiseStringForSQLQuery($email);
+		$firstName = sanitiseStringForSQLQuery($firstName);
+		$lastName = sanitiseStringForSQLQuery($lastName);
+
 		if (strlen($password) < 8){
 			return "Error: Password must be at least 8 characters"; 
 		}
