@@ -89,9 +89,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 
     $tasksArray = array();
 
-    $size = count($itemListEntriesArray);
+    // $size = count($itemListEntriesArray);
     // echo("the size of itemListEntriesArray is $size");
-
 
     if ($itemListEntriesArray) {
          foreach ($itemListEntriesArray as $itemListEntry) {

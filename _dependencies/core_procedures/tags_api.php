@@ -94,8 +94,8 @@ function addDateTag($dateString, $tagID){
 // tagID VARCHAR(36) references Tags(id),
 function deleteTag($tagID){
 	modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE tagID like \"$tagID\";");
+    modifyDataByMakingSQLQuery("DELETE from Tags WHERE tagID like \"$tagID\";");
 }
-
 
 
 // Find tags (tag type and id), given the text value of the tag
