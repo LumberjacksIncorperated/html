@@ -27,9 +27,46 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // FUNCTIONS
 //----------------------------------------
 
+function getItemsByTags($queryArray, $accountId){
+
+	//Turn query array into a string in the form: 'John', 'Newtown', 'coffee', etc
+	$queryArrayString = "";
+	foreach ($queryArray as $queryItem) {
+		$queryArrayString = $queryArrayString."'".$queryItem."', "; 
+	}
+	// Remove trailing comma/space 
+	$queryArrayString = rtrim($queryArrayString,", ");
+
+	$numberOfQueryItems = count($queryArray);
+
+	// Intermediate views
+	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW user_items as SELECT * from items where account_id = $accountId;");
+	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW items_with_the_tags as 
+								SELECT * from user_items 
+								JOIN ItemTags ON user_items.item_id LIKE ItemTags.itemID
+								JOIN Tags ON Tags.id LIKE ItemTags.tagID
+								WHERE Tags.textValue IN ($queryArrayString);");
+
+	modifyDataByMakingSQLQuery("CREATE OR REPLACE VIEW items_with_tag_count as
+								SELECT item_id, count(*) as match_count
+								FROM items_with_the_tags
+								GROUP BY item_id;");
+
+	// Query returns selection of normal item rows that contain the specified tags
+	// with an extra field "match_count" to show how many of the specified tags item contains
+	$r = fetchMultipleRecordsByMakingSQLQuery(
+								"
+								SELECT * from items_with_tag_count
+								JOIN user_items ON items_with_tag_count.item_id LIKE user_items.item_id
+								WHERE items_with_tag_count.match_count = $numberOfQueryItems;
+								"
+								);
+	return $r;
+}
+
 
 // Returns a set of the items which matched the input tags
-function getItemsByTags($queryArray, $accountId){
+function getItemsByTagsWithPartialMatches($queryArray, $accountId){
 
 	//Turn query array into a string in the form: 'John', 'Newtown', 'coffee', etc
 	$queryArrayString = "";

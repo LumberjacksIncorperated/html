@@ -53,6 +53,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 
     function _displayDefaultForNoTasks() {
         $myArray = array();
+        // _displayTaskArrayAsJson($myArray);
         echo("[]");
     }
 
@@ -75,8 +76,6 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
     ///////////// QUERY PARAMETERS ////////////////
     $query = getQueryFieldContentsFromCurrentClientRequest();
     if ($query){
-
-        // echo("********** $query 6663 ");
 
         // Somehow the browser interprets "+" as a space, much like %20
         $queryArray = explode("~", $query);
