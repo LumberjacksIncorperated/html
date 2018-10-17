@@ -75,6 +75,8 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
     $query = getQueryFieldContentsFromCurrentClientRequest();
     if ($query){
 
+        echo("********** $query 6663 ");
+
         // Somehow the browser interprets "+" as a space, much like %20
         $queryArray = explode(" ", $query);
         $itemListEntriesArray = getItemsByTags($queryArray, $user_id);
