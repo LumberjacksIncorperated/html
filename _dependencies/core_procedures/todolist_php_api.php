@@ -46,11 +46,11 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 	function createNewUserAccount($username,$password,$email,$firstName,$lastName) {
 
-		$password = sha1($password);
-
 		if (strlen($password) < 8){
 			return "Error: Password must be at least 8 characters"; 
 		}
+
+		$password = sha1($password);
 
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
   			return "Error: Invalid email format"; 
