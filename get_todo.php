@@ -53,7 +53,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/get_items_by_tag_
 
     function _displayDefaultForNoTasks() {
         $myArray = array();
-        echo($myArray);
+        echo("[]");
     }
 
 //---------------------------------------- 
