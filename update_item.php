@@ -31,6 +31,8 @@ if (! $user_id){
     $user_id = 2;
 }
 
+echo("      we're trying to change item: $item_number      ");
+
 $item_id = getItemIdByItemNumber($item_number);
 
 // Modify item text 
