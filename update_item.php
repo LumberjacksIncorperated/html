@@ -34,6 +34,8 @@ if (! $user_id){
 // Modify item text 
 modifyItemText($item_text, $item_id);
 
+echo(" modifyItemText($item_text, $item_id); ");
+
 // Re-tag item
 deleteAllTagsForItem($item_id);
 tagItem($item_id, $item_text, $user_id);

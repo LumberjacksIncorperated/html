@@ -37,6 +37,8 @@ function _createTagNameAssociation(){
 // tagID VARCHAR(36) references Tags(id),
 function deleteAllTagsForItem($itemID){
 
+    echo(" deleteAllTagsForItem($itemID) ");
+
     modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID like \"$itemID\";");
 
     //TODO: delete tags as well

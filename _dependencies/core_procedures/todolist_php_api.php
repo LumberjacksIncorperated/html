@@ -91,11 +91,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 
 			tagItem($itemID, $todoText, $accountIDOfUser);
-			
+
 		}
 	}
 
 	function tagItem($itemID, $todoText, $accountIDOfUser){
+
+			echo(" tagItem($itemID, $todoText, $accountIDOfUser) ");
 
 			//Tagging functions
 			addAllTagsForItem($itemID, $todoText, $accountIDOfUser);		// Google API
