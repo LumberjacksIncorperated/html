@@ -39,7 +39,7 @@ function deleteAllTagsForItem($itemID){
 
     echo(" deleteAllTagsForItem($itemID) ");
 
-    modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE item_id = $itemID;");
+    modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID = $itemID;");
 
     //TODO: delete tags as well
 }
