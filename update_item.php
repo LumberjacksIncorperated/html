@@ -30,7 +30,7 @@ if (! $user_id){
     $user_id = 2;
 }
 
-// Modify item text
+// Modify item text 
 modifyItemText($item_text, $item_id);
 
 // Re-tag item
