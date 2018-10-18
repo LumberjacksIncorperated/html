@@ -42,7 +42,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 // FUNCTIONS
 //----------------------------------------
 
-
+	function getItemIdByItemNumber($itemNumber){
+		$itemID = fetchSingleRecordByMakingSQLQuery("SELECT itemID from items where itemNumber = $itemNumber");
+		return $itemID['item_id'];
+	}
 
 	function createNewUserAccount($username,$password,$email,$firstName,$lastName) {
 

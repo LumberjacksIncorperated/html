@@ -18,7 +18,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 // Security
 checkSecuredSessionOtherwiseDie();
 
-$item_id = getIdTextFieldContentsFromCurrentClientRequest();
+$item_number = getIdTextFieldContentsFromCurrentClientRequest();
 $item_text = getTodoTextFieldContentsFromCurrentClientRequest();
 
 // echo(" item: ".$item_id);
@@ -30,6 +30,8 @@ if (! $user_id){
     echo("Just testing with Bob account");
     $user_id = 2;
 }
+
+$item_id = getItemIdByItemNumber($item_number);
 
 // Modify item text 
 modifyItemText($item_text, $item_id);
