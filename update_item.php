@@ -20,14 +20,22 @@ checkSecuredSessionOtherwiseDie();
 $item_id = getIdTextFieldContentsFromCurrentClientRequest();
 $item_text = getTodoTextFieldContentsFromCurrentClientRequest();
 
-echo(" item: ".$item_id);
-echo(" new text: ".$item_text);
+// echo(" item: ".$item_id);
+// echo(" new text: ".$item_text);
+
+// Get user id
+$user_id = getAccountIDOfCurrentUser();
+if (! $user_id){
+    echo("Just testing with Bob account");
+    $user_id = 2;
+}
 
 // Modify item text
 modifyItemText($item_text, $item_id);
 
 // Re-tag item
-
+deleteAllTagsForItem($item_id);
+tagItem($item_id, $item_text, $user_id);
 
 
 ?>

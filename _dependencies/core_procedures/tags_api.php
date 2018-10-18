@@ -31,17 +31,20 @@ function _createTagNameAssociation(){
 // EXPOSED FUNCTIONS
 //----------------------------------------
 
+// Delete all tags for item
+// TABLE `ItemTags`;
+// itemID VARCHAR(36) references Items(item_id),
+// tagID VARCHAR(36) references Tags(id),
+function deleteAllTagsForItem($itemID){
+
+    modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE itemID like \"$itemID\";");
+
+    //TODO: delete tags as well
+}
+
 
 // -- Rudimentary "autocorrect" for tags
 // -- e.g. ability to apply tag "UNSW" if "uni" is mentioned 
-// DROP TABLE IF EXISTS `AssociatedNames`;
-// CREATE TABLE AssociatedNames (
-// tagID VARCHAR(36) references Tags(id),
-// associatedName VARCHAR(100),
-// userID VARCHAR(36) references Accounts(account_id),
-// probability REAL,
-// primary key (tagID, associatedName, userID)
-// );
 function updateTagText($tagText, $tagId, $userId){
 
     $tagText = sanitiseStringForSQLQuery($tagText);
@@ -89,9 +92,6 @@ function addDateTag($dateString, $tagID){
 }
 
 // DELETE TAG
-// TABLE `ItemTags`;
-// itemID VARCHAR(36) references Items(item_id),
-// tagID VARCHAR(36) references Tags(id),
 function deleteTag($tagID){
 	modifyDataByMakingSQLQuery("DELETE from ItemTags WHERE tagID like \"$tagID\";");
     modifyDataByMakingSQLQuery("DELETE from Tags WHERE tagID like \"$tagID\";");
