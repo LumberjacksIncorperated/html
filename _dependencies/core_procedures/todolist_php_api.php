@@ -43,7 +43,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 //----------------------------------------
 
 	function getItemIdByItemNumber($itemNumber){
-		$itemID = fetchSingleRecordByMakingSQLQuery("SELECT itemID from items where itemNumber = $itemNumber");
+		$itemID = fetchSingleRecordByMakingSQLQuery("SELECT item_id from items where itemNumber = $itemNumber");
 		return $itemID['item_id'];
 	}
 

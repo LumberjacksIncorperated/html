@@ -31,12 +31,15 @@ if (! $user_id){
     $user_id = 2;
 }
 
+// Modify item text 
+modifyItemText($item_text, $item_number);
+
 echo("      we're trying to change item: $item_number      ");
 
 $item_id = getItemIdByItemNumber($item_number);
 
-// Modify item text 
-modifyItemText($item_text, $item_id);
+echo("    **  we found item: $item_id **     ");
+
 
 echo(" modifyItemText($item_text, $item_id); ");
 
