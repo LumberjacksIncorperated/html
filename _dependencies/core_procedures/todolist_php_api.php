@@ -157,13 +157,19 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// Google NLP tagging
 	function addAllTagsForItem($itemID, $todoText, $accountIDOfUser){
 
-		$todoText = str_replace("\'s","",$todoText);
 
 		$tags = getTagsForText($todoText);
 		$mytags = json_decode($tags, true);
 
 
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
+
+			$tagName = $mytags['entities'][$i]['name'];
+
+			// Remove escape characters in tag
+			$tagName = str_replace("\\","",$tagName);
+
+			// $todoText = str_replace("\'s","",$todoText);
 
 			if ($mytags['entities'][$i]['type'] == "ORGANIZATION"){
 				$tagTypex = "location";
@@ -185,7 +191,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 				$tagTypex = strtolower($mytags['entities'][$i]['type']);
 			}
 
-			$tagName = $mytags['entities'][$i]['name'];
+	
 			$tagName = _checkForAssociatedNames($tagName, $accountIDOfUser);
 
 
