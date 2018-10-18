@@ -23,6 +23,11 @@ $item_text = getTodoTextFieldContentsFromCurrentClientRequest();
 echo(" item: ".$item_id);
 echo(" new text: ".$item_text);
 
+// Modify item text
 modifyItemText($item_text, $item_id);
+
+// Re-tag item
+
+
 
 ?>

@@ -90,11 +90,18 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			modifyDataByMakingSQLQuery("INSERT INTO items (item_id, account_id, item_text) VALUES (\"$itemID\", $accountIDOfUser, \"$todoText\");");
 
 
+			tagItem($itemID, $todoText, $accountIDOfUser);
+			
+		}
+	}
+
+	function tagItem($itemID, $todoText, $accountIDOfUser){
+
 			//Tagging functions
 			addAllTagsForItem($itemID, $todoText, $accountIDOfUser);		// Google API
 			addDateTagForItem($itemID, $time);								// Manual date
 			addNlpDateTagsForItem($itemID, $todoText);						// NLP date api
-		}
+
 	}
 
 	// Manual date tagging
