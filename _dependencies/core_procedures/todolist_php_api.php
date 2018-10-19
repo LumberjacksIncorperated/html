@@ -165,30 +165,26 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
 			$tagName = $mytags['entities'][$i]['name'];
+			$tagType = strtolower($mytags['entities'][$i]['type']);
 
 			// Remove escape characters in tag
 			$tagName = str_replace("\\","",$tagName);
 
-			// $todoText = str_replace("\'s","",$todoText);
-
-			if ($mytags['entities'][$i]['type'] == "ORGANIZATION"){
-				$tagTypex = "location";
+			if ($tagType == "ORGANIZATION"){
+				$tagType = "location";
 			}
-			elseif ($mytags['entities'][$i]['type'] == "WORK_OF_ART") {
-				$tagTypex = "other";
+			elseif ($tagType == "WORK_OF_ART") {
+				$tagType = "other";
 			}
-			elseif ($mytags['entities'][$i]['type'] == "UNKNOWN") {
-				$tagTypex = "other";
+			elseif ($tagType == "UNKNOWN") {
+				$tagType = "other";
 			}
-			elseif ($mytags['entities'][$i]['type'] == "CONSUMER_GOOD") {
-				$tagTypex = "other";
+			elseif ($tagType == "CONSUMER_GOOD") {
+				$tagType = "other";
 			}
-			elseif(preg_match('/priority/', $mytags['entities'][$i]['name'])){
+			elseif(preg_match('/[Pp]riority/', $tagName)){
 				// We leave this for our "specialty" function
 				continue;
-			}
-			else {
-				$tagTypex = strtolower($mytags['entities'][$i]['type']);
 			}
 
 	
