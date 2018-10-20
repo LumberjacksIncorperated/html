@@ -233,7 +233,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$patterns_flattened = implode('|', $patterns);
 
-		preg_match_all($patterns_flattened, $todoText, $mymatches, PREG_PATTERN_ORDER);
+		preg_match_all('/'. $patterns_flattened .'/', $todoText, $mymatches, PREG_PATTERN_ORDER);
 
 		// $count = count($mymatches);
 
