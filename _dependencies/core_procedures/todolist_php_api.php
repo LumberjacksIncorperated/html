@@ -106,7 +106,8 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			addAllTagsForItem($itemID, $todoText, $accountIDOfUser);		// Google API
 			addCustomTagsForItem($itemID, $todoText, $accountIDOfUser);		// Tagnostic secret sauce
 			addDateTagForItem($itemID, $time);								// Manual date
-			addNlpDateTagsForItem($itemID, $todoText);						// NLP date api
+			addAllDateTagsForItem($itemID, $todoText);						//NLP dates and our own dates
+			// addNlpDateTagsForItem($itemID, $todoText);						// NLP date api
 
 	}
 
@@ -121,7 +122,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	// NLP date tagging
-	function addNlpDateTagsForItem($itemID, $todoText){
+	function findNlpDateTagsForItem($itemID, $todoText){
+
+		$dateStrings = array();
 
 		// Manually remove things like COMP4920, it thinks these are dates
 		$todoText = preg_replace('/[A-Za-z]{4}[0-9]{4}/', '', $todoText);
@@ -134,9 +137,11 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			// Remove timezone things
 			$dateString = str_replace("T"," ",$dateString);
-			$dateString = str_replace("Z","",$dateString);
-			addDateTagForItem($itemID, $dateString);
+			$dateString = str_replace("Z"," ",$dateString);
+
+			$array_push($dateStrings, $dateString);
 		}
+		return $dateStrings;
 
 	}
 
@@ -217,36 +222,42 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		// Add priority
 		addPriorityForItem($itemID, $todoText);
 
-		// Add custom date tags for item
-		addCustomDateTagsForItem($itemID, $todoText);
+	}
 
+	function addAllDateTagsForItem($itemID, $todoText){
+
+		$nlpDates = findNlpDateTagsForItem($itemID, $todoText);
+		$customDates = findCustomDateTagsForItem($itemID, $todoText);
+		$allDates = array_merge($nlpDates, $customDates);
+
+		foreach ($allDates as $dateString) {
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addDateTagForItem($itemID, $dateString);
+		}
 	}
 
 	//Add subject tag with simple regex
-	function addCustomDateTagsForItem($itemID, $todoText) {
+	function findCustomDateTagsForItem($itemID, $todoText) {
 
 		// Match Australian style subjects like COMP1531 and US style like CS229
 		$mymatches = array();
-		$pattern = '/(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
+		$datesToReturn = array();
 
 		$patterns = array(
 			'(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)',
-			'(next|last|this)\s+(Mon(day)?|Tuesday|Wednesday|Thursday|Friday)'
+			'(next|last|this)?\s+(Mon(day)?|Tues(day)?|Wednes(day)?|Thurs(day)?|Fri(day)?)'
 		);
 
 		$patterns_flattened = implode('|', $patterns);
 
 		preg_match_all('/'. $patterns_flattened .'/i', $todoText, $mymatches, PREG_PATTERN_ORDER);
 
-		// $count = count($mymatches);
-
 		// Matches[0] holds all the full pattern matches
 		foreach ($mymatches[0] as $match) {
 			$match = date('Y-m-d', strtotime($match));
-			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addDateTagForItem($itemID, $match);
-			addTagForItem($itemID, $tagID);
+			array_push($datesToReturn, $match);
 		}
+		return $datesToReturn;
 	}
 
 	//Add subject tag with simple regex
