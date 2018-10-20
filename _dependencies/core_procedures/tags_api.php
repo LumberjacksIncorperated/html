@@ -57,16 +57,22 @@ function deleteAllTagsForItem($itemID){
 // Update tag id manually on site
 function updateDateTag($tagId, $dateString){
 
-    if (preg_match("/[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}/", $dateString)){
+    // Replace '/' with '-', this way Australian/European date format is assumed
+    // See http://php.net/manual/en/function.strtotime.php
+    $dateString = preg_replace('/\//', '\-', $str);
+
+    if (preg_match("/[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}/", $dateString)){
         echo "****** valid ********";
     } else {
-        echo "****** invalid ********";
+        return "invalid date";
     }
 
     $dateValue = date('Y-m-d', strtotime($dateString));
     $result = modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateValue\" WHERE id LIKE \"$tagId\";");
 
     echo("******* result-> $result ******");
+
+    return "success";
 }
 
 
