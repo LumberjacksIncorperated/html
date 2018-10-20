@@ -189,14 +189,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			$tagName = _checkForAssociatedNames($tagName, $accountIDOfUser);
 
-			//Make sure that tags added are unique
+			// Make sure that tags added are unique
 			$uniqueTagNames['$tagName'] += 1;
-
-
-
-			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($tagName, $tagType, $tagID);
-			addTagForItem($itemID, $tagID);
+			if ($uniqueTagNames['$tagName'] == 1){
+				$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+				addTag($tagName, $tagType, $tagID);
+				addTagForItem($itemID, $tagID);
+			}
 			
 		}
 
