@@ -229,11 +229,11 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$mymatches = array();
 		$pattern = '/(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
 
-		$patterns = array('/(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i','dog');
+		$patterns = array('(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)','dog');
 
 		$patterns_flattened = implode('|', $patterns);
 
-		preg_match_all('/'. $patterns_flattened .'/', $todoText, $mymatches, PREG_PATTERN_ORDER);
+		preg_match_all('/'. $patterns_flattened .'/i', $todoText, $mymatches, PREG_PATTERN_ORDER);
 
 		// $count = count($mymatches);
 
