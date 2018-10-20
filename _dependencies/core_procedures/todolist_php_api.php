@@ -232,7 +232,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		// Hackily make sure that we don't double up on dates found
 		foreach ($allDates as $dateString) {
-			if (count(preg_grep($dateString, $allDates)) > 0){
+			$pattern = '/'.$dateString.'(.)*/';
+			// $p_foods = preg_grep("/p(\w+)/", $foods);
+
+			if (count(preg_grep($pattern, $allDates)) > 1){
 				unset($dateString);
 			} else {
 				$tagID = uuidv4(openssl_random_pseudo_bytes(16));
