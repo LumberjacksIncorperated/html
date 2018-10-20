@@ -58,8 +58,13 @@ function addManualTag($itemID, $tagText, $userId){
 
     //For now, if we find a date in the query string, we assume a date was meant by the user.
     if ($datesArray != NULL){
-        $dateString = str_replace(".000","", $datesArray[0]);
-        addDateTagForItem($itemID, $datesArray[0]);
+
+        $firstMatch = $datesArray[0];
+        $dateString = str_replace(".000","", $firstMatch);
+        addDateTagForItem($itemID, $firstMatch);
+
+        echo("&&&&&&&& it's a date! addDateTagForItem($itemID, $firstMatch);")
+
     }
     // If no date found, treat it as a normal tag
     else {
@@ -69,6 +74,9 @@ function addManualTag($itemID, $tagText, $userId){
         $tagID = uuidv4(openssl_random_pseudo_bytes(16));
         addTag($tagText, $tagType, $tagID);
         addTagForItem($itemID, $tagID);
+
+
+        echo("&&&&&&&& it's a normal tag! type: $tagType, text: $tagText);")
     }
 
 }
