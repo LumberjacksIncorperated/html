@@ -66,7 +66,7 @@ function updateTagText($tagText, $tagId, $userId){
     $originalTag = fetchSingleRecordByMakingSQLQuery("SELECT * from Tags WHERE id LIKE \"$tagId\";");
     
     // Deal with dates
-    $tagTypeId = getTagType($tagId);
+    $tagType = getTagType($tagId);
     if ($tagType == 'date'){
         modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"cat\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
         return;
