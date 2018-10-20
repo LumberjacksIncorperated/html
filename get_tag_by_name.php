@@ -75,7 +75,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
     //E.g. if someone types "tomorrow" in the search bar, they should get the date
     $datesArray = getNlpDatesForItem($tagText);
 
-    //For now, if we find a date in the query string, just go with this.
+    //For now, if we find a date in the query string, we assume a date was meant by the user.
     if ($datesArray != NULL){
         $dateString = str_replace(".000","",$datesArray[0]);
         $tagsArray = getTagsByNameAndUser($dateString, $userId); 

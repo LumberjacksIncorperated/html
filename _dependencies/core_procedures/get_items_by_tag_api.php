@@ -17,6 +17,8 @@ include_once dirname(__FILE__).'/../php_environment_php_api.php';
 include_once dirname(__FILE__).'/../database_php_api.php';
 include_once dirname(__FILE__).'/secured_session_php_api.php';
 include_once dirname(__FILE__).'/../nlp_functions.php';
+include_once dirname(__FILE__).'/todolist_php_api.php';
+
 
 //----------------------------------------
 // INTERNAL FUNCTIONS
@@ -28,6 +30,15 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 //----------------------------------------
 
 function getItemsByTags($queryArray, $accountId){
+
+	// Match date tags and add to query array
+	foreach ($queryArray as $queryString) {
+		$datesArray = getNlpDatesForItem($tagText);
+		if ($datesArray != NULL){
+			$queryString = str_replace(".000","",$datesArray[0]);
+			array_push($queryArray, $queryString);
+		}
+	}
 
 	//Turn query array into a string in the form: 'John', 'Newtown', 'coffee', etc
 	$queryArrayString = "";
