@@ -36,13 +36,6 @@ function getTagType($tagId){
     return $tagType;
 }
 
-function getItemIdByItemNumber($tagNumber){
-    // $tag = fetchSingleRecordByMakingSQLQuery("SELECT tagTypeID from Tags WHERE ;");
-    // itemNumber
-
-}
-
-
 
 //----------------------------------------
 // EXPOSED FUNCTIONS
