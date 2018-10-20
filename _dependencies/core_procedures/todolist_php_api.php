@@ -229,23 +229,21 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$mymatches = array();
 		$pattern = '/(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
 
-		preg_match_all($pattern, $todoText, $mymatches, PREG_PATTERN_ORDER);
+		$patterns = array('/(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i','dog');
 
-		$count = count($mymatches);
+		$patterns_flattened = implode('|', $patterns);
 
+		preg_match_all($patterns_flattened, $todoText, $mymatches, PREG_PATTERN_ORDER);
+
+		// $count = count($mymatches);
+
+		// Matches[0] holds all the full pattern matches
 		foreach ($mymatches[0] as $match) {
-			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($match, "other", $tagID);
-			addTagForItem($itemID, $tagID);
-
 			$match = date('Y-m-d', strtotime($match));
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 			addDateTagForItem($itemID, $match);
 			addTagForItem($itemID, $tagID);
 		}
-		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		addTag($count, "other", $tagID);
-		addTagForItem($itemID, $tagID);
 	}
 
 	//Add subject tag with simple regex
