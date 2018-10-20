@@ -52,8 +52,8 @@ function addManualTag($itemID, $tagText, $userId){
     echo("^^^^^^^^^ addManualTag($itemID, $tagText, $userId) ^^^^^^^^^^^");
 
     //E.g. if someone types "tomorrow", they should get the date
-    $nlpDates = findNlpDateTagsForItem($itemID, $todoText);
-    $customDates = findCustomDateTagsForItem($itemID, $todoText);
+    $nlpDates = findNlpDateTagsForItem($itemID, $tagText);
+    $customDates = findCustomDateTagsForItem($itemID, $tagText);
     $datesArray = array_merge($nlpDates, $customDates);
 
     //For now, if we find a date in the query string, we assume a date was meant by the user.
@@ -68,9 +68,11 @@ function addManualTag($itemID, $tagText, $userId){
     }
     // If no date found, treat it as a normal tag
     else {
-        $tags = getTagsForText($todoText);  //Actual NLP function
+        $tags = getTagsForText($tagText);  //Actual NLP function
         $mytags = json_decode($tags, true);
         $tagType = strtolower($mytags['entities'][0]['type']);
+
+        // $tagType = "other" //testing
         $tagID = uuidv4(openssl_random_pseudo_bytes(16));
         addTag($tagText, $tagType, $tagID);
         addTagForItem($itemID, $tagID);
