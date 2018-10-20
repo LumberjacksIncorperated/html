@@ -204,7 +204,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	}
 
 	// Tagnostic secret sauce tagging
-	addCustomTagsForItem($itemID, $todoText, $accountIDOfUser) {
+	function addCustomTagsForItem($itemID, $todoText, $accountIDOfUser) {
 
 		// Add checkbox
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
