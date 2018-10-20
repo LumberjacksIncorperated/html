@@ -160,7 +160,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		$tags = getTagsForText($todoText);
 		$mytags = json_decode($tags, true);
-
+		$uniqueTagNames = array();
 
 		for ($i=0; $i < count($mytags['entities']); $i++) { 
 
@@ -187,8 +187,11 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 				continue;
 			}
 
-	
 			$tagName = _checkForAssociatedNames($tagName, $accountIDOfUser);
+
+			//Make sure that tags added are unique
+			$uniqueTagNames['$tagName'] = true;
+
 
 
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
