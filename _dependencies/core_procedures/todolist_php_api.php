@@ -216,6 +216,27 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		// Add priority
 		addPriorityForItem($itemID, $todoText);
+
+		// Add custom date tags for item
+		addCustomDateTagsForItem($itemID, $todoText);
+
+	}
+
+	//Add subject tag with simple regex
+	function addCustomDateTagsForItem($itemID, $todoText) {
+
+		// Match Australian style subjects like COMP1531 and US style like CS229
+		$matches = array();
+		$pattern = '/[1-3]?[0-9]\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
+
+		preg_match($pattern, $todoText, $matches);
+
+		foreach ($matches as $match) {
+			$match = date('Y-m-d', strtotime($match));
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addDateTagForItem($itemID, $match)
+			addTagForItem($itemID, $tagID);
+		}
 	}
 
 	//Add subject tag with simple regex

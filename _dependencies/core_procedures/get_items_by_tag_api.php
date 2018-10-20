@@ -29,6 +29,8 @@ include_once dirname(__FILE__).'/todolist_php_api.php';
 // FUNCTIONS
 //----------------------------------------
 
+
+// Return a list of items with tags that match the query parameters
 function getItemsByTags($queryArray, $accountId){
 
 	// Match date tags and add to query array
