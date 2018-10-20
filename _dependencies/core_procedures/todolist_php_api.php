@@ -104,6 +104,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 			//Tagging functions
 			addAllTagsForItem($itemID, $todoText, $accountIDOfUser);		// Google API
+			addCustomTagsForItem($itemID, $todoText, $accountIDOfUser);		// Tagnostic secret sauce
 			addDateTagForItem($itemID, $time);								// Manual date
 			addNlpDateTagsForItem($itemID, $todoText);						// NLP date api
 
@@ -160,7 +161,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// Google NLP tagging
 	function addAllTagsForItem($itemID, $todoText, $accountIDOfUser){
 
-
 		$tags = getTagsForText($todoText);
 		$mytags = json_decode($tags, true);
 		$uniqueTagNames = array();
@@ -201,11 +201,35 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			}
 			
 		}
+	}
 
+	// Tagnostic secret sauce tagging
+	addCustomTagsForItem($itemID, $todoText, $accountIDOfUser) {
+
+		// Add checkbox
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		addTag("Done?", "checkbox", $tagID);
+		addTagForItem($itemID, $tagID);
+
+		// Add subjects
+		addSubjectsForItem($itemID, $todoText);
+
+		// Add priority
+		addPriorityForItem($itemID, $todoText);
+	}
+
+	//Add subject tag with simple regex
+	function addSubjectsForItem($itemID, $todoText) {
+
+		// Match Australian style subjects like COMP1531 and US style like CS229
+		$matches = array();
+		preg_match('/[A-Za-z]{2,4}[0-9]{2,4}/', $todoText, $matches);
+
+		foreach ($matches as $match) {
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag("Done?", "checkbox", $tagID);
+			addTag($match, "other", $tagID);
 			addTagForItem($itemID, $tagID);
-			addPriorityForItem($itemID, $todoText);
+		}
 	}
 
 
