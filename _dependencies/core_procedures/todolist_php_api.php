@@ -122,6 +122,9 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// NLP date tagging
 	function addNlpDateTagsForItem($itemID, $todoText){
 
+		// Manually remove things like COMP4920, it thinks these are dates
+		$todoText = preg_replace('/[A-Za-z]{4}[0-9]{4}/', '', $todoText);
+
 		$dates = getDateTags($todoText); //Actual function which calls the NLP API
 		$mydates = json_decode($dates, true);
 		

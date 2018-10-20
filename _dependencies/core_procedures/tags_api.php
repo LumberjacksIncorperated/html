@@ -60,23 +60,16 @@ function updateDateTag($tagId, $dateString){
     // Replace '/' with '-', this way Australian/European date format is assumed
     // See http://php.net/manual/en/function.strtotime.php
     $dateString = preg_replace('/\//', '-', $dateString);
-    echo "****** dateString -> $dateString ********";
 
-    // ^(0?[1-9]|[12][0-9]|3[01])\-(0?[1-9]|1[012])\-\d{4}$
-
-    
+    // https://stackoverflow.com/questions/22061723/regex-date-validation-for-yyyy-mm-dd/22061800
     if (preg_match("/^(0?[1-9]|[12][0-9]|3[01])\-(0?[1-9]|1[012])\-\d{4}$/", $dateString)){
-        echo "****** valid ********";
+        echo "valid";
     } else {
-        echo "****** invalid!! $dateString ********";
-        return "invalid date";
+        return "Error: invalid date format";
     }
 
     $dateValue = date('Y-m-d', strtotime($dateString));
     $result = modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateValue\" WHERE id LIKE \"$tagId\";");
-
-    echo("******* result-> $result ******");
-
     return "success";
 }
 
@@ -95,10 +88,8 @@ function updateTagText($tagText, $tagId, $userId){
     // Deal with dates
     $tagType = getTagType($tagId);
     if ($tagType == 'date'){
-        // modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"cat\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
-        updateDateTag($tagId, $tagText);
-
-        return;
+        $successStatus = updateDateTag($tagId, $tagText);
+        return $successStatus;
     }
 
     // Save old value of tag for learning association
