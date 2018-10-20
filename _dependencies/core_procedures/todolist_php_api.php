@@ -47,41 +47,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		return $itemID['item_id'];
 	}
 
-	function createNewUserAccount($username,$password,$email,$firstName,$lastName) {
-
-		// Security
-		$username = sanitiseStringForSQLQuery($username);
-		$email = sanitiseStringForSQLQuery($email);
-		$firstName = sanitiseStringForSQLQuery($firstName);
-		$lastName = sanitiseStringForSQLQuery($lastName);
-
-		if (strlen($password) < 8){
-			return "Error: Password must be at least 8 characters"; 
-		}
-
-		$password = sha1($password);
-
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-  			return "Error: Invalid email format"; 
-		}
-		$checkUserName = fetchSingleRecordByMakingSQLQuery("SELECT * from Accounts WHERE username LIKE \"$username\";");
-		if ($checkUserName) {
-			return "Error: User name is already taken";
-		}
-		$checkEmail = fetchSingleRecordByMakingSQLQuery("SELECT * from Accounts WHERE email LIKE \"$email\";");
-		if ($checkEmail) {
-			return "Error: Email address is already associated with an account";
-		}
-
-		modifyDataByMakingSQLQuery("INSERT INTO Accounts (username,password_sha1,firstName,lastName,email) values (\"$username\", \"$password\",\"$firstName\",\"$lastName\",\"$email\");");
-
-		$checkUserName = fetchSingleRecordByMakingSQLQuery("SELECT * from Accounts WHERE username LIKE \"$username\";");
-		if ($checkUserName) {
-			return "success";
-		}
-		return "Error: Failed to create new account. Please try again or contact support";
-	}
-
 
 	function addTodoListEntryForCurrentUser($todoText, $time) {
 
@@ -233,7 +198,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		// Hackily make sure that we don't double up on dates found
 		foreach ($allDates as $dateString) {
 			$pattern = '/'.$dateString.'(.)*/';
-			// $p_foods = preg_grep("/p(\w+)/", $foods);
 
 			if (count(preg_grep($pattern, $allDates)) > 1){
 				unset($dateString);
