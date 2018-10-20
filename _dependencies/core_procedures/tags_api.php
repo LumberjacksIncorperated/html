@@ -54,6 +54,18 @@ function deleteAllTagsForItem($itemID){
     //TODO: delete tags as well
 }
 
+// Manual date tagging
+function updateDateTag($tagId, $dateString){
+
+    modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = $dateString WHERE id LIKE \"$tagId\";");
+
+
+    // modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description) 
+    //                                 VALUES (\"$tagID\", $tagTypeNumber, \"$dateString\", \"Due\");");
+    // addTagForItem($itemID, $tagID);
+}
+
+
 
 // -- Rudimentary "autocorrect" for tags
 // -- e.g. ability to apply tag "UNSW" if "uni" is mentioned 
@@ -68,14 +80,11 @@ function updateTagText($tagText, $tagId, $userId){
     // Deal with dates
     $tagType = getTagType($tagId);
     if ($tagType == 'date'){
-        modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"cat\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
+        // modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"cat\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
+        updateDateTag($tagId, $tagText);
+
         return;
     }
-
-
-
-    // Deal with date tag type
-    if ($originalTag[''])
 
     // Save old value of tag for learning association
     $oldTagName = $originalTag['textValue'];
@@ -107,14 +116,12 @@ function learnAssociationBetweenWords($oldTagName, $tagText, $userId){
 
 
 // DATE TAG
-// 2018-11-20T00:00:00.000Z
 function addDateTag($dateString, $tagID){
     $tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
     $tagTypeNumber = $tagTypeID['id'];
     $dateValue = date($dateString);
     modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue) 
                                     VALUES (\"$tagID\", $tagTypeNumber, $dateValue);");
-
 }
 
 // DELETE TAG
