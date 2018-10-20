@@ -69,6 +69,7 @@ include_once dirname(__FILE__).'/php_environment_php_api.php';
 		$connectionToMyApplicationDatabase = _makeConnectionToMyApplicationDatabase();
 		$resultOfQuery = $connectionToMyApplicationDatabase->query($queryToModifyData);
 		_closeConnectionToMyApplicationDatabase($connectionToMyApplicationDatabase);
+		return $resultOfQuery;
 	}
 
 	function insertDataBySQLQueryAndReturnIDOfGeneratedRecordOnSuccess($queryToModifyData) {

@@ -54,11 +54,13 @@ function deleteAllTagsForItem($itemID){
     //TODO: delete tags as well
 }
 
-// Manual date tagging
+// Update tag id manually on site
 function updateDateTag($tagId, $dateString){
 
     $dateValue = date('Y-m-d', strtotime($dateString));
-    modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateValue\" WHERE id LIKE \"$tagId\";");
+    $result = modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateValue\" WHERE id LIKE \"$tagId\";");
+
+    echo("******* result-> $result ******");
 }
 
 
