@@ -190,7 +190,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$tagName = _checkForAssociatedNames($tagName, $accountIDOfUser);
 
 			//Make sure that tags added are unique
-			$uniqueTagNames['$tagName'] = true;
+			$uniqueTagNames['$tagName'] += 1;
 
 
 
