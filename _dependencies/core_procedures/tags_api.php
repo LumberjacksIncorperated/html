@@ -16,6 +16,7 @@ include_once dirname(__FILE__).'/../php_environment_php_api.php';
 include_once dirname(__FILE__).'/../database_php_api.php';
 include_once dirname(__FILE__).'/secured_session_php_api.php';
 include_once dirname(__FILE__).'/../nlp_functions.php';
+include_once dirname(__FILE__).'/todolist_php_api.php';
 
 
 //----------------------------------------
@@ -35,11 +36,48 @@ function getTagType($tagId){
     return $tagType;
 }
 
+function getItemIdByItemNumber($tagNumber){
+    // $tag = fetchSingleRecordByMakingSQLQuery("SELECT tagTypeID from Tags WHERE ;");
+    // itemNumber
+
+}
+
 
 
 //----------------------------------------
 // EXPOSED FUNCTIONS
 //----------------------------------------
+
+
+function addManualTag($itemID, $tagText, $userId){
+
+    //ideally, check that the user owns the item
+    //TODO
+
+    // Try to infer tag type
+
+    //E.g. if someone types "tomorrow", they should get the date
+    $nlpDates = findNlpDateTagsForItem($itemID, $todoText);
+    $customDates = findCustomDateTagsForItem($itemID, $todoText);
+    $datesArray = array_merge($nlpDates, $customDates);
+
+    //For now, if we find a date in the query string, we assume a date was meant by the user.
+    if ($datesArray != NULL){
+        $dateString = str_replace(".000","", $datesArray[0]);
+        addDateTagForItem($itemID, $datesArray[0]);
+    }
+    // If no date found, treat it as a normal tag
+    else {
+        $tags = getTagsForText($todoText);  //Actual NLP function
+        $mytags = json_decode($tags, true);
+        $tagType = strtolower($mytags['entities'][0]['type']);
+        $tagID = uuidv4(openssl_random_pseudo_bytes(16));
+        addTag($tagText, $tagType, $tagID);
+        addTagForItem($itemID, $tagID);
+    }
+
+}
+
 
 // Delete all tags for item
 // TABLE `ItemTags`;

@@ -169,9 +169,63 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 				addTag($tagName, $tagType, $tagID);
 				addTagForItem($itemID, $tagID);
 			}
-			
 		}
 	}
+
+	// Just get array of Google tags
+	function getAllTagsForItem($itemText){
+
+		$tags = getTagsForText($todoText);	//Actual NLP function
+		$mytags = json_decode($tags, true);
+		$uniqueTagNames = array();
+		$returnArray = array();
+
+		for ($i=0; $i < count($mytags['entities']); $i++) { 
+
+			$tagName = $mytags['entities'][$i]['name'];
+			$tagType = strtolower($mytags['entities'][$i]['type']);
+
+			// Remove escape characters in tag
+			$tagName = str_replace("\\","",$tagName);
+
+			if ($tagType == "ORGANIZATION"){
+				$tagType = "location";
+			}
+			elseif ($tagType == "WORK_OF_ART") {
+				$tagType = "other";
+			}
+			elseif ($tagType == "UNKNOWN") {
+				$tagType = "other";
+			}
+			elseif ($tagType == "CONSUMER_GOOD") {
+				$tagType = "other";
+			}
+			elseif(preg_match('/[Pp]riority/', $tagName)){
+				// We leave this for our "specialty" function
+				continue;
+			}
+
+			$tagName = _checkForAssociatedNames($tagName, $accountIDOfUser);
+
+			// Make sure that tags added are unique
+			$uniqueTagNames[$tagName] += 1;
+			if ($uniqueTagNames[$tagName] == 1){
+				;
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 
 	// Tagnostic secret sauce tagging
 	function addCustomTagsForItem($itemID, $todoText, $accountIDOfUser) {
