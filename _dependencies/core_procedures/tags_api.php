@@ -27,6 +27,16 @@ function _createTagNameAssociation(){
 	;
 }
 
+function getTagType($tagId){
+    $tag = fetchSingleRecordByMakingSQLQuery("SELECT tagTypeID from Tags WHERE id LIKE \"$tagId\";");
+    $tagTypeId = $tag['tagTypeID'];
+    $tagType = fetchSingleRecordByMakingSQLQuery("SELECT name from TagTypes WHERE id = $tagTypeId");
+    $tagType = $tagType['name'];
+    return $tagType;
+}
+
+
+
 //----------------------------------------
 // EXPOSED FUNCTIONS
 //----------------------------------------
@@ -54,12 +64,11 @@ function updateTagText($tagText, $tagId, $userId){
 
     // Get details of tag to change
     $originalTag = fetchSingleRecordByMakingSQLQuery("SELECT * from Tags WHERE id LIKE \"$tagId\";");
-    $tagTypeId = $originalTag['tagTypeID'];
-    $tagType = fetchSingleRecordByMakingSQLQuery("SELECT name from TagTypes WHERE id = $tagTypeId");
-    $tagType = $tagType['name'];
-
+    
+    // Deal with dates
+    $tagTypeId = getTagType($tagId);
     if ($tagType == 'date'){
-        modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"dog\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
+        modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"cat\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
         return;
     }
 
