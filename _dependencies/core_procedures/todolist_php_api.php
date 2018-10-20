@@ -230,9 +230,14 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$customDates = findCustomDateTagsForItem($itemID, $todoText);
 		$allDates = array_merge($nlpDates, $customDates);
 
+		// Hackily make sure that we don't double up on dates found
 		foreach ($allDates as $dateString) {
-			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addDateTagForItem($itemID, $dateString);
+			if (count(preg_grep($dateString, $allDates)) > 1){
+				unset($dateString);
+			} else {
+				$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+				addDateTagForItem($itemID, $dateString);
+			}
 		}
 	}
 
