@@ -229,7 +229,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$mymatches = array();
 		$pattern = '/[1-3]?[0-9]\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
 
-		preg_match($pattern, $todoText, $matches);
+		preg_match($pattern, $todoText, $mymatches);
 
 		$count = count($matches);
 
