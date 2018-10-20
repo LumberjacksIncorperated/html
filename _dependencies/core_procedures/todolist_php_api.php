@@ -227,7 +227,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		// Match Australian style subjects like COMP1531 and US style like CS229
 		$mymatches = array();
-		$pattern = '/[1-3]?[0-9]\s+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
+		$pattern = '/[0|1|2|3]?[0-9]\s+[Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?]/i';
 
 		preg_match($pattern, $todoText, $mymatches);
 
