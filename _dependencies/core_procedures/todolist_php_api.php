@@ -238,6 +238,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 			addDateTagForItem($itemID, $match);
 			addTagForItem($itemID, $tagID);
+
+			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+			addTag($match, "other", $tagID);
+			addTagForItem($itemID, $tagID);
 		}
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 		addTag($count, "other", $tagID);
