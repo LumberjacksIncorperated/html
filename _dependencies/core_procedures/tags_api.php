@@ -57,6 +57,12 @@ function deleteAllTagsForItem($itemID){
 // Update tag id manually on site
 function updateDateTag($tagId, $dateString){
 
+    if (preg_match("/[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}/", $dateString)){
+        echo "****** valid ********";
+    } else {
+        echo "****** invalid ********";
+    }
+
     $dateValue = date('Y-m-d', strtotime($dateString));
     $result = modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateValue\" WHERE id LIKE \"$tagId\";");
 
