@@ -52,9 +52,24 @@ function updateTagText($tagText, $tagId, $userId){
     $tagText = sanitiseStringForSQLQuery($tagText);
     $tagId = sanitiseStringForSQLQuery($tagId);
 
+    // Get details of tag to change
+    $originalTag = fetchSingleRecordByMakingSQLQuery("SELECT * from Tags WHERE id LIKE \"$tagId\";");
+    $tagTypeId = $originalTag['tagTypeID'];
+    $tagType = fetchSingleRecordByMakingSQLQuery("SELECT name from TagTypes WHERE id = $tagTypeId");
+    $tagType = $tagType['name'];
+
+    if ($tagType == 'date'){
+        modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"dog\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
+        return;
+    }
+
+
+
+    // Deal with date tag type
+    if ($originalTag[''])
+
     // Save old value of tag for learning association
-    $oldTagName = fetchSingleRecordByMakingSQLQuery("SELECT textValue from Tags WHERE id LIKE \"$tagId\";");
-    $oldTagName = $oldTagName['textValue'];
+    $oldTagName = $originalTag['textValue'];
 
     modifyDataByMakingSQLQuery("UPDATE Tags SET textValue = \"$tagText\", timeModified = CURRENT_TIMESTAMP WHERE id LIKE \"$tagId\";");
 
