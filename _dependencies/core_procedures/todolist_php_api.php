@@ -231,12 +231,17 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		preg_match($pattern, $todoText, $matches);
 
+		$count = count($matches);
+
 		foreach ($matches as $match) {
 			$match = date('Y-m-d', strtotime($match));
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 			addDateTagForItem($itemID, $match);
 			addTagForItem($itemID, $tagID);
 		}
+		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
+		addTag($count, "other", $tagID);
+		addTagForItem($itemID, $tagID);
 	}
 
 	//Add subject tag with simple regex
