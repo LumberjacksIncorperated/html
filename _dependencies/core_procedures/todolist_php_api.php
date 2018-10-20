@@ -139,7 +139,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$dateString = str_replace("T"," ",$dateString);
 			$dateString = str_replace("Z"," ",$dateString);
 
-			$array_push($dateStrings, $dateString);
+			array_push($dateStrings, $dateString);
 		}
 		return $dateStrings;
 
