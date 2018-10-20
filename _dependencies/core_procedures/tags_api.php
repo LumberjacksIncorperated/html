@@ -59,7 +59,8 @@ function updateDateTag($tagId, $dateString){
 
     // Replace '/' with '-', this way Australian/European date format is assumed
     // See http://php.net/manual/en/function.strtotime.php
-    $dateString = preg_replace('/\//', '\-', $str);
+    $dateString = preg_replace('/\//', '\-', $dateString);
+    echo "****** dateString -> $dateString ********";
 
     if (preg_match("/[0-9]{1,2}\-[0-9]{1,2}\-[0-9]{4}/", $dateString)){
         echo "****** valid ********";
