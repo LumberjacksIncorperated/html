@@ -57,7 +57,8 @@ function deleteAllTagsForItem($itemID){
 // Manual date tagging
 function updateDateTag($tagId, $dateString){
 
-    modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateString\" WHERE id LIKE \"$tagId\";");
+    $dateValue = date($dateString);
+    modifyDataByMakingSQLQuery("UPDATE Tags SET dateTimeValue = \"$dateValue\" WHERE id LIKE \"$tagId\";");
 
 
     // modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description) 
