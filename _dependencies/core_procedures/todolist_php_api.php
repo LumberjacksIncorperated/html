@@ -234,7 +234,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		foreach ($matches as $match) {
 			$match = date('Y-m-d', strtotime($match));
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addDateTagForItem($itemID, $match)
+			addDateTagForItem($itemID, $match);
 			addTagForItem($itemID, $tagID);
 		}
 	}
