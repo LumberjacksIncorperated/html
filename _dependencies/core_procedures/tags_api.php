@@ -63,7 +63,7 @@ function addManualTag($itemID, $tagText, $userId){
         $dateString = str_replace(".000","", $firstMatch);
         addDateTagForItem($itemID, $firstMatch);
 
-        echo("&&&&&&&& it's a date! addDateTagForItem($itemID, $firstMatch);")
+        echo("&&&&&&&& it's a date! addDateTagForItem($itemID, $firstMatch);");
 
     }
     // If no date found, treat it as a normal tag
@@ -76,7 +76,7 @@ function addManualTag($itemID, $tagText, $userId){
         addTagForItem($itemID, $tagID);
 
 
-        echo("&&&&&&&& it's a normal tag! type: $tagType, text: $tagText);")
+        echo("&&&&&&&& it's a normal tag! type: $tagType, text: $tagText);");
     }
 
 }
