@@ -49,6 +49,8 @@ function addManualTag($itemID, $tagText, $userId){
 
     // Try to infer tag type
 
+    echo("^^^^^^^^^ addManualTag($itemID, $tagText, $userId) ^^^^^^^^^^^");
+
     //E.g. if someone types "tomorrow", they should get the date
     $nlpDates = findNlpDateTagsForItem($itemID, $todoText);
     $customDates = findCustomDateTagsForItem($itemID, $todoText);
