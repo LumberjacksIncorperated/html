@@ -229,7 +229,10 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$mymatches = array();
 		$pattern = '/(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)/i';
 
-		$patterns = array('(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)','dog');
+		$patterns = array(
+			'(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)',
+			'(next|last|this)\s+(Mon(day)?|Tuesday|Wednesday|Thursday|Friday)'
+		);
 
 		$patterns_flattened = implode('|', $patterns);
 
