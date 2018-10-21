@@ -42,7 +42,7 @@ function getItemsByTags($queryArray, $accountId){
 			// 	echo " &&&&& $m &&&&&&&&";
 			// }
 
-			$queryString = $matches[2].'-'.$matches[1].'-'.matches[0]." 00:00:00";
+			$queryString = $matches[0].'-'.$matches[1].'-'.$matches[2]." 00:00:00";
 		}
 
 		$queryString = str_replace("/","-",$queryString);
