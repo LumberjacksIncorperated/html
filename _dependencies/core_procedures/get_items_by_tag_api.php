@@ -36,7 +36,14 @@ function getItemsByTags($queryArray, $accountId){
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
 
+		$queryString = str_replace("/","-",$queryString);
+
 		echo "((((((((((( $queryString ))))))))))";
+
+		$nlpDates = findNlpDateTagsForItem($itemID, $todoText);
+		$customDates = findCustomDateTagsForItem($itemID, $todoText);
+		$datesArray = array_merge($nlpDates, $customDates);
+
 		$datesArray = getNlpDatesForItem($tagText);
 		if ($datesArray != NULL){
 			$queryString = str_replace(".000","",$datesArray[0]);
