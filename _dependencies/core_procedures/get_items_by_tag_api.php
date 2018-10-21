@@ -36,26 +36,19 @@ function getItemsByTags($queryArray, $accountId){
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
 
-		// Account for different date types coming from FE
+		Account for different date types coming from FE
 		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $queryString, $matches)){
-			// foreach ($matches as $m) {
-			// 	echo " &&&&& $m &&&&&&&&";
-			// }
-
-			// $matches[0] is the whole matching string, we don't want this
-			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1]." 00:00:00";
+			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1];
+			$queryString = $newQueryString;
 		}
 
-		// $queryString = str_replace("/","-",$queryString);
-
-		$queryString = $newQueryString;
-
 		echo "((((((((((( $queryString ))))))))))";
-		// echo "((((((((((( $newQueryString ))))))))))";
 
-		$customDates = findCustomDateTagsForItem($itemID, $todoText);
-		$nlpDates = findNlpDateTagsForItem($itemID, $todoText);
-		$datesArray = array_merge($customDates, $nlpDates);
+		// $customDates = findCustomDateTagsForItem($itemID, $todoText);
+		// $nlpDates = findNlpDateTagsForItem($itemID, $todoText);
+		// $datesArray = array_merge($customDates, $nlpDates);
+
+		$datesArray = getNlpDatesForItem($queryString)
 
 		if ($datesArray != NULL){
 			$queryString = str_replace(".000","",$datesArray[0]);
