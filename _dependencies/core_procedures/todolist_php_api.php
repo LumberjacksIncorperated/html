@@ -276,7 +276,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 		$patterns = array(
 			'(0|1|2|3)?[0-9] (Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|Jun(e)?|Jul(y)?|Aug(ust)?|Sep(tember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)',
 			'(next|last|this)?\s+(Mon(day)?|Tues(day)?|Wednes(day)?|Thurs(day)?|Fri(day)?([^A-Za-z]|$))',
-			'\d{1,2}\-\d{1,2}\-\d{4}',
+			'\d{1,2}\-\d{1,2}\-\d{4}'
 		);
 
 		$patterns_flattened = implode('|', $patterns);
