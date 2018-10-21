@@ -38,6 +38,8 @@ function getItemsByTags($queryArray, $accountId){
 		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $queryString, $matches)){
 			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1];
 			$q = $newQueryString;
+
+			echo "*** $newQueryString ***";
 		}
 		
 	}
