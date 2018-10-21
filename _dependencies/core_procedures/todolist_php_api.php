@@ -222,16 +222,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 
 
-
-
-
-
-
-
-
-
-
-
 	// Tagnostic secret sauce tagging
 	function addCustomTagsForItem($itemID, $todoText, $accountIDOfUser) {
 

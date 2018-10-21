@@ -33,7 +33,6 @@ function _createRequestPacketForData($text) {
 }
 
 //Takes in a text string and returns tags in some kind of JSON string
-//TODO: deal with escape characters
 function getTagsForText($text){
 
 	$api_key =  _getGoogleApiKey(); 
@@ -42,7 +41,6 @@ function getTagsForText($text){
 	$requestPacketStream  = stream_context_create($requestPacket);
 	$nlpResult = file_get_contents($requestURL, false, $requestPacketStream);
 	var_dump($nlpResult);
-	// var_dump($nlpResult);
 	
 	if ($nlpResult === FALSE) { /* Handle error */ }
 	if ($nlpResult === NULL) { return "dog"; }
@@ -51,48 +49,11 @@ function getTagsForText($text){
 }
 
 function getDateTags($text){
-	// $curlCommandString = 'curl -X POST "https://api.dateparser.io/DMY/parse" -H "accept: application/json" -H "X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1" -H "Content-Type: application/json" -d "\[\\"'.$text.'\\"\]"';
+
 	$curlCommandString = 'curl -X POST "https://api.dateparser.io/DMY/parse" -H "accept: applicatn/json" -H "X-API-KEY: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1" -H "Content-Type: application/json" -d "[ \"'.$text.'\"]"';
-	// echo("$curlCommandString");
     $output = shell_exec("$curlCommandString");
-    // echo("333");
-    // $tagDate = json_decode($output, true);
-    // echo("2");
-    //echo(($output[0]);
-    //echo("2"); 
-    //echo(($output[0][0]);
-   // echo("2");
-    // echo($output);
-   // echo("2");
-  //  echo($tagDate["date"]);
-    // echo("333");
-    // var_dump($output);
-    // echo("999");
+
 	return $output;
-
-//[[{"date":"2018-11-20T00:00:00.000Z","ms":1542672000000,"epoch":1542672000,"match":"20th of November","index":16}]]
-
-	/*
-echo("2");
-	// curl_setopt($ch, CURLOPT_URL, "https://api.dateparser.io/DMY/parse");
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS, "[\"$text\"]");
-	curl_setopt($ch, CURLOPT_POST, 1);
-echo("3");
-	$headers = array();
-	$headers[] = "Accept: application/json";
-	$headers[] = "X-Api-Key: df60929ddd5df0859aceb28d881b67a3dae25d242febf70afd0d51fb280240f1";
-	$headers[] = "Content-Type: application/json";
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-echo("4");
-	$result = curl_exec($ch);
-	echo("5");
-	if (curl_errno($ch)) {
-	    echo 'Error:' . curl_error($ch);
-	}
-	curl_close ($ch);
-echo("6");
-	return $result;*/
 
 }
 

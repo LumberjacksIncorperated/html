@@ -16,13 +16,10 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 //---------------------------------------- 
 
 // Security
-// checkSecuredSessionOtherwiseDie(); // TODO Frontend is sending session_token not session_key
+checkSecuredSessionOtherwiseDie(); // This script should get session_key
 
 $item_number = getIdTextFieldContentsFromCurrentClientRequest();
 $item_text = getTodoTextFieldContentsFromCurrentClientRequest();
-
-// echo(" item: ".$item_id);
-// echo(" new text: ".$item_text);
 
 // Get user id
 $user_id = getAccountIDOfCurrentUser();
@@ -34,14 +31,7 @@ if (! $user_id){
 // Modify item text 
 modifyItemText($item_text, $item_number);
 
-echo("      we're trying to change item: $item_number      ");
-
 $item_id = getItemIdByItemNumber($item_number);
-
-echo("    **  we found item: $item_id **     ");
-
-
-echo(" modifyItemText($item_text, $item_id); ");
 
 // Re-tag item, but keep the manually added tags
 retagItemOnUpdate($item_id, $item_text, $user_id);

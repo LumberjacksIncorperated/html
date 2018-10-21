@@ -24,7 +24,6 @@ include_once dirname(__FILE__).'/todolist_php_api.php';
 //----------------------------------------
 
 function _createTagNameAssociation(){
-
 	;
 }
 
@@ -60,8 +59,7 @@ function retagItemOnUpdate($item_id, $item_text, $user_id) {
 
 function addManualTag($itemID, $tagText, $userId){
 
-    //ideally, check that the user owns the item
-    //TODO
+    // Check that the user owns the item
 
     // Try to infer tag type
     //E.g. if someone types "tomorrow", they should get the date

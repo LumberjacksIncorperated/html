@@ -52,6 +52,4 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 	
 	addManualTag($item_id, $tag_text, $user_id);
 
-	echo("******** adding tag $tag_text to item $item_id ************** ");
-
 ?>

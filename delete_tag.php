@@ -36,7 +36,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/tags_api.php';
 // SCRIPT
 //---------------------------------------- 
 	// Security
-	// checkSecuredSessionOtherwiseDie(); // TODO Frontend is sending session_token not session_key
+	checkSecuredSessionOtherwiseDie(); // Script should get session_key
 
 	$tagId = getTagIDTextFieldContentsFromCurrentClientRequest();
 

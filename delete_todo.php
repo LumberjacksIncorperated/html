@@ -26,7 +26,7 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/items_api.php';
 // SCRIPT
 //---------------------------------------- 
 	// Security
-	// checkSecuredSessionOtherwiseDie(); // TODO this script should get a session_key
+	checkSecuredSessionOtherwiseDie(); // This script should get &session_key
 
 	$item_id = getIdTextFieldContentsFromCurrentClientRequest();
 

@@ -22,6 +22,4 @@ $id_of_tag = getTagIDTextFieldContentsFromCurrentClientRequest();
 
 toggleTaskCompletion($id_of_tag);
 
-// echo "setting tag $id_of_tag to $flag";
-
 ?>
