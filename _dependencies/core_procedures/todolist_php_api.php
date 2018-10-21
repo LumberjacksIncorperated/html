@@ -166,7 +166,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			$uniqueTagNames[$tagName] += 1;
 			if ($uniqueTagNames[$tagName] == 1){
 				$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-				addTag($tagName, $tagType, $tagID);
+				addTag($tagName, $tagType, $tagID, "auto");
 				addTagForItem($itemID, $tagID);
 			}
 		}
@@ -232,7 +232,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		// Add checkbox
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-		addTag("Done?", "checkbox", $tagID);
+		addTag("Done?", "checkbox", $tagID, "auto");
 		addTagForItem($itemID, $tagID);
 
 		// Add subjects
@@ -294,7 +294,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		foreach ($matches as $match) {
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($match, "other", $tagID);
+			addTag($match, "other", $tagID, "auto");
 			addTagForItem($itemID, $tagID);
 		}
 	}
@@ -308,13 +308,13 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 		if ($matches[0]){
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag($matches[0], "priority", $tagID);
+			addTag($matches[0], "priority", $tagID, "auto");
 			addTagForItem($itemID, $tagID);
 		}
 
 		if (preg_match('/[Ii]mportant/', $todoText, $matches)) {
 			$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-			addTag("high priority", "priority", $tagID);
+			addTag("high priority", "priority", $tagID, "auto");
 			addTagForItem($itemID, $tagID);
 		}
 	}
@@ -354,12 +354,12 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 
 
 	// ADD TAGS
-	function addTag($tagName, $tagType, $tagID){
+	function addTag($tagName, $tagType, $tagID, $taggingMethod){
 		$tagName = sanitiseStringForSQLQuery($tagName);
 		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"$tagType\";");
 		$tagTypeNumber = $tagTypeID['id'];
-		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue) 
-									VALUES (\"$tagID\", $tagTypeNumber, \"$tagName\");");
+		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, textValue, taggingMethod) 
+									VALUES (\"$tagID\", $tagTypeNumber, \"$tagName\", \"$taggingMethod\");");
 	}
 
 	function addTagForItem($itemID, $tagID){

@@ -45,14 +45,13 @@ function retagItemOnUpdate($item_id, $item_text, $user_id) {
 
 // Only items which belong to the given user
 
-modifyDataByMakingSQLQuery(
-
-"DELETE ItemTags from ItemTags 
-JOIN Tags 
-ON ItemTags.tagID LIKE Tags.id
-WHERE ItemTags.itemID LIKE \"$item_id\"
-AND Tags.taggingMethod LIKE \"auto\";"
-);
+    modifyDataByMakingSQLQuery(
+        "DELETE ItemTags from ItemTags 
+        JOIN Tags 
+        ON ItemTags.tagID LIKE Tags.id
+        WHERE ItemTags.itemID LIKE \"$item_id\"
+        AND Tags.taggingMethod LIKE \"auto\";"
+    );
 
     tagItem($item_id, $item_text, $user_id);
 }
@@ -66,8 +65,6 @@ function addManualTag($itemID, $tagText, $userId){
 
     // Try to infer tag type
 
-    echo("^^^^^^^^^ addManualTag($itemID, $tagText, $userId) ^^^^^^^^^^^");
-
     //E.g. if someone types "tomorrow", they should get the date
     $nlpDates = findNlpDateTagsForItem($itemID, $tagText);
     $customDates = findCustomDateTagsForItem($itemID, $tagText);
@@ -79,9 +76,6 @@ function addManualTag($itemID, $tagText, $userId){
         $firstMatch = $datesArray[0];
         $dateString = str_replace(".000","", $firstMatch);
         addDateTagForItem($itemID, $firstMatch, "manual");
-
-        echo("&&&&&&&& it's a date! addDateTagForItem($itemID, $firstMatch);");
-
     }
     // If no date found, treat it as a normal tag
     else {
@@ -91,11 +85,8 @@ function addManualTag($itemID, $tagText, $userId){
 
         // $tagType = "other" //testing
         $tagID = uuidv4(openssl_random_pseudo_bytes(16));
-        addTag($tagText, $tagType, $tagID);
+        addTag($tagText, $tagType, $tagID, "manual");
         addTagForItem($itemID, $tagID);
-
-
-        echo("&&&&&&&& it's a normal tag! type: $tagType, text: $tagText);");
     }
 
 }
