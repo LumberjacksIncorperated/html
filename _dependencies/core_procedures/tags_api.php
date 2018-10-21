@@ -41,6 +41,16 @@ function getTagType($tagId){
 // EXPOSED FUNCTIONS
 //----------------------------------------
 
+function retagItemOnUpdate($item_id, $item_text, $user_id) {
+
+    modifyDataByMakingSQLQuery("DELETE from ItemTags 
+                                WHERE itemID LIKE \"$item_id\"
+                                AND NOT taggingMethod LIKE \"manual\";");
+
+    tagItem($item_id, $item_text, $user_id);
+}
+
+
 
 function addManualTag($itemID, $tagText, $userId){
 

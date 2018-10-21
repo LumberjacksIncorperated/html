@@ -43,9 +43,7 @@ echo("    **  we found item: $item_id **     ");
 
 echo(" modifyItemText($item_text, $item_id); ");
 
-// Re-tag item
-deleteAllTagsForItem($item_id);
-tagItem($item_id, $item_text, $user_id);
-
+// Re-tag item, but keep the manually added tags
+retagItemOnUpdate($item_id, $item_text, $user_id);
 
 ?>

@@ -104,7 +104,8 @@ uuidValue VARCHAR(36),
 timeAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 timeModified TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 addedBy VARCHAR(36) references Accounts(account_id),
-description VARCHAR(100)
+description VARCHAR(100),
+taggingMethod VARCHAR(10) DEFAULT "auto"
 );
 
 --Dummy tag
