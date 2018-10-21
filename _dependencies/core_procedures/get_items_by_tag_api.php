@@ -36,6 +36,13 @@ function getItemsByTags($queryArray, $accountId){
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
 
+		// Account for different date types coming from FE
+		if (preg_match('/(\d{1,2})\/(\d{1,2})\/(\d{4})/', $queryString, $matches){
+			foreach ($matches as $m) {
+				echo " &&&&& $m &&&&&&&&";
+			}
+		}
+
 		$queryString = str_replace("/","-",$queryString);
 
 		echo "((((((((((( $queryString ))))))))))";
