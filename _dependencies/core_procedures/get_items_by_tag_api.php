@@ -38,16 +38,11 @@ function getItemsByTags($queryArray, $accountId){
 		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $q, $matches)){
 			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1]." 00:00:00";
 			$q = $newQueryString;
-
-			echo "*** $newQueryString ***";
 		}
-		
 	}
 
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
-
-		echo "((((((( $queryString )))))";
 		$datesArray = getNlpDatesForItem($tagText);
 		if ($datesArray != NULL){
 			$queryString = str_replace(".000","",$datesArray[0]);
