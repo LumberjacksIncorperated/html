@@ -42,7 +42,8 @@ function getItemsByTags($queryArray, $accountId){
 				echo " &&&&& $m &&&&&&&&";
 			}
 
-			$newQueryString = $matches[2].'-'.$matches[1].'-'.$matches[0]." 00:00:00";
+			// $matches[0] is the whole matching string, we don't want this
+			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1]." 00:00:00";
 		}
 
 		$queryString = str_replace("/","-",$queryString);
