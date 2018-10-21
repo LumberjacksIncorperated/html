@@ -114,6 +114,11 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	// Returns an array of date strings that can be added to DB
 	function getNlpDatesForItem($todoText){
 
+		if (preg_match('/^[A-Za-z]{4}[0-9]{4}$/', $todoText)){
+			//This is someone searching for a subject, we don't want to know about this
+			return NULL;
+		}
+
 		$dates = getDateTags($todoText); //Actual function which calls the NLP API
 		$mydates = json_decode($dates, true);
 
