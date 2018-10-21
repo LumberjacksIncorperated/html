@@ -43,11 +43,16 @@ function getTagType($tagId){
 
 function retagItemOnUpdate($item_id, $item_text, $user_id) {
 
-    modifyDataByMakingSQLQuery("DELETE from ItemTags 
-                                JOIN Tags 
-                                ON ItemTags.tagID LIKE Tags.id
-                                WHERE ItemTags.itemID LIKE \"$item_id\"
-                                AND Tags.taggingMethod LIKE \"auto\";");
+// Only items which belong to the given user
+
+modifyDataByMakingSQLQuery(
+
+"DELETE ItemTags from ItemTags 
+JOIN Tags 
+ON ItemTags.tagID LIKE Tags.id
+WHERE ItemTags.itemID LIKE \"$item_id\"
+AND Tags.taggingMethod LIKE \"auto\";"
+);
 
     tagItem($item_id, $item_text, $user_id);
 }
