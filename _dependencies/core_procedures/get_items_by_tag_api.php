@@ -38,9 +38,11 @@ function getItemsByTags($queryArray, $accountId){
 
 		// Account for different date types coming from FE
 		if (preg_match('/(\d{1,2})\/(\d{1,2})\/(\d{4})/', $queryString, $matches)){
-			foreach ($matches as $m) {
-				echo " &&&&& $m &&&&&&&&";
-			}
+			// foreach ($matches as $m) {
+			// 	echo " &&&&& $m &&&&&&&&";
+			// }
+
+			$queryString = $matches[2].'-'.$matches[1].'-'.matches[0]." 00:00:00";
 		}
 
 		$queryString = str_replace("/","-",$queryString);
