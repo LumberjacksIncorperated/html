@@ -45,7 +45,7 @@ function retagItemOnUpdate($item_id, $item_text, $user_id) {
 
     modifyDataByMakingSQLQuery("DELETE from ItemTags 
                                 WHERE itemID LIKE \"$item_id\"
-                                AND NOT taggingMethod LIKE \"manual\";");
+                                AND taggingMethod LIKE \"auto\";");
 
     tagItem($item_id, $item_text, $user_id);
 }
