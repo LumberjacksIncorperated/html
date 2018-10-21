@@ -265,7 +265,6 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 	//Add subject tag with simple regex
 	function findCustomDateTagsForItem($itemID, $todoText) {
 
-		// Match Australian style subjects like COMP1531 and US style like CS229
 		$mymatches = array();
 		$datesToReturn = array();
 
