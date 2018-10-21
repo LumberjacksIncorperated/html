@@ -71,7 +71,7 @@ function addManualTag($itemID, $tagText, $userId){
 
         $firstMatch = $datesArray[0];
         $dateString = str_replace(".000","", $firstMatch);
-        addDateTagForItem($itemID, $firstMatch);
+        addDateTagForItem($itemID, $firstMatch, "manual");
 
         echo("&&&&&&&& it's a date! addDateTagForItem($itemID, $firstMatch);");
 

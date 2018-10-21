@@ -70,19 +70,19 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 			//Tagging functions
 			addAllTagsForItem($itemID, $todoText, $accountIDOfUser);		// Google API
 			addCustomTagsForItem($itemID, $todoText, $accountIDOfUser);		// Tagnostic secret sauce
-			addDateTagForItem($itemID, $time);								// Manual date
+			addDateTagForItem($itemID, $time, "manual");					// Manual date
 			addAllDateTagsForItem($itemID, $todoText);						//NLP dates and our own dates
-			// addNlpDateTagsForItem($itemID, $todoText);						// NLP date api
+			// addNlpDateTagsForItem($itemID, $todoText);					// NLP date api
 
 	}
 
 	// Manual date tagging
-	function addDateTagForItem($itemID, $dateString){
+	function addDateTagForItem($itemID, $dateString, $taggingMethod){
 		$tagID = uuidv4(openssl_random_pseudo_bytes(16));
 		$tagTypeID = fetchSingleRecordByMakingSQLQuery("SELECT id from TagTypes WHERE name LIKE \"date\";");
 		$tagTypeNumber = $tagTypeID['id'];
-		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description) 
-		                                VALUES (\"$tagID\", $tagTypeNumber, \"$dateString\", \"Due\");");
+		modifyDataByMakingSQLQuery("INSERT INTO Tags (id, tagTypeID, dateTimeValue, description, taggingMethod) 
+		                           VALUES (\"$tagID\", $tagTypeNumber, \"$dateString\", \"Due\", \"$taggingMethod\");");
 		addTagForItem($itemID, $tagID);
 	}
 
@@ -257,7 +257,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 				unset($dateString);
 			} else {
 				$tagID = uuidv4(openssl_random_pseudo_bytes(16));
-				addDateTagForItem($itemID, $dateString);
+				addDateTagForItem($itemID, $dateString, "auto");
 			}
 		}
 	}
