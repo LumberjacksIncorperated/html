@@ -36,7 +36,7 @@ function getItemsByTags($queryArray, $accountId){
 	foreach ($queryArray as &$q) {
 		//Account for different date types coming from FE
 		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $q, $matches)){
-			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1];
+			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1]." 00:00:00";
 			$q = $newQueryString;
 
 			echo "*** $newQueryString ***";
