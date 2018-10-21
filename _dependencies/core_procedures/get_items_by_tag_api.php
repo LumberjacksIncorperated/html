@@ -35,21 +35,7 @@ function getItemsByTags($queryArray, $accountId){
 
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
-
-		//Account for different date types coming from FE
-		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $queryString, $matches)){
-			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1];
-			$queryString = $newQueryString;
-		}
-
-		echo "((((((((((( $queryString ))))))))))";
-
-		// $customDates = findCustomDateTagsForItem($itemID, $todoText);
-		// $nlpDates = findNlpDateTagsForItem($itemID, $todoText);
-		// $datesArray = array_merge($customDates, $nlpDates);
-
-		$datesArray = getNlpDatesForItem($queryString);
-
+		$datesArray = getNlpDatesForItem($tagText);
 		if ($datesArray != NULL){
 			$queryString = str_replace(".000","",$datesArray[0]);
 			array_push($queryArray, $queryString);
