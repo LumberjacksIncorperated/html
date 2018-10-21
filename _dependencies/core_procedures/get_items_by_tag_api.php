@@ -38,7 +38,7 @@ function getItemsByTags($queryArray, $accountId){
 
 		$queryString = str_replace("/","-",$queryString);
 
-		echo "((((((((((( $queryString ))))))))))";
+		// echo "((((((((((( $queryString ))))))))))";
 
 		$customDates = findCustomDateTagsForItem($itemID, $todoText);
 		$nlpDates = findNlpDateTagsForItem($itemID, $todoText);
