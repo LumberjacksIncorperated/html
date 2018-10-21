@@ -48,7 +48,7 @@ function getItemsByTags($queryArray, $accountId){
 		// $nlpDates = findNlpDateTagsForItem($itemID, $todoText);
 		// $datesArray = array_merge($customDates, $nlpDates);
 
-		$datesArray = getNlpDatesForItem($queryString)
+		$datesArray = getNlpDatesForItem($queryString);
 
 		if ($datesArray != NULL){
 			$queryString = str_replace(".000","",$datesArray[0]);
