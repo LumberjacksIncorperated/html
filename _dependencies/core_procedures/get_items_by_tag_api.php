@@ -36,7 +36,7 @@ function getItemsByTags($queryArray, $accountId){
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
 
-		Account for different date types coming from FE
+		//Account for different date types coming from FE
 		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $queryString, $matches)){
 			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1];
 			$queryString = $newQueryString;
