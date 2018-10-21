@@ -33,6 +33,15 @@ include_once dirname(__FILE__).'/todolist_php_api.php';
 // Return a list of items with tags that match the query parameters
 function getItemsByTags($queryArray, $accountId){
 
+	foreach ($queryArray as &$q) {
+		//Account for different date types coming from FE
+		if (preg_match('/^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/', $queryString, $matches)){
+			$newQueryString = $matches[3].'-'.$matches[2].'-'.$matches[1];
+			$q = $newQueryString;
+		}
+		
+	}
+
 	// Match date tags and add to query array
 	foreach ($queryArray as $queryString) {
 		$datesArray = getNlpDatesForItem($tagText);
