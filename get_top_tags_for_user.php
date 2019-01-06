@@ -44,9 +44,12 @@ include_once dirname(__FILE__).'/_dependencies/core_procedures/charts_api.php';
     }
 
     //Get top tags for user
-    $topTags = [];
-    array_push($topTags, getTopSixTagsForUser($user_id));
-    
-    echo (json_encode($topTags));
+    $r = []
+    $topTags = getTopSixTagsForUser($user_id);
+    foreach ($topTags as $tag) {
+        array_push($r, $tag);
+    }
+
+    echo (json_encode($r));
 
 ?>
