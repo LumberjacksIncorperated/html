@@ -21,28 +21,7 @@ include_once dirname(__FILE__).'/../nlp_functions.php';
 //----------------------------------------
 // INTERNAL FUNCTIONS
 //----------------------------------------
-    function _createTaskWithoutTagsForSingleEntry($itemEntry) {
-        $todoEntry = "".$itemEntry['item_text'];
-        $entryTime = "".$itemEntry['time_posted'];
-        $itemID = "".$itemEntry['item_id'];
-        $itemNumber = "".$itemEntry['itemNumber'];
-        $task = array("task" => $todoEntry, "created_at" => $entryTime, "item_id" => $itemNumber, "tag_list" => array());
-        return $task;
-    }
 
-    function _createTaskFromItemListEntryForSingleEntry($itemEntry) {
-        $itemID = "".$itemEntry['item_id'];
-        $task = _createTaskWithoutTagsForSingleEntry($itemEntry);
-        $itemTags = getTagsForItem($itemID);
-        foreach ($itemTags as $itag) {
-            array_push($task['tag_list'], array("textValue" => $itag['textValue'], "tagType" => $itag['tagType'], "tagID" => $itag['id']));
-        }
-        return $task;
-    }
-
-    function _displayTaskAsJson($task) {
-        echo (json_encode($task));
-    }
 
 //----------------------------------------
 // EXPOSED FUNCTIONS
